@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "docsbot": {
+      "type": "http",
+      "url": "https://mcp.docsbot.ai"
+    }
+  }
+}
