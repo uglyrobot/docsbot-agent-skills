@@ -5,7 +5,7 @@
 Install the DocsBot marketplace:
 
 ```bash
-codex plugin marketplace add uglyrobot/docsbot-agent-tools
+codex plugin marketplace add uglyrobot/docsbot-agent-skills
 codex plugin add docsbot-mcp@docsbot
 ```
 

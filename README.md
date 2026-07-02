@@ -20,7 +20,7 @@ Authentication uses browser-based OAuth with Dynamic Client Registration. DocsBo
 Add this repository as a Codex plugin marketplace:
 
 ```bash
-codex plugin marketplace add uglyrobot/docsbot-agent-tools
+codex plugin marketplace add uglyrobot/docsbot-agent-skills
 codex plugin add docsbot-mcp@docsbot
 ```
 

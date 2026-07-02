@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MARKETPLACE_REPO="${1:-uglyrobot/docsbot-agent-tools}"
+MARKETPLACE_REPO="${1:-uglyrobot/docsbot-agent-skills}"
 
 codex plugin marketplace add "$MARKETPLACE_REPO"
 codex plugin add docsbot-mcp@docsbot
