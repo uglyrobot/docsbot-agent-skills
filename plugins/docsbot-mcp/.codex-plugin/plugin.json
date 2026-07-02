@@ -1,7 +1,7 @@
 {
   "name": "docsbot-mcp",
   "version": "0.1.0",
-  "description": "Connect Codex to DocsBot Admin MCP for authorized dashboard administration.",
+  "description": "Administer DocsBot from Codex through authorized dashboard access.",
   "author": {
     "name": "DocsBot",
     "url": "https://docsbot.ai"
@@ -24,9 +24,9 @@
     "rbac"
   ],
   "interface": {
-    "displayName": "DocsBot Admin MCP",
-    "shortDescription": "Administer DocsBot through the hosted Admin MCP server.",
-    "longDescription": "Connect Codex to DocsBot Admin MCP, the hosted Streamable HTTP MCP server for administering DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through existing dashboard permissions. Agents use a compact search and execute tool interface backed by the DocsBot Admin API catalog, with browser-based OAuth, Dynamic Client Registration, and live DocsBot RBAC checks on each action.",
+    "displayName": "DocsBot Administration",
+    "shortDescription": "Administer DocsBot teams, bots, sources, and settings from Codex.",
+    "longDescription": "Connect Codex to DocsBot Administration for managing DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through existing dashboard permissions. Agents use a compact search and execute tool interface backed by the DocsBot Admin API catalog, with browser-based OAuth, Dynamic Client Registration, and live DocsBot RBAC checks on each action.",
     "developerName": "DocsBot AI",
     "category": "Productivity",
     "capabilities": [
@@ -39,9 +39,9 @@
     "websiteURL": "https://docsbot.ai/documentation/developer/mcp-server",
     "brandColor": "#2563EB",
     "defaultPrompt": [
-      "Use DocsBot Admin MCP to find my teams and bots.",
-      "Search DocsBot Admin MCP for source operations.",
-      "Use DocsBot Admin MCP to review bot activity."
+      "Use DocsBot Administration to find my teams and bots.",
+      "Search DocsBot Administration for source operations.",
+      "Use DocsBot Administration to review bot activity."
     ],
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
