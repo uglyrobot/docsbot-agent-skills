@@ -11,6 +11,8 @@ codex plugin add docsbot-administration@docsbot
 
 Then start a new Codex thread and ask Codex to use DocsBot Administration.
 
+The plugin bundles a DocsBot Administration skill so Codex has the standard workflow instructions after install: resolve the working team, resolve the working bot, use Admin MCP `search` before `execute`, and confirm destructive or access-changing writes.
+
 You can also browse the marketplace from the TUI:
 
 ```text

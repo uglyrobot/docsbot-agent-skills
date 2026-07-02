@@ -2,7 +2,7 @@
 
 Install DocsBot skills in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration:
+DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. The Codex plugin also bundles workflow instructions for efficient team lookup, bot lookup, source management, and safe writes.
 
 ```text
 https://mcp.docsbot.ai
@@ -155,6 +155,7 @@ mcp/docsbot-question-history.mcp.json
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
 plugins/docsbot-administration/         # Codex plugin package
+plugins/docsbot-administration/skills/  # Bundled plugin workflow instructions
 skills/                                 # Portable Agent Skill packages
 mcp/                                    # Generic MCP config examples
 clients/                                # Client-specific installation notes

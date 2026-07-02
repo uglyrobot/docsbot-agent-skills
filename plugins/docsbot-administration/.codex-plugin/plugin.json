@@ -1,6 +1,6 @@
 {
   "name": "docsbot-administration",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Administer DocsBot from Codex through authorized dashboard access.",
   "author": {
     "name": "DocsBot",
@@ -47,5 +47,6 @@
     "logo": "./assets/icon.png",
     "logoDark": "./assets/icon.png"
   },
-  "mcpServers": "./.mcp.json"
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/"
 }
