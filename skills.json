@@ -15,6 +15,32 @@
           "authentication": "oauth2"
         }
       ]
+    },
+    {
+      "name": "docsbot-documentation-search",
+      "path": "skills/docsbot-documentation-search",
+      "description": "Search and fetch indexed documentation, knowledge base, website, file, and training-source content from a specific DocsBot bot.",
+      "mcpServers": [
+        {
+          "name": "docsbot-docs",
+          "urlTemplate": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/mcp/",
+          "transport": "streamable-http",
+          "authentication": "bearer"
+        }
+      ]
+    },
+    {
+      "name": "docsbot-question-history",
+      "path": "skills/docsbot-question-history",
+      "description": "Search and fetch prior DocsBot questions, answers, conversations, escalation state, answerability, sentiment, and support history for a specific bot.",
+      "mcpServers": [
+        {
+          "name": "docsbot-question-history",
+          "urlTemplate": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/questions/mcp/",
+          "transport": "streamable-http",
+          "authentication": "bearer"
+        }
+      ]
     }
   ]
 }

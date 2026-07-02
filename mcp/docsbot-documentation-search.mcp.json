@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "docsbot-docs": {
+      "url": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/mcp/",
+      "headers": {
+        "Authorization": "Bearer <TOKEN>"
+      }
+    }
+  }
+}

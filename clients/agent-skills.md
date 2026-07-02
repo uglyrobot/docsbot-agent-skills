@@ -1,10 +1,18 @@
 # Claude Code And Agent Skills Clients
 
-This repository includes a portable Agent Skills package:
+This repository includes portable Agent Skills packages:
 
 ```text
 skills/docsbot-administration/
+skills/docsbot-documentation-search/
+skills/docsbot-question-history/
 ```
+
+| Skill | Use |
+| --- | --- |
+| `docsbot-administration` | Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings. |
+| `docsbot-documentation-search` | Search and fetch indexed documentation and training-source content from a specific DocsBot bot. |
+| `docsbot-question-history` | Search and fetch prior DocsBot questions, answers, conversations, and support history for a specific bot. |
 
 ## CLI Install
 
@@ -13,6 +21,8 @@ Use the common `npx skills` installer:
 ```bash
 npx skills add uglyrobot/docsbot-agent-skills
 npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-administration
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-documentation-search
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-question-history
 npx skills add uglyrobot/docsbot-agent-skills --list
 ```
 
@@ -25,6 +35,8 @@ For multi-agent installs:
 ```bash
 npx skillkit install uglyrobot/docsbot-agent-skills
 npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-administration
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-documentation-search
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-question-history
 npx skillkit install uglyrobot/docsbot-agent-skills --list
 ```
 
@@ -39,7 +51,9 @@ docsbot-administration/
 └── references/
 ```
 
-To use it, copy or install that folder into the target client's skills directory, then configure the remote MCP server in that client:
+To use a skill, copy or install that folder into the target client's skills directory, then configure the relevant remote MCP server in that client.
+
+DocsBot Administration:
 
 ```json
 {
@@ -51,6 +65,36 @@ To use it, copy or install that folder into the target client's skills directory
 }
 ```
 
-The skill itself does not store credentials. The MCP client should start the DocsBot browser OAuth flow and store the resulting token according to that client's normal credential storage rules.
+DocsBot Documentation Search:
 
-Use the skill when the user asks to administer DocsBot, manage teams, inspect bots, configure sources, review dashboard data, manage integrations or Skills, or use the DocsBot Admin API through an agent.
+```json
+{
+  "mcpServers": {
+    "docsbot-docs": {
+      "url": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/mcp/",
+      "headers": {
+        "Authorization": "Bearer <TOKEN>"
+      }
+    }
+  }
+}
+```
+
+DocsBot Question History:
+
+```json
+{
+  "mcpServers": {
+    "docsbot-question-history": {
+      "url": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/questions/mcp/",
+      "headers": {
+        "Authorization": "Bearer <TOKEN>"
+      }
+    }
+  }
+}
+```
+
+The skills themselves do not store credentials. Configure credentials in the MCP client according to that client's normal credential storage rules.
+
+Use `docsbot-administration` for account and dashboard administration. Use `docsbot-documentation-search` for indexed bot source retrieval. Use `docsbot-question-history` for historical support question and conversation retrieval.

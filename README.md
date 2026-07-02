@@ -1,6 +1,6 @@
 # DocsBot Agent Skills
 
-Install DocsBot Administration in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
+Install DocsBot skills in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
 DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration:
 
@@ -44,13 +44,23 @@ codex mcp add docsbot --url https://mcp.docsbot.ai
 codex mcp login docsbot
 ```
 
-## Install As A Portable Agent Skill
+## Install As Portable Agent Skills
 
-This repository also includes an Agent Skills-compatible package:
+This repository also includes Agent Skills-compatible packages:
 
 ```text
 skills/docsbot-administration/
+skills/docsbot-documentation-search/
+skills/docsbot-question-history/
 ```
+
+Available skills:
+
+| Skill | Use |
+| --- | --- |
+| `docsbot-administration` | Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings. |
+| `docsbot-documentation-search` | Search and fetch indexed documentation, website, help center, file, and knowledge base content from a specific DocsBot bot. |
+| `docsbot-question-history` | Search and fetch prior DocsBot questions, answers, conversations, escalation state, sentiment, and support history for a specific bot. |
 
 ### CLI Install
 
@@ -62,6 +72,12 @@ npx skills add uglyrobot/docsbot-agent-skills
 
 # Install only the DocsBot Administration skill
 npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-administration
+
+# Install only the DocsBot Documentation Search skill
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-documentation-search
+
+# Install only the DocsBot Question History skill
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-question-history
 
 # List available skills
 npx skills add uglyrobot/docsbot-agent-skills --list
@@ -80,17 +96,25 @@ npx skillkit install uglyrobot/docsbot-agent-skills
 # Install only the DocsBot Administration skill
 npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-administration
 
+# Install only the DocsBot Documentation Search skill
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-documentation-search
+
+# Install only the DocsBot Question History skill
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-question-history
+
 # List available skills
 npx skillkit install uglyrobot/docsbot-agent-skills --list
 ```
 
 ### Manual Install
 
-Clone the repo and copy the skill folder:
+Clone the repo and copy the skill folder you want:
 
 ```bash
 git clone https://github.com/uglyrobot/docsbot-agent-skills.git
 cp -R docsbot-agent-skills/skills/docsbot-administration .agents/skills/
+cp -R docsbot-agent-skills/skills/docsbot-documentation-search .agents/skills/
+cp -R docsbot-agent-skills/skills/docsbot-question-history .agents/skills/
 ```
 
 Then configure the remote MCP server according to your client's MCP setup flow.
@@ -98,7 +122,7 @@ Then configure the remote MCP server according to your client's MCP setup flow.
 The skill follows the open Agent Skills `SKILL.md` layout:
 
 ```text
-skills/docsbot-administration/
+skills/<skill-name>/
 ├── SKILL.md
 ├── assets/
 └── references/
@@ -122,6 +146,8 @@ A copy is available at:
 
 ```text
 mcp/docsbot-administration.mcp.json
+mcp/docsbot-documentation-search.mcp.json
+mcp/docsbot-question-history.mcp.json
 ```
 
 ## Repository Layout
@@ -129,8 +155,8 @@ mcp/docsbot-administration.mcp.json
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
 plugins/docsbot-administration/         # Codex plugin package
-skills/docsbot-administration/          # Portable Agent Skill package
-mcp/docsbot-administration.mcp.json     # Generic MCP config example
+skills/                                 # Portable Agent Skill packages
+mcp/                                    # Generic MCP config examples
 clients/                                # Client-specific installation notes
 scripts/                                # Convenience install scripts
 skills.json                             # Skill catalog for installers and humans

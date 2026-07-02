@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "docsbot-question-history": {
+      "url": "https://api.docsbot.ai/teams/{teamId}/bots/{botId}/questions/mcp/",
+      "headers": {
+        "Authorization": "Bearer <TOKEN>"
+      }
+    }
+  }
+}
