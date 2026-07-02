@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "docsbot-mcp",
+      "name": "docsbot-administration",
       "source": {
         "source": "local",
-        "path": "./plugins/docsbot-mcp"
+        "path": "./plugins/docsbot-administration"
       },
       "policy": {
         "installation": "AVAILABLE",

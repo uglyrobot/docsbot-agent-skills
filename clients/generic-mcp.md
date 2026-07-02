@@ -1,6 +1,6 @@
 # Generic MCP Clients
 
-DocsBot Admin MCP is a hosted Streamable HTTP MCP server:
+DocsBot Administration is a hosted Streamable HTTP MCP server:
 
 ```text
 https://mcp.docsbot.ai

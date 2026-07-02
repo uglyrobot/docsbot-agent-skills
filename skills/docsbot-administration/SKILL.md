@@ -1,6 +1,6 @@
 ---
-name: docsbot-admin-mcp
-description: Use DocsBot Admin MCP to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
+name: docsbot-administration
+description: Use DocsBot Administration to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
 license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
@@ -9,15 +9,15 @@ metadata:
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
-# DocsBot Admin MCP
+# DocsBot Administration
 
-Use this skill when working with the hosted DocsBot Admin MCP server:
+Use this skill when working with the hosted DocsBot Administration server:
 
 ```text
 https://mcp.docsbot.ai
 ```
 
-DocsBot Admin MCP gives an authorized agent access to DocsBot dashboard administration through a compact two-tool MCP surface:
+DocsBot Administration gives an authorized agent access to DocsBot dashboard administration through a compact two-tool MCP surface:
 
 - `search` finds relevant DocsBot Admin API catalog operations, schemas, permission notes, response summaries, and side-effect levels.
 - `execute` runs one selected catalog operation by `operationId` with structured `pathParams`, `query`, `body`, and optional `idempotencyKey`.
@@ -49,7 +49,7 @@ For Codex plugin installation, use the marketplace package in this repository in
 
 ```bash
 codex plugin marketplace add uglyrobot/docsbot-agent-skills
-codex plugin add docsbot-mcp@docsbot
+codex plugin add docsbot-administration@docsbot
 ```
 
 ## Workflow
@@ -63,7 +63,7 @@ codex plugin add docsbot-mcp@docsbot
 
 ## Constraints
 
-- Do not call arbitrary DocsBot URLs. Admin MCP execution is limited to known catalog operations.
+- Do not call arbitrary DocsBot URLs. DocsBot Administration execution is limited to known catalog operations.
 - Do not invent team IDs, bot IDs, source IDs, or operation IDs. Discover them with `search` and prior `execute` calls.
 - Treat existing DocsBot dashboard RBAC as the source of truth. If an action is denied, report the denial rather than attempting to bypass it.
 - Prefer idempotency keys for create/update operations when the operation supports them.

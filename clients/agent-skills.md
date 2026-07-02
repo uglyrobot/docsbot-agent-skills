@@ -3,7 +3,7 @@
 This repository includes a portable Agent Skills package:
 
 ```text
-skills/docsbot-admin-mcp/
+skills/docsbot-administration/
 ```
 
 ## CLI Install
@@ -12,7 +12,7 @@ Use the common `npx skills` installer:
 
 ```bash
 npx skills add uglyrobot/docsbot-agent-skills
-npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-administration
 npx skills add uglyrobot/docsbot-agent-skills --list
 ```
 
@@ -24,7 +24,7 @@ For multi-agent installs:
 
 ```bash
 npx skillkit install uglyrobot/docsbot-agent-skills
-npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-administration
 npx skillkit install uglyrobot/docsbot-agent-skills --list
 ```
 
@@ -33,7 +33,7 @@ npx skillkit install uglyrobot/docsbot-agent-skills --list
 The skill uses the standard layout:
 
 ```text
-docsbot-admin-mcp/
+docsbot-administration/
 ├── SKILL.md
 ├── assets/
 └── references/

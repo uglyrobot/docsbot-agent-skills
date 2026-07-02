@@ -6,10 +6,10 @@ Install the DocsBot marketplace:
 
 ```bash
 codex plugin marketplace add uglyrobot/docsbot-agent-skills
-codex plugin add docsbot-mcp@docsbot
+codex plugin add docsbot-administration@docsbot
 ```
 
-Then start a new Codex thread and ask Codex to use DocsBot Admin MCP.
+Then start a new Codex thread and ask Codex to use DocsBot Administration.
 
 You can also browse the marketplace from the TUI:
 
@@ -18,7 +18,7 @@ codex
 /plugins
 ```
 
-Open the `DocsBot` marketplace tab and install `docsbot-mcp`.
+Open the `DocsBot` marketplace tab and install `docsbot-administration`.
 
 ## Direct MCP
 

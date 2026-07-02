@@ -1,8 +1,8 @@
 # DocsBot Agent Skills
 
-Install DocsBot Admin MCP in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
+Install DocsBot Administration in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Admin MCP is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration:
+DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration:
 
 ```text
 https://mcp.docsbot.ai
@@ -21,10 +21,10 @@ Add this repository as a Codex plugin marketplace:
 
 ```bash
 codex plugin marketplace add uglyrobot/docsbot-agent-skills
-codex plugin add docsbot-mcp@docsbot
+codex plugin add docsbot-administration@docsbot
 ```
 
-Then start a new Codex thread and ask Codex to use DocsBot Admin MCP.
+Then start a new Codex thread and ask Codex to use DocsBot Administration.
 
 You can also browse it from Codex:
 
@@ -33,7 +33,7 @@ codex
 /plugins
 ```
 
-Open the `DocsBot` marketplace tab and install `docsbot-mcp`.
+Open the `DocsBot` marketplace tab and install `docsbot-administration`.
 
 ## Install In Codex As Direct MCP
 
@@ -49,7 +49,7 @@ codex mcp login docsbot
 This repository also includes an Agent Skills-compatible package:
 
 ```text
-skills/docsbot-admin-mcp/
+skills/docsbot-administration/
 ```
 
 ### CLI Install
@@ -60,8 +60,8 @@ Use the common `npx skills` installer:
 # Install all skills in this repo
 npx skills add uglyrobot/docsbot-agent-skills
 
-# Install only the DocsBot Admin MCP skill
-npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+# Install only the DocsBot Administration skill
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-administration
 
 # List available skills
 npx skills add uglyrobot/docsbot-agent-skills --list
@@ -77,8 +77,8 @@ For multi-agent installs across clients such as Claude Code, Cursor, Copilot, an
 # Install all skills in this repo
 npx skillkit install uglyrobot/docsbot-agent-skills
 
-# Install only the DocsBot Admin MCP skill
-npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+# Install only the DocsBot Administration skill
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-administration
 
 # List available skills
 npx skillkit install uglyrobot/docsbot-agent-skills --list
@@ -90,7 +90,7 @@ Clone the repo and copy the skill folder:
 
 ```bash
 git clone https://github.com/uglyrobot/docsbot-agent-skills.git
-cp -R docsbot-agent-skills/skills/docsbot-admin-mcp .agents/skills/
+cp -R docsbot-agent-skills/skills/docsbot-administration .agents/skills/
 ```
 
 Then configure the remote MCP server according to your client's MCP setup flow.
@@ -98,7 +98,7 @@ Then configure the remote MCP server according to your client's MCP setup flow.
 The skill follows the open Agent Skills `SKILL.md` layout:
 
 ```text
-skills/docsbot-admin-mcp/
+skills/docsbot-administration/
 ├── SKILL.md
 ├── assets/
 └── references/
@@ -121,16 +121,16 @@ For clients that accept JSON MCP configuration:
 A copy is available at:
 
 ```text
-mcp/docsbot-admin.mcp.json
+mcp/docsbot-administration.mcp.json
 ```
 
 ## Repository Layout
 
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
-plugins/docsbot-mcp/                    # Codex plugin package
-skills/docsbot-admin-mcp/               # Portable Agent Skill package
-mcp/docsbot-admin.mcp.json              # Generic MCP config example
+plugins/docsbot-administration/         # Codex plugin package
+skills/docsbot-administration/          # Portable Agent Skill package
+mcp/docsbot-administration.mcp.json     # Generic MCP config example
 clients/                                # Client-specific installation notes
 scripts/                                # Convenience install scripts
 skills.json                             # Skill catalog for installers and humans
@@ -149,6 +149,6 @@ skills.json                             # Skill catalog for installers and human
 
 ## Security
 
-DocsBot Admin MCP acts as the authorized DocsBot user. Existing team roles, bot access, billing permissions, and dashboard RBAC remain the source of truth.
+DocsBot Administration acts as the authorized DocsBot user. Existing team roles, bot access, billing permissions, and dashboard RBAC remain the source of truth.
 
 Review and revoke authorized MCP clients from **API & Integrations** in the DocsBot dashboard.

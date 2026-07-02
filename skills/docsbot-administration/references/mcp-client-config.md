@@ -23,17 +23,17 @@ codex mcp login docsbot
 
 ```bash
 codex plugin marketplace add uglyrobot/docsbot-agent-skills
-codex plugin add docsbot-mcp@docsbot
+codex plugin add docsbot-administration@docsbot
 ```
 
-Then start a new Codex thread and ask Codex to use DocsBot Admin MCP.
+Then start a new Codex thread and ask Codex to use DocsBot Administration.
 
 ## Claude Code And Other Agent Skills Clients
 
 Copy or install the folder:
 
 ```text
-skills/docsbot-admin-mcp/
+skills/docsbot-administration/
 ```
 
 into the client's skills directory. Then configure the MCP server using that client's remote MCP setup flow.
