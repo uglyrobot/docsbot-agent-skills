@@ -22,7 +22,7 @@ codex mcp login docsbot
 ## Codex Plugin Marketplace
 
 ```bash
-codex plugin marketplace add DocsBotAI/docsbot-agent-tools
+codex plugin marketplace add uglyrobot/docsbot-agent-tools
 codex plugin add docsbot-mcp@docsbot
 ```
 

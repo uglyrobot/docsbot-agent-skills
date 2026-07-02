@@ -48,7 +48,7 @@ codex mcp login docsbot
 For Codex plugin installation, use the marketplace package in this repository instead:
 
 ```bash
-codex plugin marketplace add DocsBotAI/docsbot-agent-tools
+codex plugin marketplace add uglyrobot/docsbot-agent-tools
 codex plugin add docsbot-mcp@docsbot
 ```
 

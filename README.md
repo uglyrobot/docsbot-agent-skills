@@ -20,7 +20,7 @@ Authentication uses browser-based OAuth with Dynamic Client Registration. DocsBo
 Add this repository as a Codex plugin marketplace:
 
 ```bash
-codex plugin marketplace add DocsBotAI/docsbot-agent-tools
+codex plugin marketplace add uglyrobot/docsbot-agent-tools
 codex plugin add docsbot-mcp@docsbot
 ```
 
@@ -90,6 +90,7 @@ mcp/docsbot-admin.mcp.json
 plugins/docsbot-mcp/                    # Codex plugin package
 skills/docsbot-admin-mcp/               # Portable Agent Skill package
 mcp/docsbot-admin.mcp.json              # Generic MCP config example
+clients/                                # Client-specific installation notes
 scripts/                                # Convenience install scripts
 ```
 
@@ -97,6 +98,12 @@ scripts/                                # Convenience install scripts
 
 - DocsBot MCP server guide: https://docsbot.ai/documentation/developer/mcp-server
 - DocsBot: https://docsbot.ai
+
+## Client Notes
+
+- [Codex](clients/codex.md)
+- [Claude Code and Agent Skills clients](clients/agent-skills.md)
+- [Generic MCP clients](clients/generic-mcp.md)
 
 ## Security
 
