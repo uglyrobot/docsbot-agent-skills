@@ -1,0 +1,20 @@
+{
+  "name": "docsbot-agent-skills",
+  "description": "Agent Skills for DocsBot Admin MCP and related DocsBot agent workflows.",
+  "homepage": "https://github.com/uglyrobot/docsbot-agent-skills",
+  "skills": [
+    {
+      "name": "docsbot-admin-mcp",
+      "path": "skills/docsbot-admin-mcp",
+      "description": "Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through the OAuth-authenticated DocsBot Admin MCP server.",
+      "mcpServers": [
+        {
+          "name": "docsbot",
+          "url": "https://mcp.docsbot.ai",
+          "transport": "streamable-http",
+          "authentication": "oauth2"
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,30 @@ This repository includes a portable Agent Skills package:
 skills/docsbot-admin-mcp/
 ```
 
+## CLI Install
+
+Use the common `npx skills` installer:
+
+```bash
+npx skills add uglyrobot/docsbot-agent-skills
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+npx skills add uglyrobot/docsbot-agent-skills --list
+```
+
+The installer targets `.agents/skills/` and symlinks into `.claude/skills/` for Claude Code compatibility when supported.
+
+## SkillKit Install
+
+For multi-agent installs:
+
+```bash
+npx skillkit install uglyrobot/docsbot-agent-skills
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+npx skillkit install uglyrobot/docsbot-agent-skills --list
+```
+
+## Manual Install
+
 The skill uses the standard layout:
 
 ```text

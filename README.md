@@ -1,4 +1,4 @@
-# DocsBot Agent Tools
+# DocsBot Agent Skills
 
 Install DocsBot Admin MCP in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
@@ -52,7 +52,48 @@ This repository also includes an Agent Skills-compatible package:
 skills/docsbot-admin-mcp/
 ```
 
-Use it with Claude Code or another skills-compatible agent by copying that folder into the client's skills directory, then configure the remote MCP server according to that client's MCP setup flow.
+### CLI Install
+
+Use the common `npx skills` installer:
+
+```bash
+# Install all skills in this repo
+npx skills add uglyrobot/docsbot-agent-skills
+
+# Install only the DocsBot Admin MCP skill
+npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+
+# List available skills
+npx skills add uglyrobot/docsbot-agent-skills --list
+```
+
+This installs into `.agents/skills/` and, for Claude Code compatibility, symlinks into `.claude/skills/` when supported by the installer.
+
+### SkillKit Install
+
+For multi-agent installs across clients such as Claude Code, Cursor, Copilot, and other skills-aware agents:
+
+```bash
+# Install all skills in this repo
+npx skillkit install uglyrobot/docsbot-agent-skills
+
+# Install only the DocsBot Admin MCP skill
+npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-admin-mcp
+
+# List available skills
+npx skillkit install uglyrobot/docsbot-agent-skills --list
+```
+
+### Manual Install
+
+Clone the repo and copy the skill folder:
+
+```bash
+git clone https://github.com/uglyrobot/docsbot-agent-skills.git
+cp -R docsbot-agent-skills/skills/docsbot-admin-mcp .agents/skills/
+```
+
+Then configure the remote MCP server according to your client's MCP setup flow.
 
 The skill follows the open Agent Skills `SKILL.md` layout:
 
@@ -92,6 +133,7 @@ skills/docsbot-admin-mcp/               # Portable Agent Skill package
 mcp/docsbot-admin.mcp.json              # Generic MCP config example
 clients/                                # Client-specific installation notes
 scripts/                                # Convenience install scripts
+skills.json                             # Skill catalog for installers and humans
 ```
 
 ## Docs
