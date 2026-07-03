@@ -1,6 +1,6 @@
 # Help Scout Auto-Drafting Deployment
 
-Read this from `deployment-surfaces.md` when configuring the advanced Help Scout integration for support email auto-drafts, notes, or auto-sent first replies.
+Read this from the deployment surfaces reference when configuring the advanced Help Scout integration for support email auto-drafts, notes, or auto-sent first replies.
 
 This is different from the Help Scout Beacon widget handoff. Beacon integration opens Help Scout chat/ticket UI from the DocsBot widget. Help Scout auto-drafting connects DocsBot to Help Scout mailboxes/tags so DocsBot can draft or publish replies inside Help Scout using a bot's sources, Help Scout prompt, and optional customer metadata.
 
@@ -104,8 +104,8 @@ Tag listener example:
 Use `"none"` as the mapped bot ID to clear an assignment.
 
 6. Configure Help Scout prompt:
-   - Read [prompt-instructions.md](prompt-instructions.md).
-   - Use the Help Scout prompt asset as the base template: [helpscout.md](../assets/prompts/helpscout.md).
+   - Read [../prompt-instructions.md](../prompt-instructions.md).
+   - Use the Help Scout prompt asset as the base template: [helpscout.md](../../assets/prompts/helpscout.md).
    - Save with `put_teams_teamid_bots_botid` using `helpscoutPrompt`.
    - Verify it includes `search_documentation` and does not tell customers to escalate to support; the AI is acting as the support team draft/reply agent.
 

@@ -32,7 +32,7 @@ Use live prompt operations only as helpers after choosing the base template:
 Preserve these unless the user explicitly accepts the behavioral change:
 
 - The selected template's overall role sentence, `## Instructions`, `## Output Format`, ordering, and nested tool-selection structure.
-- The literal string `search_documentation` in every non-empty `agentPrompt` and `helpscoutPrompt`.
+- The literal string `search_documentation` and any other canonical tool names from the selected prompt, such as `human_escalation`, in every non-empty `agentPrompt` and `helpscoutPrompt`.
 - Tool-selection priority: matching Skills first, documentation search for company/product/process questions, escalation only when available and appropriate.
 - Tool-name privacy: do not announce internal tool calls or function names to end users.
 - Grounding rules: do not invent facts, links, policies, prices, or procedures.

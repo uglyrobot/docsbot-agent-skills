@@ -20,7 +20,8 @@ Score 100 points total:
   - Reads back and verifies saved branding, first message, placeholder, and starter questions before claiming polish.
 - Bot creation and MCP hygiene: 10 points
   - Resolves the correct team first.
-  - Uses valid locale, `isAgent` only with a prompt containing `search_documentation`, and safe idempotency keys.
+  - Uses a valid `language` locale key inferred from user instructions, source language, website/docs language, or brand analysis instead of defaulting blindly to English.
+  - Uses `isAgent` only with a prompt containing `search_documentation`, and safe idempotency keys.
   - Does not expose secrets, signatures, signed upload URLs, or large copied analytics in output.
   - If sensitive fields are present in raw reads, redacts them and reports that sanitized evidence was used.
 - Prompt and agent behavior: 15 points
@@ -68,7 +69,7 @@ Score 100 points total:
   - Performs a final source status check before handoff and cautions the user about any pending/indexing sources.
   - Reads source details and samples indexed URLs or equivalent evidence for critical ready sources.
   - Final response starts with the best link to try the bot now and gives custom next steps for the user's deployment path.
-  - Provides relevant dashboard chat, configure/system, configure/sources, widget/actions, widget/design, configure/skills, webhooks, MCP connections, Help Scout, or Slack deep links from [operations.md](operations.md).
+  - Provides relevant dashboard chat, configure/system, configure/sources, widget/actions, widget/design, configure/skills, webhooks, MCP connections, Help Scout, or Slack deep links from [operations.md](../operations.md).
   - Lists a coverage matrix with source status, page/chunk counts, tags, actions, prompt customizations, unresolved dashboard-only steps, and useful test questions.
   - Verifies retrieval OpenAPI tag enums when source tags are configured.
   - Does not use inherited/copied demo analytics or unrelated history as evidence for a newly created bot.

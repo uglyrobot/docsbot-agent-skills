@@ -1,6 +1,6 @@
 # Skills Library Actions
 
-Read this only from `actions-integrations.md` when imported DocsBot Skills are in scope.
+Read this only from the actions index when imported DocsBot Skills are in scope.
 
 ## When To Use Skills
 

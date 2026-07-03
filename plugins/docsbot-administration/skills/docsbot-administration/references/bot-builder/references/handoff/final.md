@@ -24,7 +24,7 @@ Keep the response concise, but include these sections in this order:
    - Do not give generic dashboard chores when no action is needed.
 
 4. **Useful Deep Links**
-   - Include only links relevant to this bot's setup. Use [operations.md](operations.md) for canonical paths.
+   - Include only links relevant to this bot's setup. Use [../operations.md](../operations.md) for canonical paths.
    - At minimum include chat and sources.
    - Add widget actions/design for website widgets, skills/MCP links for integrations, webhooks for automations, and Help Scout/Slack API anchors when those surfaces are involved.
 

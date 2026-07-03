@@ -18,7 +18,8 @@ Use Admin MCP `search` before `execute`. The exact schemas can change; this file
 
 Observed live behavior on 2026-07-03:
 
-- `language` must be a locale key like `en`, `es`, `jp`; do not send natural language names like `English`.
+- `language` must be the inferred DocsBot locale key for the bot's primary answer language, such as `en`, `es`, or `jp`; do not send natural-language names like `English` or browser locale strings like `en-US` unless the live catalog explicitly supports them.
+- Choose `language` before `post_teams_teamid_bots` from user instructions, source/documentation language, website/help-center language, and brand analysis. If those signals conflict, ask before creating the bot instead of defaulting to English.
 - Omit `model` during normal bot creation so the API uses the current DocsBot default. Set `model` only when the user explicitly requests a specific supported model or the workflow requires one and you have verified it is allowed by the team plan.
 - Omit rate-limit and IP-recording fields during normal bot creation: do not send `rateLimitMessages`, `rateLimitSeconds`, `rateLimitIPAllowlist`, or `recordIP` as `null`, `false`, `0`, empty string, or empty array. The API treats defined values as writes; omitting the keys preserves the default/null state, matching onboarding-style creation.
 - `isAgent: true` requires `agentPrompt` during create. The prompt must include the literal string `search_documentation`.
@@ -55,7 +56,7 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | --- | --- |
 | Public/private bot | `privacy: "public"` or `"private"` |
 | Agent mode | `isAgent: true`, `agentPrompt` containing `search_documentation` |
-| Locale/language | `language` locale key such as `en`, `es`, `jp` |
+| Locale/language | `language` locale key inferred before creation, such as `en`, `es`, `jp`; verify live catalog support for uncommon locales |
 | Brand color/logo/header | `color`, `logo`, `icon`, `botIcon`, `headerAlignment`, `brandAnalysis` |
 | First message/starter questions/labels | `labels.firstMessage`, `questions`, other `labels.*` |
 | Support/contact route | `supportLink`; helpdesk widget handoff uses embed `supportCallback` outside MCP |
@@ -110,7 +111,7 @@ After `post_teams_teamid_bots_analyze`, persist the returned analysis into bot c
 
 If a source cannot be renamed and has a scaffold title such as `undefined Website` or `undefined Sitemap`, replace it with an explicitly named source. If a broad scaffold sitemap is still indexing, do not build final-product scope around it; narrow the prompt or replace it with curated ready sources.
 
-`get_teams_teamid_bots_botid_upload_url` is for source files only. Do not use its returned signed URL, `file`, or `user/{userId}/team/{teamId}/bot/{botId}/...` path for widget `logo`, `icon`, or `botIcon` settings. Use `get_teams_teamid_bots_botid_image_upload_url` for widget branding image uploads; see [widget-branding.md](widget-branding.md).
+`get_teams_teamid_bots_botid_upload_url` is for source files only. Do not use its returned signed URL, `file`, or `user/{userId}/team/{teamId}/bot/{botId}/...` path for widget `logo`, `icon`, or `botIcon` settings. Use `get_teams_teamid_bots_botid_image_upload_url` for widget branding image uploads; see [branding/widget.md](branding/widget.md).
 
 Source tags are two-step:
 
@@ -143,8 +144,8 @@ Prefer defining tags before source creation when products, editions, major versi
 | Test rating webhook | `post_teams_teamid_bots_botid_webhooks_deliver_rated` | Sends `conversation.rated` sample payload. |
 | Test research webhook | `post_teams_teamid_bots_botid_webhooks_deliver_research` | Sends `deep_research.done` sample payload. |
 | Start bot Stripe OAuth | `post_teams_teamid_bots_botid_stripe_oauth_authorize` | Returns a Stripe authorization URL for bot customer-billing tools, not DocsBot account billing. |
-| Discover external MCP tools | `post_teams_teamid_bots_botid_mcp_discover` | If OAuth required, user must connect in dashboard. |
-| Draft MCP metadata | `post_teams_teamid_bots_botid_mcp_server_draft` | Save result in `mcpServers` with bot update. |
+| Discover external MCP tools | `post_teams_teamid_bots_botid_mcp_discover` | Use when the server is reachable or discovery supports the auth mode. If OAuth or private credentials are required, user must connect/authorize in dashboard. |
+| Draft MCP metadata | `post_teams_teamid_bots_botid_mcp_server_draft` | Draft safe server metadata and tool selection before saving in `mcpServers` with bot update. |
 | List bot skills | `get_teams_teamid_bots_botid_skills` | Includes missing bindings and enablement state. |
 | Search library skills | `get_teams_teamid_bots_botid_skills_library` | Search by vendor/task keywords. |
 | Import library skill | `post_teams_teamid_bots_botid_skills_library_libraryskillid_import` | Creates a bot draft from a global library skill. |

@@ -4,7 +4,7 @@ Read this when configuring bot actions, integrations, Skills, external MCP serve
 
 Use actions only when they serve the bot's purpose. Prefer a small number of well-configured actions over a broad set of unverified capabilities.
 
-For the bot fields that store each action, see the Compact Field Map in [operations.md](operations.md), then load the specific subref below before writing payloads.
+For the bot fields that store each action, see the Compact Field Map in [../operations.md](../operations.md), then load the specific subref below before writing payloads.
 
 ## Action Index
 
@@ -13,12 +13,12 @@ For the bot fields that store each action, see the Compact Field Map in [operati
 | Escalation | Support, onboarding, complex billing, failed answer recovery | Load [escalation-handoffs.md](escalation-handoffs.md) before configuring support links, helpdesk widget handoffs, or escalation webhooks. |
 | Lead collection | Presales, demos, sales qualification, support follow-up | Load [lead-collection.md](lead-collection.md) before configuring forms or fields. |
 | Custom buttons | Specific link-based handoffs that other actions cannot satisfy | Load [custom-buttons.md](custom-buttons.md) only when a use case needs a deterministic button and no better built-in action, Skill, MCP connector, source, or normal support link covers it. |
-| Scheduling | Demos, onboarding, office hours, sales consults | Load [scheduling-actions.md](scheduling-actions.md) when the bot should book time through Calendly, Cal.com, or TidyCal. |
-| Web search | Live public facts only | Load [web-search-action.md](web-search-action.md) before enabling live search or adding prompt guidance for it. |
-| Help Scout | Support email workflows and Help Scout deployment | Load [helpscout-auto-drafting.md](helpscout-auto-drafting.md) from the deployment refs before assigning mailboxes/tags or changing response flags. |
-| Slack | Internal team assistants or Slack app deployment | Load [slack-deployment.md](slack-deployment.md). User must complete OAuth outside MCP. Verify bot mapping after install. |
+| Scheduling | Demos, onboarding, office hours, sales consults | Load [scheduling.md](scheduling.md) when the bot should book time through Calendly, Cal.com, or TidyCal. |
+| Web search | Live public facts only | Load [web-search.md](web-search.md) before enabling live search or adding prompt guidance for it. |
+| Help Scout | Support email workflows and Help Scout deployment | Load [../deployment/helpscout-auto-drafting.md](../deployment/helpscout-auto-drafting.md) from the deployment refs before assigning mailboxes/tags or changing response flags. |
+| Slack | Internal team assistants or Slack app deployment | Load [../deployment/slack.md](../deployment/slack.md). User must complete OAuth outside MCP. Verify bot mapping after install. |
 | Webhooks | Lead, escalation, rating, research, or downstream event delivery | Load [webhooks.md](webhooks.md). Treat endpoints and signing keys as secrets; do not print them. |
-| Billing/vendor account actions | Authenticated customer billing support, subscriptions, invoices, license lookup | Load [billing-actions.md](billing-actions.md) before enabling Stripe tools, importing billing Skills, or recommending external billing MCP. |
+| Billing/vendor account actions | Authenticated customer billing support, subscriptions, invoices, license lookup | Load [billing.md](billing.md) before enabling Stripe tools, importing billing Skills, or recommending external billing MCP. |
 | Skills library | Vendor/task tools like billing, GitHub, search, calculators, enrichment | Load [skills-library.md](skills-library.md). |
 | External MCP servers | Non-user-scoped lookup/action tools or internal owner-scoped tools | Load [external-mcp.md](external-mcp.md). |
 
@@ -39,11 +39,11 @@ Load subrefs only when the action is selected or clearly recommended by research
 
 - [escalation-handoffs.md](escalation-handoffs.md): support links, widget/helpdesk JavaScript handoffs, `support_escalation`, and `conversation.escalated` webhooks.
 - [custom-buttons.md](custom-buttons.md): narrow button use cases, fallback patterns, draft operation, save payload, and verification.
-- [scheduling-actions.md](scheduling-actions.md): Calendly, Cal.com, and TidyCal URL validation and bot tool shape.
-- [web-search-action.md](web-search-action.md): live-search fit, public bot limits, cost/safety notes, and prompt guidance.
+- [scheduling.md](scheduling.md): Calendly, Cal.com, and TidyCal URL validation and bot tool shape.
+- [web-search.md](web-search.md): live-search fit, public bot limits, cost/safety notes, and prompt guidance.
 - [webhooks.md](webhooks.md): outgoing event subscriptions, test delivery operations, payload preview, and signing-key handling.
-- [slack-deployment.md](slack-deployment.md): Slack OAuth handoff, dashboard deep links, and workspace bot routing.
-- [billing-actions.md](billing-actions.md): Stripe customer billing tools, vendor billing Skills, external MCP boundaries, and private metadata requirements.
+- [../deployment/slack.md](../deployment/slack.md): Slack OAuth handoff, dashboard deep links, and workspace bot routing.
+- [billing.md](billing.md): Stripe customer billing tools, vendor billing Skills, external MCP boundaries, and private metadata requirements.
 
 ## Expected Public Basics
 

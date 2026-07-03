@@ -46,19 +46,19 @@ For important website, docs, support, pricing, changelog, and product sources, u
 | Mapped website section | `website` | Use `post_teams_teamid_bots_botid_sources_map` to discover candidate URLs, select all applicable scoped URLs, then create with `type: "website"`, root `url`, selected `urls`, tags, and monthly refresh. The map result is usually incomplete for deep docs/KB/product pages; validate it against site navigation or manual crawl output before treating it as final coverage. If live execute rejects `website`, fall back to `type: "urls"` only after preserving the full selected URL set and record the catalog mismatch. |
 | Sitemap crawl | `sitemap` | Create with `type`, sitemap `url`, optional `title`, `tags`, and monthly refresh. Prefer full sitemaps or targeted sub-sitemaps for final-product coverage; never claim final readiness while a critical sitemap is indexing or zero-chunk. |
 | RSS/changelog | `rss` | Create with `type`, `url`, `title`, tags, and monthly refresh when supported. Good for changelogs, release notes, and feature announcements. Verify nonzero chunks. |
-| WordPress | `wp` | Search live schema. Treat as file-backed or connector-backed depending on the current catalog; when auth/site selection is required, load [connector-sources.md](connector-sources.md). |
+| WordPress | `wp` | Search live schema. Treat as file-backed or connector-backed depending on the current catalog; when auth/site selection is required, load [sources/connectors.md](sources/connectors.md). |
 | YouTube | `youtube` | Create with `type`, watch/live/playlist `url`, optional `title`, tags, and schedule only for playlists where supported. Channel URLs are rejected. |
-| Documents/media/spreadsheets | `document`, `media`, `csv` | For `document`, load [document-uploads.md](document-uploads.md) before requesting upload URLs or creating file/fileDir sources. For other file-backed types, search live schema first. MCP cannot upload bytes. |
+| Documents/media/spreadsheets | `document`, `media`, `csv` | For `document`, load [sources/document-uploads.md](sources/document-uploads.md) before requesting upload URLs or creating file/fileDir sources. For other file-backed types, search live schema first. MCP cannot upload bytes. |
 | Manual Q&A | `qa` | Create with `type: "qa"`, `title`, and `faqs`. A later create may merge into the existing Q&A source and queue reingest. |
-| Truto cloud connectors | `notion`, `confluence`, `zendesk`, `google_docs`, `sharepoint`, `github`, `slack`, `s3`, `gcs`, and similar connector types | Usually require dashboard OAuth and item selection. Load [connector-sources.md](connector-sources.md) before configuring or handing off. |
+| Truto cloud connectors | `notion`, `confluence`, `zendesk`, `google_docs`, `sharepoint`, `github`, `slack`, `s3`, `gcs`, and similar connector types | Usually require dashboard OAuth and item selection. Load [sources/connectors.md](sources/connectors.md) before configuring or handing off. |
 | Helpdesk importers | `freescout`, `teamworkdesk`, and similar support-history types | Use connector-specific fields from live catalog, such as FreeScout URL/key/mailbox/months or Teamwork Desk host/key/inbox/months. Treat secrets as out-of-band and do not print them. Prefer native Help Scout integration for Help Scout workflows. |
 
 ## Conditional Detail References
 
 Load these only when that source category is actually in scope:
 
-- [document-uploads.md](document-uploads.md): Single-file and multi-file document upload details, supported file types, limits, and upload verification.
-- [connector-sources.md](connector-sources.md): Truto/cloud connector OAuth, dashboard selection handoff, and connector verification.
+- [sources/document-uploads.md](sources/document-uploads.md): Single-file and multi-file document upload details, supported file types, limits, and upload verification.
+- [sources/connectors.md](sources/connectors.md): Truto/cloud connector OAuth, dashboard selection handoff, and connector verification.
 
 ## Verification
 

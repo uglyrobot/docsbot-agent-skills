@@ -2,14 +2,14 @@
 
 Read this when applying brand analysis, widget appearance, first message, starter questions, support URL, logos, icons, or visual polish.
 
-For detailed widget color/logo selection, contrast checks, and logo upload fallback, load [widget-branding.md](widget-branding.md).
+For detailed widget color/logo selection, contrast checks, and logo upload fallback, load [widget.md](widget.md).
 
 ## Brand Analysis Flow
 
 1. If a public website exists, run `post_teams_teamid_bots_analyze` with `siteURL`.
 2. Use returned colors, logos, screenshot, language, and support/widget hints as a first pass.
 3. Prefer full logos for header/logo fields and compact icons or avatars for bot icons.
-4. Choose a main widget color that has good contrast against the site background and common white/dark widget surfaces. For widget deployments, follow [widget-branding.md](widget-branding.md) before saving.
+4. Choose a main widget color that has good contrast against the site background and common white/dark widget surfaces. For widget deployments, follow [widget.md](widget.md) before saving.
 5. Persist the full analyzer result into the bot's `brandAnalysis` field during bot create or the next bot update.
 
 Do not treat analyzer output as transient setup context. The dashboard uses saved `brandAnalysis.colors` and `brandAnalysis.logos` for widget color/image presets, and bot list displays can use saved `brandAnalysis.logos` plus `color` for discovered brand icons. If only `color` and `logo` are saved, those presets and discovered icons can be missing.
@@ -56,7 +56,7 @@ If MCP create/update rejects `brandAnalysis`, report an API/catalog mismatch ins
 - Add starter questions that match high-frequency questions discovered during research.
 - Set a support/contact URL that matches the bot's use case: support route for support bots, demo/contact route for presales, internal route for staff bots.
 - If the analyzer returns weak favicon-only assets, research the public site for better logo/icon candidates before settling.
-- For website widgets, visually verify that the chosen header logo contrasts with the chosen widget color. If the best logo is not in `brandAnalysis.logos`, follow the upload fallback in [widget-branding.md](widget-branding.md).
+- For website widgets, visually verify that the chosen header logo contrasts with the chosen widget color. If the best logo is not in `brandAnalysis.logos`, follow the upload fallback in [widget.md](widget.md).
 
 ## Verification
 

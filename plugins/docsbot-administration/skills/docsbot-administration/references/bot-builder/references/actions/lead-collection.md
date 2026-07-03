@@ -1,6 +1,6 @@
 # Lead Collection
 
-Read this only from `actions-integrations.md` when configuring lead forms, lead fields, lead messages, or lead-related handoff behavior.
+Read this only from the actions index when configuring lead forms, lead fields, lead messages, or lead-related handoff behavior.
 
 Lead collection is stored on the bot as `leadCollect` and is written with `put_teams_teamid_bots_botid`. The widget also uses `labels.leadCollectMessage` for the message shown before the form.
 

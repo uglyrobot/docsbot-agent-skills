@@ -21,8 +21,11 @@ Use the user's domain and public docs to infer:
 - Best source candidates: docs/KB, docs sitemap, developer docs, support articles, product/pricing pages, getting-started content, changelog/RSS, and current feature announcements.
 - Sources to avoid or limit: full blog archives, broad marketing category pages, stale announcement archives, legal/policy pages that could conflict with docs, and unrelated SEO pages.
 - Deployment hints: existing helpdesk widgets, support/contact links, Slack/community links, app portals, developer docs, or public status pages.
+- Primary bot language: infer from the user's explicit instructions first, then from the business website, documentation, help center, pricing/support pages, brand analysis language, and the language of the sources the bot will answer from. Use the language the end user should receive answers in, not necessarily the agent operator's language.
 
 Prefer current high-signal sources. If a blog or changelog matters, use a focused category, tag, RSS feed, or recent announcement source rather than a full archive.
+
+Choose the DocsBot `language` locale key before bot creation. If the site or docs are multilingual, prefer the requested deployment audience or the dominant language of the selected sources. If the evidence conflicts and the user's desired language is not clear, ask one focused question before creating the bot. Do not create in English by default when the business materials or user instructions point to another primary language.
 
 Before creating sources, decide whether the bot is being built as:
 
@@ -33,7 +36,7 @@ Do not let a validation-scale source set carry final-product language in the pro
 
 ## Branding
 
-Before applying brand and widget appearance settings, read [branding-appearance.md](branding-appearance.md).
+Before applying brand and widget appearance settings, read [branding/appearance.md](branding/appearance.md).
 
 When a public website is available:
 
@@ -44,7 +47,7 @@ When a public website is available:
 5. Save the full analyzer result into `brandAnalysis` during bot create/update, using `{ domain, url, ...analysisResult }`.
 6. Verify saved `brandAnalysis.colors` and `brandAnalysis.logos`; they are required for dashboard brand presets and discovered bot icons.
 
-For website widget deployments, load [widget-branding.md](widget-branding.md) before saving the final color/logo pair. Visually check that the chosen header logo contrasts with the chosen widget color, and use its upload fallback when the right logo was not returned by brand analysis.
+For website widget deployments, load [branding/widget.md](branding/widget.md) before saving the final color/logo pair. Visually check that the chosen header logo contrasts with the chosen widget color, and use its upload fallback when the right logo was not returned by brand analysis.
 
 Set a custom first message that matches the use case. Avoid generic "What can I help you with?" when the business and purpose are known.
 
@@ -54,13 +57,13 @@ For final-product bots, use a clean production name and description. Avoid test,
 
 ## Deployment Surface
 
-Before choosing or handing off a deployment surface, read [deployment-surfaces.md](deployment-surfaces.md). The selected surface affects branding, prompt tone, safety settings, actions, Skills/MCP risk, and which dashboard-only steps the user must complete.
+Before choosing or handing off a deployment surface, read [deployment/surfaces.md](deployment/surfaces.md). The selected surface affects branding, prompt tone, safety settings, actions, Skills/MCP risk, and which dashboard-only steps the user must complete.
 
 ## Prompt Tuning
 
 Before creating or materially changing prompts, read [prompt-instructions.md](prompt-instructions.md).
 
-In the main workflow, remember the core rule: start from the closest exact DocsBot prompt asset, preserve its sections and tested tool/grounding guardrails, then minimally insert company/product context, deployment behavior, source-tag routing, and action/Skill/MCP usage guidance. Do not fully replace, broadly reorder, or hand-write the template unless the user explicitly asks for a bespoke prompt and accepts losing template guardrails.
+In the main workflow, remember the core rule: start from the closest exact DocsBot prompt asset, preserve its sections, canonical tool names, and tested tool/grounding guardrails, then minimally insert company/product context, deployment behavior, source-tag routing, and action/Skill/MCP usage guidance. Do not fully replace, broadly reorder, or hand-write the template unless the user explicitly asks for a bespoke prompt and accepts losing template guardrails.
 
 If `retrieverTags` are configured, the agent prompt should include compact routing guidance customized to why the tags exist. Do not repeat every tag ID and description in the prompt; those already appear in the search tool schema. State whether searches should normally use one tag, may combine multiple tags, should ask a clarifying question before searching, or should set untagged to false to avoid conflicting/noisy global sources. Untagged/global sources are included by default, so mention them only when excluding them matters. Tags must discriminate; if every source should be searched together, skip tags or use one broad tag.
 
@@ -146,13 +149,13 @@ For cross-product comparisons, search the relevant product tags together. Keep u
 
 ## Actions And Integrations
 
-Before configuring actions, integrations, Skills, external MCP servers, deployment actions, or public widget safety settings, read [actions-integrations.md](actions-integrations.md). It links to Skills-library and external-MCP details only when those categories are in scope.
+Before configuring actions, integrations, Skills, external MCP servers, deployment actions, or public widget safety settings, read [actions/index.md](actions/index.md). It links to Skills-library and external-MCP details only when those categories are in scope.
 
 In the main workflow, keep actions minimal and purposeful: enable only what supports the bot's deployment, verify saved settings from bot/integration reads, and add matching prompt instructions for every action the user should know how to trigger. For public bots, keep `piiRedaction` false unless the user requests it or a concrete compliance requirement exists.
 
 ## Handoff
 
-Before writing the final response, read [final-handoff.md](final-handoff.md). The final user-facing message must be a practical deliverable, not only an audit report.
+Before writing the final response, read [handoff/final.md](handoff/final.md). The final user-facing message must be a practical deliverable, not only an audit report.
 
 End every real setup with:
 
