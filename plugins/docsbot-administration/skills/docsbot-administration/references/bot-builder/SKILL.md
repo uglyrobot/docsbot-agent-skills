@@ -32,7 +32,6 @@ This skill is the build surface. Do not use adjacent DocsBot demo-bot skills, pu
 
 - Resolve the target team with `get_teams`; never assume the OAuth token is tied to one team.
 - For dev or validation work, create disposable bots only in the `Demo Bots` team unless the user explicitly chooses another team.
-- Even in `Demo Bots`, final-product validation bots must use production-quality saved names/descriptions. Track disposability in your notes and cleanup list, not in the bot record.
 - Use `idempotencyKey` for create/update operations when practical.
 - For destructive writes, billing changes, integration disconnects, source deletion, member changes, and non-test bot deletion, summarize the intended action and ask for confirmation unless the user already explicitly authorized that exact action.
 - For disposable test bots in `Demo Bots`, create, exercise, and delete them without extra confirmation when the user has already authorized test-bot creation/deletion.
