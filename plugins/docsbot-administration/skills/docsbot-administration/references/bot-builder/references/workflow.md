@@ -50,7 +50,7 @@ Set a custom first message that matches the use case. Avoid generic "What can I 
 
 Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, first message, placeholder, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
 
-For final-product bots, use a clean production name and description. Avoid test, MCP test, timestamped, disposable, judge-review, review, demo, or scaffolding language in the bot itself. When using `Demo Bots` for validation, keep disposability in your notes and cleanup plan, not in the saved bot name or description.
+For final-product bots, use a clean production name and description. Avoid test, MCP test, timestamped, disposable, judge-review, review, demo, or scaffolding language in the bot itself.
 
 ## Deployment Surface
 
@@ -171,7 +171,7 @@ End every real setup with:
 - Public share/embed link only when confirmed from bot/dashboard data.
 - Suggested test questions for happy path, missing info, escalation, lead capture, and action/skill triggers.
 
-Do not use analytics or conversation stats as quality evidence for newly created test bots unless the data clearly belongs to that bot after creation. In shared demo environments, compare `createdAt` and topic/history dates; if the stats appear inherited, copied, or unrelated, ignore them and say so.
+Do not use analytics or conversation stats as quality evidence for newly created test bots unless the data clearly belongs to that bot after creation. In shared validation environments, compare `createdAt` and topic/history dates; if the stats appear inherited, copied, or unrelated, ignore them and say so.
 
 If a bot/settings read returns signature, API key, signed URL, secret binding, or other sensitive material, do not quote it. Note "sensitive fields were present and omitted" and continue with redacted evidence.
 

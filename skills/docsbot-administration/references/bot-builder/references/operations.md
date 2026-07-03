@@ -12,7 +12,7 @@ Use Admin MCP `search` before `execute`. The exact schemas can change; this file
 | Get bot settings | `get_teams_teamid_bots_botid` | Read before updating; preserves existing settings and action config. |
 | Create bot | `post_teams_teamid_bots` | Requires `name`; for agent bots include valid `agentPrompt`. |
 | Update bot | `put_teams_teamid_bots_botid` | Use minimal bodies containing only intended settings. |
-| Delete bot | `delete_teams_teamid_bots_botid` | Destructive except research-job mode. Confirm unless disposable test bot was authorized. |
+| Delete bot | `delete_teams_teamid_bots_botid` | Destructive except research-job mode. Confirm unless the user already explicitly authorized that exact deletion. |
 
 ## Bot Creation Guardrails
 
@@ -23,7 +23,7 @@ Observed live behavior on 2026-07-03:
 - Omit rate-limit and IP-recording fields during normal bot creation: do not send `rateLimitMessages`, `rateLimitSeconds`, `rateLimitIPAllowlist`, or `recordIP` as `null`, `false`, `0`, empty string, or empty array. The API treats defined values as writes; omitting the keys preserves the default/null state, matching onboarding-style creation.
 - `isAgent: true` requires `agentPrompt` during create. The prompt must include the literal string `search_documentation`.
 - Default create can enable `human_escalation` and `followup_rating`; inspect the created bot before replacing `tools`.
-- Demo Bots team create/update responses can include copied demo analytics plus bot signature material. Never quote secrets, signature keys, or large history payloads in user-facing output.
+- Bot create/update responses can include inherited analytics plus bot signature material. Never quote secrets, signature keys, or large history payloads in user-facing output.
 - Public bots force `tools.web_search.live` to `false` on update.
 - `tools.customButtons[]` entries must include `enabled`, `name`, `functionKey`, `instructions`, `buttonText`, `icon`, and `url`; saved function keys do not include the internal `button_` prefix.
 - `leadCollect.mode` must be `before_response` or `before_escalation`; field keys must be unique. Standard+ supports custom fields beyond `name` and `email`.

@@ -72,7 +72,7 @@ Score 100 points total:
   - Lists a coverage matrix with source status, page/chunk counts, tags, actions, prompt customizations, unresolved dashboard-only steps, and useful test questions.
   - Verifies retrieval OpenAPI tag enums when source tags are configured.
   - Does not use inherited/copied demo analytics or unrelated history as evidence for a newly created bot.
-  - Deletes disposable test bots only after judging or when cleanup is requested.
+  - Deletes disposable test bots only when deletion was explicitly authorized.
 
 ## Severity
 

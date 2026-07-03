@@ -26,15 +26,12 @@ This skill is the build surface. Do not use adjacent DocsBot demo-bot skills, pu
 6. Load [actions-integrations.md](references/actions-integrations.md) before configuring actions, integrations, Skills, external MCP servers, or deployment safety settings.
 7. Load [final-handoff.md](references/final-handoff.md) before writing the final user-facing deliverable.
 8. Load [evaluation-rubric.md](references/evaluation-rubric.md) when judging whether a configured bot is complete.
-9. Load [test-scenarios.md](references/test-scenarios.md) when validating the skill with disposable Demo Bots test bots.
 
 ## Operating Rules
 
 - Resolve the target team with `get_teams`; never assume the OAuth token is tied to one team.
-- For dev or validation work, create disposable bots only in the `Demo Bots` team unless the user explicitly chooses another team.
 - Use `idempotencyKey` for create/update operations when practical.
-- For destructive writes, billing changes, integration disconnects, source deletion, member changes, and non-test bot deletion, summarize the intended action and ask for confirmation unless the user already explicitly authorized that exact action.
-- For disposable test bots in `Demo Bots`, create, exercise, and delete them without extra confirmation when the user has already authorized test-bot creation/deletion.
+- For destructive writes, billing changes, integration disconnects, source deletion, member changes, and bot deletion, summarize the intended action and ask for confirmation unless the user already explicitly authorized that exact action.
 - Never expose OAuth tokens, API keys, signed upload URLs, custom header secrets, bot signature keys, or secret binding values in user-facing output.
 - Bot/settings reads may return signature-like or secret-like fields. Treat them as sensitive, do not quote them, and report the catalog/sanitization issue separately from the configured bot quality unless you exposed the value.
 - Preserve the exact DocsBot prompt template structure. Customize company/product context and necessary extra instructions, but keep `search_documentation`, major sections, ordering, and tool-selection instructions unless the target use case makes them wrong.
@@ -91,7 +88,6 @@ Before handoff, run this readiness audit and report any failed item as "not fina
 - [actions-integrations.md](references/actions-integrations.md): Action/integration selection, public widget safety, and links to conditional action detail files for escalation, lead collection, buttons, scheduling, web search, webhooks, Skills, and MCP.
 - [final-handoff.md](references/final-handoff.md): Required final user-facing deliverable shape, custom next steps, test prompts, and dashboard deep-link selection.
 - [evaluation-rubric.md](references/evaluation-rubric.md): Scoring rubric for bot quality, completeness, and MCP hygiene.
-- [test-scenarios.md](references/test-scenarios.md): Disposable Demo Bots validation scenarios.
 
 ## Source Anchors
 
