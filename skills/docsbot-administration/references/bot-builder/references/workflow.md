@@ -2,16 +2,20 @@
 
 ## Intake
 
-Collect enough to infer the setup without turning the work into a quiz:
+Start with a short discovery conversation before building. Infer as much as possible from the user's request, prior thread context, public website, docs, support center, and product pages, but ask focused clarification questions when the answer would materially change the bot you create.
 
-- Bot purpose: support, presales, onboarding, internal team, department, partner enablement, helpdesk copilot, or research.
-- Audience: public customers, signed-in customers, employees, support staff, sales team, or a mixed group.
-- Deployment: widget, embedded chat, dashboard chat, Help Scout, Slack, API, external MCP/search, or internal-only.
-- Brand inputs: website/domain, product name, colors/logos if known, tone, first-message expectations.
-- Knowledge sources: public docs, knowledge base, marketing pages, changelog, blog subset, sitemap, RSS, files, cloud drives, support history, code repos, or private SOPs.
-- Action scope: escalation, lead capture, meeting booking, custom CTAs, web search, Skills, external MCP connectors, webhooks, Stripe/billing, helpdesk/Slack integrations.
+Clarify material setup choices such as:
 
-Ask only for missing information that materially affects setup, such as private files, required escalation destination, or whether a live action should be customer-facing.
+- Bot purpose and success criteria: support, presales, onboarding, internal team, department, partner enablement, helpdesk copilot, research, or a narrower goal.
+- Audience and access model: public visitors, signed-in customers, employees, support staff, sales team, partners, or separate audiences that may require separate bots.
+- Deployment surface: website widget, embedded chat, dashboard chat, Help Scout, Slack, API, external MCP/search, or internal-only.
+- Knowledge scope: which products, docs, help centers, files, cloud drives, support history, code repos, or private SOPs should be included or intentionally excluded.
+- Action scope and risk: escalation, lead capture, meeting booking, custom CTAs, web search, Skills, external MCP connectors, webhooks, Stripe/billing, helpdesk/Slack integrations, and whether any action should be customer-facing.
+- Operational handoffs: required support/contact destination, lead routing, human escalation behavior, dashboard-only OAuth/file-selection steps, and any compliance or privacy constraints.
+
+Do not ask for details that research and Admin MCP setup can reliably determine, such as brand colors, logos, public support URLs, sitemap candidates, or obvious language/locale signals. Find and verify those during research and brand analysis instead.
+
+Keep intake efficient: ask one to three focused questions at a time, explain only when the choice affects the bot's direction, and proceed once the purpose, audience, deployment, source scope, and action boundaries are clear enough to build safely.
 
 ## Research
 
