@@ -58,7 +58,7 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | Agent mode | `isAgent: true`, `agentPrompt` containing `search_documentation` |
 | Locale/language | `language` locale key inferred before creation, such as `en`, `es`, `jp`; verify live catalog support for uncommon locales |
 | Brand color/logo/header | `color`, `logo`, `icon`, `botIcon`, `headerAlignment`, `brandAnalysis` |
-| First message/starter questions/labels | `labels.firstMessage`, `questions`, other `labels.*` |
+| First message/starter questions/labels | `labels.firstMessage` is required for production bot setup; `questions`, placeholder, and other `labels.*` support the same user journey |
 | Support/contact route | `supportLink`; helpdesk widget handoff uses embed `supportCallback` outside MCP |
 | Public safety | `linkSafetyEnabled`, `piiRedaction`, `recordIP`, `imageUploads`, `audioUploads`, `allowedDomains`; omit from initial create unless explicitly configuring |
 | Retrieval tags | `retrieverTags: [{ key, description }]`, source `tags: ["key"]` |

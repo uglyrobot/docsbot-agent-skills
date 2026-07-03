@@ -43,9 +43,9 @@ Use this sequence for production bot setup:
 
 1. Define purpose, audience, deployment, and success criteria.
 2. Research the business and product, including public docs, knowledge base, help center, sitemap, pricing/product pages, integrations, support/contact paths, and the primary language the bot should use.
-3. Analyze branding through `post_teams_teamid_bots_analyze` when a public domain is available. Use its colors/logos/language/widget detection as the first pass, then refine contrast and first message.
+3. Analyze branding through `post_teams_teamid_bots_analyze` when a public domain is available. Use its colors/logos/language/widget detection as the first pass, then refine contrast and draft a business-specific `labels.firstMessage`.
 4. Create the bot with the inferred primary language as the DocsBot `language` locale key, such as `en`, and an agent prompt that includes `search_documentation` when `isAgent` is true. Omit `model` unless the user explicitly requests a non-default model, so the DocsBot API uses the current default. Also omit rate-limit and IP-recording fields during create so their default/null state is preserved.
-5. Update appearance, first message, starter questions, support link, agent settings, source tag vocabulary, actions, lead collection, MCP servers, and skill settings.
+5. Update appearance, `labels.firstMessage`, starter questions, support link, agent settings, source tag vocabulary, actions, lead collection, MCP servers, and skill settings.
 6. Add sources. Use public URL, website, sitemap, RSS, Q&A, and uploaded-file flows as appropriate. Do not poll waiting for indexing; configure the rest of the bot while sources ingest. For Truto/cloud connectors, give the dashboard deep link when file selection or OAuth must happen outside MCP.
 7. Tune prompts from the closest exact prompt asset. Insert company/product context and deployment-specific behavior with minimal in-place edits, without replacing or reorganizing the tested template guardrails.
 8. Configure actions: escalation, lead capture, scheduling/custom buttons, web search, Skills, external MCP connectors, Help Scout, Slack, webhooks, Stripe/billing, or other integrations only when they clearly serve the use case.
@@ -60,14 +60,14 @@ For final-product quality, fail the setup instead of softening the language when
 - Source tags do not discriminate, such as assigning every tag to every source.
 - Broad public support, developer, or presales coverage has fewer than 20 ready high-signal pages without an explicit narrow scope.
 - Public lead/support widgets skip safety/action decisions such as link safety, default `piiRedaction: false` unless requested, lead capture or explicit no-lead rationale, support/escalation URLs, and clearly justified action choices.
-- Public widgets keep a generic first message or lack verified brand assets when brand analysis is available.
+- Public widgets keep a generic or default `labels.firstMessage`, or lack verified brand assets when brand analysis is available.
 - Internal/helpdesk bots claim Help Scout auto-drafting, Slack deployment, or another connected integration without integration read evidence or an explicit dashboard-only/private-copilot handoff.
 - Fast-changing docs, pricing, changelog, status, support, or platform behavior has no refresh, RSS, live source/action, or prompt caveat plus canonical CTA.
 
 Before handoff, run this readiness audit and report any failed item as "not final-product ready":
 
 - Clean saved name/description.
-- Saved branding and first message are specific to the business.
+- Saved branding and `labels.firstMessage` are specific to the business, audience, and deployment surface.
 - All promised source areas are named, tagged, broad enough, and either ready/nonzero or explicitly called out as still indexing in the final response.
 - Tags route to distinct source groups, have useful descriptions, and the agent prompt explains how to use them for the actual conflict model, such as product/version separation, combined categories, or when to set untagged to false. Public/internal or customer/staff audience splits require separate bots, not tag filtering.
 - Public widgets have support/contact route, lead decision, safety decisions, and only the actions that serve the use case.

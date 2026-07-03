@@ -51,7 +51,7 @@ For public presales/support widgets, configure these unless the user says otherw
 
 - Human escalation or a clear support/contact route.
 - Lead collection for demo, sales, or support follow-up flows, or an explicit no-lead rationale in the handoff.
-- A company-specific first message and starter questions.
+- A company-specific `labels.firstMessage` and starter questions.
 - A verified support/contact URL if human escalation is enabled.
 
 ## Internal Or Helpdesk Bots

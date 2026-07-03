@@ -52,7 +52,7 @@ If MCP create/update rejects `brandAnalysis`, report an API/catalog mismatch ins
 ## Appearance Decisions
 
 - Use a clean production bot name and description. Do not save test/disposable/timestamp language in final-product bots.
-- Write a first message specific to the business, user journey, and deployment.
+- Write and save `labels.firstMessage` specific to the business, user journey, audience, and deployment surface. Do not leave the default first-message label in place for production bots.
 - Add starter questions that match high-frequency questions discovered during research.
 - Set a support/contact URL that matches the bot's use case: support route for support bots, demo/contact route for presales, internal route for staff bots.
 - If the analyzer returns weak favicon-only assets, research the public site for better logo/icon candidates before settling.
@@ -66,7 +66,7 @@ Before handoff, read the saved bot and verify:
 - Widget/main color.
 - Header/logo/icon/avatar fields where available.
 - `brandAnalysis.colors` and `brandAnalysis.logos` are persisted when the analyzer returned them.
-- First message, placeholder, and starter questions.
+- `labels.firstMessage`, placeholder, and starter questions.
 - Support/contact URL.
 - Language/locale if inferred from brand analysis.
 

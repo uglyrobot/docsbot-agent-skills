@@ -49,9 +49,9 @@ When a public website is available:
 
 For website widget deployments, load [branding/widget.md](branding/widget.md) before saving the final color/logo pair. Visually check that the chosen header logo contrasts with the chosen widget color, and use its upload fallback when the right logo was not returned by brand analysis.
 
-Set a custom first message that matches the use case. Avoid generic "What can I help you with?" when the business and purpose are known.
+Set a custom `labels.firstMessage` that matches the business, audience, deployment surface, and main user journey. Treat this as a required branding/setup field for every production bot, not optional polish. Avoid generic defaults such as "What can I help you with?" when the business and purpose are known.
 
-Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, first message, placeholder, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
+Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, `labels.firstMessage`, placeholder, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
 
 For final-product bots, use a clean production name and description. Avoid test, MCP test, timestamped, disposable, judge-review, review, demo, or scaffolding language in the bot itself.
 

@@ -6,7 +6,7 @@ Read this when deciding how the bot will be deployed or when handoff depends on 
 
 | Surface | Best fit | Setup notes |
 | --- | --- | --- |
-| Website widget | Public support, presales, docs help, onboarding | Configure branding, first message, support URL, safety settings, lead/escalation/action choices, and public-facing prompt tone. |
+| Website widget | Public support, presales, docs help, onboarding | Configure branding, `labels.firstMessage`, support URL, safety settings, lead/escalation/action choices, and public-facing prompt tone. |
 | Embed/share chat | Public demo, docs portal, lightweight assistant | Verify the share/embed URL from saved dashboard/bot data before promising it. |
 | Dashboard chat | Internal testing, private support, validation | Use for initial testing and dashboard-only bots. Provide dashboard chat deep link. |
 | Help Scout | Support email auto-drafts/replies and staff workflow | Load [helpscout-auto-drafting.md](helpscout-auto-drafting.md) before configuring Help Scout app credentials, webhooks, routing, or Help Scout prompt behavior. |

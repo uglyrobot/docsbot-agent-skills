@@ -8,7 +8,7 @@ Score 100 points total:
 
 - Purpose, audience, and deployment fit: 10 points
   - Clear bot purpose, target audience, and likely deployment path.
-  - Bot name, description, starter questions, first message, and handoff match the use case.
+  - Bot name, description, starter questions, `labels.firstMessage`, and handoff match the use case.
   - Final-product bots avoid test, MCP test, disposable, demo, judge-review, review, or timestamp naming in the saved bot name and description. Disposable test status belongs in notes, not the bot.
 - Business research and branding: 10 points
   - Uses `post_teams_teamid_bots_analyze` when a public website exists.
@@ -17,7 +17,7 @@ Score 100 points total:
   - For widget bots, visually verifies the selected header logo contrasts with the widget color, or provides the widget design upload fallback when the best logo is missing.
   - For uploaded widget branding assets, uses public `cdn.docsbot.ai` URLs and keeps `logo`, `icon`, and `botIcon` semantically distinct unless the user explicitly chooses the same image.
   - Avoids generic defaults when business-specific values are available.
-  - Reads back and verifies saved branding, first message, placeholder, and starter questions before claiming polish.
+  - Reads back and verifies saved branding, `labels.firstMessage`, placeholder, and starter questions before claiming polish.
 - Bot creation and MCP hygiene: 10 points
   - Resolves the correct team first.
   - Uses a valid `language` locale key inferred from user instructions, source language, website/docs language, or brand analysis instead of defaulting blindly to English.
@@ -78,7 +78,7 @@ Score 100 points total:
 ## Severity
 
 - Critical defect: created in the wrong team, leaked secrets, deleted a review target before judging, failed to create the bot, or configured a dangerous action without scope warning.
-- Major defect: no meaningful sources, no bot-specific first message/prompt, no verification, missing required handoff links, or source tags configured without any prompt/use rationale.
+- Major defect: no meaningful sources, no bot-specific `labels.firstMessage`/prompt, no verification, missing required handoff links, or source tags configured without any prompt/use rationale.
 - Major defect: final handoff lacks a clear "try the bot now" link, customized next steps, or useful test prompts.
 - Major defect: any failed or zero-content source in a critical tag is left unresolved while the handoff claims the bot is ready.
 - Major defect: a broad final-product bot has only demo-scale source coverage without explicitly narrowing the prompt or labeling the setup as demo-scale.
@@ -93,7 +93,7 @@ Score 100 points total:
 - Major defect: public support/presales bot lacks escalation/contact, lead capture where follow-up matters, and useful CTAs without explicit rationale.
 - Major defect: internal support/helpdesk bot has no live deployment decision or PII/log/token handling decision.
 - Major defect: Help Scout auto-drafting, Slack deployment, webhook delivery, or another connected integration is claimed without integration/webhook read evidence and the setup is not explicitly dashboard-only.
-- Major defect: public widget keeps generic first message or unverified brand/support assets despite available brand analysis.
+- Major defect: public widget keeps generic/default `labels.firstMessage` or unverified brand/support assets despite available brand analysis.
 - Major defect: analyzer returned brand colors/logos but the bot does not persist `brandAnalysis`, so dashboard presets or discovered brand icons are unavailable.
 - Major defect: public widget uses a low-contrast or favicon-only header logo while better brand assets are available, or omits the upload/design fallback when the needed logo is missing.
 - Major defect: widget `logo`, `icon`, or `botIcon` uses a raw Firebase/Appspot/storage URL, signed upload URL, or source-upload pending path instead of a public CDN URL.
