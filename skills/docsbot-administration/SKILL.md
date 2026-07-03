@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
   author: DocsBot
-  version: "0.1.0"
+  version: "0.2.0"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
@@ -62,6 +62,12 @@ codex plugin add docsbot-administration@docsbot
 6. Keep useful IDs from results in thread context: team ID/name, bot ID/name, source IDs, member emails, integration IDs, and pagination state.
 7. For writes, destructive actions, member changes, source deletion, billing changes, or integration changes, summarize the intended action and ask for confirmation before execution unless the user's request already explicitly authorizes that exact action.
 8. Report the result with IDs, names, and next steps that the user can verify in DocsBot.
+
+## Bot Builder Subworkflow
+
+When the user asks to create, configure, tune, test, or hand off a new DocsBot bot, load the dedicated [bot-builder subworkflow](references/bot-builder/SKILL.md) before making MCP writes.
+
+That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
 ## Team Detection
 
@@ -145,3 +151,4 @@ Use these IDs as recognition hints after `search` returns results. If search ret
 
 - [DocsBot MCP server guide](references/mcp-server.md)
 - [MCP client configuration examples](references/mcp-client-config.md)
+- [Bot-builder subworkflow](references/bot-builder/SKILL.md)

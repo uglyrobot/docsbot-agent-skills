@@ -4,7 +4,7 @@ description: Use this bundled DocsBot Administration workflow whenever the DocsB
 license: MIT
 metadata:
   author: DocsBot
-  version: "0.2.0"
+  version: "0.3.0"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
@@ -31,6 +31,12 @@ Always use progressive discovery. Do not call arbitrary DocsBot URLs, guess oper
 4. Read the returned operation details, especially required fields, permission notes, response summaries, and side-effect level.
 5. Call `execute` with only the selected `operationId` and the required structured arguments.
 6. Keep useful IDs from results in thread context: team ID/name, bot ID/name, source IDs, member emails, integration IDs, and pagination state.
+
+## Bot Builder Subworkflow
+
+When the user asks to create, configure, tune, test, or hand off a new DocsBot bot, load the dedicated [bot-builder subworkflow](references/bot-builder/SKILL.md) before making MCP writes.
+
+That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
 ## Team Detection
 
@@ -145,3 +151,7 @@ If an operation is denied, report the permission or plan limitation. Do not atte
 - Do not expose OAuth tokens, API keys, internal headers, or private response data beyond what the user needs.
 - Do not use Admin MCP for per-bot documentation retrieval or question-history semantic search; those are separate per-bot MCP servers.
 - Treat DocsBot dashboard RBAC as the source of truth.
+
+## References
+
+- [Bot-builder subworkflow](references/bot-builder/SKILL.md)

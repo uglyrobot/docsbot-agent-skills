@@ -6,7 +6,7 @@
     {
       "name": "docsbot-administration",
       "path": "skills/docsbot-administration",
-      "description": "Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through the OAuth-authenticated DocsBot Administration server.",
+      "description": "Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, supported billing settings, and production bot-building workflows through the OAuth-authenticated DocsBot Administration server.",
       "mcpServers": [
         {
           "name": "docsbot",

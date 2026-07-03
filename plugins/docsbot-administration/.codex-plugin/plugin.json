@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
-  "version": "0.2.0",
-  "description": "Administer DocsBot from Codex through authorized dashboard access.",
+  "version": "0.3.0",
+  "description": "Administer DocsBot and build production DocsBot bots from Codex through authorized dashboard access.",
   "author": {
     "name": "DocsBot",
     "url": "https://docsbot.ai"
@@ -26,7 +26,7 @@
   "interface": {
     "displayName": "DocsBot Administration",
     "shortDescription": "Administer DocsBot teams, bots, sources, and settings from Codex.",
-    "longDescription": "Connect Codex to DocsBot Administration for managing DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through existing dashboard permissions. Agents use a compact search and execute tool interface backed by the DocsBot Admin API catalog, with browser-based OAuth, Dynamic Client Registration, and live DocsBot RBAC checks on each action.",
+    "longDescription": "Connect Codex to DocsBot Administration for managing DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through existing dashboard permissions. The bundled administration skill includes a dedicated bot-builder subworkflow for creating, configuring, tuning, testing, and handing off production DocsBot bots. Agents use a compact search and execute tool interface backed by the DocsBot Admin API catalog, with browser-based OAuth, Dynamic Client Registration, and live DocsBot RBAC checks on each action.",
     "developerName": "DocsBot AI",
     "category": "Productivity",
     "capabilities": [
@@ -41,7 +41,8 @@
     "defaultPrompt": [
       "Use DocsBot Administration to find my teams and bots.",
       "Search DocsBot Administration for source operations.",
-      "Use DocsBot Administration to review bot activity."
+      "Use DocsBot Administration to review bot activity.",
+      "Build a production DocsBot bot for my website."
     ],
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
