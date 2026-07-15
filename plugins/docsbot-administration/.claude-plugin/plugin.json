@@ -1,0 +1,26 @@
+{
+  "name": "docsbot-administration",
+  "version": "0.3.0",
+  "description": "Administer DocsBot and build production DocsBot bots from Claude Code through authorized dashboard access.",
+  "author": {
+    "name": "DocsBot",
+    "url": "https://docsbot.ai"
+  },
+  "homepage": "https://docsbot.ai/documentation/developer/mcp-server",
+  "repository": "https://github.com/uglyrobot/docsbot-agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "docsbot",
+    "docsbot-admin",
+    "admin-mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "claude-code",
+    "ai-agents",
+    "dashboard-admin",
+    "bot-management",
+    "source-management",
+    "oauth",
+    "rbac"
+  ]
+}

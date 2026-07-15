@@ -2,7 +2,7 @@
 
 Install DocsBot skills in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. The Codex plugin also bundles workflow instructions for efficient team lookup, bot lookup, source management, and safe writes.
+DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. The Codex and Claude Code plugins also bundle workflow instructions for efficient team lookup, bot lookup, source management, and safe writes.
 
 ```text
 https://mcp.docsbot.ai
@@ -34,6 +34,19 @@ codex
 ```
 
 Open the `DocsBot` marketplace tab and install `docsbot-administration`.
+
+## Install In Claude Code As A Plugin
+
+Add this repository as a Claude Code plugin marketplace, then install DocsBot Administration:
+
+```text
+/plugin marketplace add uglyrobot/docsbot-agent-skills
+/plugin install docsbot-administration@docsbot-plugins
+```
+
+Run `/reload-plugins` to activate it in the current session. Then run `/mcp`, select `docsbot`, and complete the browser-based DocsBot OAuth flow. Claude Code stores and refreshes the OAuth credentials through its normal MCP authentication flow.
+
+The plugin bundles the DocsBot Administration skill and remote MCP server configuration, so no API key or manual JSON configuration is required.
 
 ## Install In Codex As Direct MCP
 
@@ -154,7 +167,8 @@ mcp/docsbot-question-history.mcp.json
 
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
-plugins/docsbot-administration/         # Codex plugin package
+.claude-plugin/marketplace.json         # Claude Code marketplace catalog
+plugins/docsbot-administration/         # Shared Codex and Claude Code plugin package
 plugins/docsbot-administration/skills/  # Bundled plugin workflow instructions
 skills/                                 # Portable Agent Skill packages
 mcp/                                    # Generic MCP config examples
