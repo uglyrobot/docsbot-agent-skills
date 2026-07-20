@@ -1,5 +1,19 @@
 # Claude Code And Agent Skills Clients
 
+## Claude Code Plugin
+
+The Claude Code plugin is the easiest installation path because it bundles both the DocsBot Administration workflow skill and the remote MCP server configuration:
+
+```text
+/plugin marketplace add uglyrobot/docsbot-agent-skills
+/plugin install docsbot-administration@docsbot-plugins
+/reload-plugins
+```
+
+After installation, run `/mcp`, select `docsbot`, and complete the browser-based DocsBot OAuth flow. No DocsBot API key is required.
+
+The commands below remain available when you want portable skills without the plugin wrapper.
+
 This repository includes portable Agent Skills packages:
 
 ```text
