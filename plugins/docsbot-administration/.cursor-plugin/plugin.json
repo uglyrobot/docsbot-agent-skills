@@ -1,26 +1,36 @@
 {
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "docsbot-administration",
+  "displayName": "DocsBot Administration",
   "version": "0.5.0",
-  "description": "Administer DocsBot and build production DocsBot bots through an OAuth-authenticated remote MCP server.",
+  "description": "Administer DocsBot teams, bots, sources, and settings through an OAuth-authenticated Admin MCP server.",
   "author": {
-    "name": "DocsBot",
-    "url": "https://docsbot.ai"
+    "name": "DocsBot"
   },
   "homepage": "https://docsbot.ai/documentation/developer/mcp-server",
   "repository": "https://github.com/uglyrobot/docsbot-agent-skills",
   "license": "MIT",
+  "logo": "assets/icon.png",
   "keywords": [
     "docsbot",
     "docsbot-admin",
     "admin-mcp",
     "model-context-protocol",
     "mcp-server",
+    "cursor",
     "ai-agents",
     "dashboard-admin",
     "bot-management",
     "source-management",
     "oauth",
     "rbac"
-  ]
+  ],
+  "category": "productivity",
+  "tags": [
+    "docsbot",
+    "mcp",
+    "administration",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.cursor-plugin/mcp.json"
 }

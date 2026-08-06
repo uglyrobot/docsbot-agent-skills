@@ -1,0 +1,16 @@
+{
+  "name": "docsbot-plugins",
+  "owner": {
+    "name": "DocsBot"
+  },
+  "metadata": {
+    "description": "Official DocsBot plugins for Cursor."
+  },
+  "plugins": [
+    {
+      "name": "docsbot-administration",
+      "source": "plugins/docsbot-administration",
+      "description": "Administer DocsBot teams, bots, sources, integrations, reporting, and supported settings through authorized dashboard access."
+    }
+  ]
+}

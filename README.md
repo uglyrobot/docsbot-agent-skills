@@ -1,8 +1,8 @@
 # DocsBot Agent Skills
 
-Install DocsBot skills and plugins in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
+Install DocsBot skills and plugins in Cursor, Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. Its package at `plugins/docsbot-administration/` follows the portable [Agent Plugins v1](https://agent-plugins.org/) layout with a root `plugin.json`, `mcp.json`, and bundled workflow skill. Codex can use that portable package alongside its existing metadata. Claude Code does not support Agent Plugins v1 yet, so it continues to use the custom Claude marketplace and manifest described below.
+DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. Its package at `plugins/docsbot-administration/` follows the portable [Agent Plugins v1](https://agent-plugins.org/) layout with a root `plugin.json`, `mcp.json`, and bundled workflow skill. Cursor, Codex, and Claude Code each also have their own marketplace manifests. Claude Code does not support Agent Plugins v1 yet, so it continues to use its custom package described below.
 
 ```text
 https://mcp.docsbot.ai
@@ -24,6 +24,16 @@ plugins/docsbot-administration/
 ```
 
 The root `plugin.json` declares the Agent Plugins v1 manifest and the root `mcp.json` declares the DocsBot remote MCP server as `streamable-http`. OAuth discovery and credential storage remain client-managed, so the package contains no credentials.
+
+## Install In Cursor As A Plugin
+
+After DocsBot Administration is approved and listed in the Cursor Marketplace, open a Cursor agent chat and run:
+
+```text
+/add-plugin docsbot-administration
+```
+
+The Cursor-specific `.cursor-plugin/plugin.json` package bundles the DocsBot Administration skill and native remote MCP configuration. Cursor opens the DocsBot OAuth flow when it connects.
 
 ## Install In Codex As A Plugin
 
@@ -178,11 +188,13 @@ mcp/docsbot-question-history.mcp.json
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
 .claude-plugin/marketplace.json         # Claude Code marketplace catalog
+.cursor-plugin/marketplace.json         # Cursor Marketplace catalog
 plugins/docsbot-administration/         # Shared plugin package root
 plugins/docsbot-administration/plugin.json # Portable Agent Plugins v1 manifest
 plugins/docsbot-administration/mcp.json # Portable Agent Plugins v1 MCP configuration
 plugins/docsbot-administration/.codex-plugin/ # Codex-specific metadata
 plugins/docsbot-administration/.claude-plugin/ # Claude Code-specific metadata
+plugins/docsbot-administration/.cursor-plugin/ # Cursor-specific metadata and MCP config
 plugins/docsbot-administration/skills/  # Bundled plugin workflow instructions
 skills/                                 # Portable Agent Skill packages
 mcp/                                    # Generic MCP config examples
@@ -199,6 +211,7 @@ skills.json                             # Skill catalog for installers and human
 ## Client Notes
 
 - [Codex](clients/codex.md)
+- [Cursor](clients/cursor.md)
 - [Claude Code and Agent Skills clients](clients/agent-skills.md)
 - [Generic MCP clients](clients/generic-mcp.md)
 
