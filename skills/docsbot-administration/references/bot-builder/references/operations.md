@@ -58,7 +58,7 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | Agent mode | `isAgent: true`, `agentPrompt` containing `search_documentation` |
 | Locale/language | `language` locale key inferred before creation, such as `en`, `es`, `jp`; verify live catalog support for uncommon locales |
 | Brand color/logo/header | `color`, `logo`, `icon`, `botIcon`, `headerAlignment`, `brandAnalysis` |
-| First message/starter questions/labels | `labels.firstMessage` is required for production bot setup; `questions` and other `labels.*` support the same user journey. `labels.inputPlaceholder` is a user-owned input message label: never author, change, or reset it; preserve it exactly if a full `labels` write is required. |
+| First message/starter questions/labels | `labels.firstMessage` is the only label changed during standard production setup. Change `labels.floatingButton` or another `labels.*` field only when the user asks or the specific assigned task requires it; otherwise omit or preserve it. |
 | Support/contact route | `supportLink`; helpdesk widget handoff uses embed `supportCallback` outside MCP |
 | Response sharing/link privacy | `showCopyButton`, `linkSafetyEnabled`; omit or preserve by default. Enable only when the user explicitly confirms a private/internal team workflow that will reuse or share answer output; for `linkSafetyEnabled`, also require an explicit link-privacy request. |
 | Public safety | `piiRedaction`, `recordIP`, `imageUploads`, `audioUploads`, `allowedDomains`; omit from initial create unless explicitly configuring |
@@ -73,7 +73,7 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | External MCP servers | `mcpServers[]` with `serverLabel`, `serverUrl`, `serverDescription`, `enabled`, `tools`, optional auth/header fields |
 | Help Scout prompt | `helpscoutPrompt` |
 
-Preserve existing `tools`, `mcpServers`, `labels`, and `retrieverTags` entries when updating one part of the bot. In particular, read and preserve `labels.inputPlaceholder` exactly; do not change it while updating `labels.firstMessage` or any other setting.
+Preserve existing `tools`, `mcpServers`, `labels`, and `retrieverTags` entries when updating one part of the bot. Read the complete saved labels before a label update and change only `labels.firstMessage` plus labels specifically requested or required by the assigned task. If the API replaces the object, send the full saved labels object with only those scoped changes.
 
 ## Branding And Onboarding
 

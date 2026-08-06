@@ -55,9 +55,11 @@ For website widget deployments, load [branding/widget.md](branding/widget.md) be
 
 Set a custom `labels.firstMessage` that matches the business, audience, deployment surface, and main user journey. Treat this as a required branding/setup field for every production bot, not optional polish. Avoid generic defaults such as "What can I help you with?" when the business and purpose are known.
 
-Treat `labels.inputPlaceholder` as an immutable, user-owned input message label. Never author, change, reset, or propose it. Read it before a write and verify it is identical afterward. If the API requires a full `labels` object when updating `labels.firstMessage`, carry the exact saved `labels.inputPlaceholder` value through unchanged rather than editing it.
+Treat labels other than `labels.firstMessage` as outside normal bot setup. You may change the floating button label, `labels.floatingButton`, when the user asks or when its wording is important to the specific assigned task. Change any other label only when the user specifically requests it or the assigned task has a concrete need for that label. Labels such as `labels.inputPlaceholder` are not immutable; they are simply preserved unless one of those exceptions applies. Generic polish, branding, translation, or resetting to defaults is not enough reason to change them.
 
-Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, `labels.firstMessage`, unchanged `labels.inputPlaceholder`, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
+Read the complete saved `labels` object before any label write. On create, omit non-required label fields so their normal defaults apply. If an update requires a full replacement object, copy the saved object and change only `labels.firstMessage` plus any specifically requested or task-required labels. Preserve every other key and value exactly.
+
+Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, `labels.firstMessage`, starter questions, and equality of every label that was outside the assigned change. For widgets, also verify logo/color contrast or list it as remaining visual review.
 
 ## Response Sharing And Link Privacy
 

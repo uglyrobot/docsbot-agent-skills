@@ -17,7 +17,7 @@ Score 100 points total:
   - For widget bots, visually verifies the selected header logo contrasts with the widget color, or provides the widget design upload fallback when the best logo is missing.
   - For uploaded widget branding assets, uses public `cdn.docsbot.ai` URLs and keeps `logo`, `icon`, and `botIcon` semantically distinct unless the user explicitly chooses the same image.
   - Avoids generic defaults when business-specific values are available.
-  - Reads back and verifies saved branding, `labels.firstMessage`, unchanged `labels.inputPlaceholder`, and starter questions before claiming polish.
+  - Reads back and verifies saved branding, `labels.firstMessage`, starter questions, and unchanged values for every label outside the assigned task before claiming polish.
 - Bot creation and MCP hygiene: 10 points
   - Resolves the correct team first.
   - Uses a valid `language` locale key inferred from user instructions, source language, website/docs language, or brand analysis instead of defaulting blindly to English.
@@ -85,6 +85,7 @@ Score 100 points total:
 - Major defect: a broad final-product bot has only demo-scale source coverage without explicitly narrowing the prompt or labeling the setup as demo-scale.
 - Major defect: a source that the prompt depends on is still indexing at handoff and the final response does not clearly warn the user that coverage is pending; zero chunks after indexing remains a blocker.
 - Major defect: a public bot enables PII redaction without user request or compliance rationale, enables `showCopyButton` or `linkSafetyEnabled` outside the explicitly confirmed private/internal shared-output use case, or skips lead-field review.
+- Major defect: standard setup changes labels other than `labels.firstMessage` without a specific user request or concrete requirement from the assigned task, or fails to preserve out-of-scope labels during an object-replacement update.
 - Major defect: a final-product bot retains disposable/test naming or description language.
 - Major defect: retriever tags are configured but the agent prompt lacks compact routing guidance for the actual tag purpose, or the tag descriptions are too weak for the search tool schema to guide routing.
 - Major defect: public/internal or customer/staff content is mixed in one bot and relies on tag filtering for isolation.

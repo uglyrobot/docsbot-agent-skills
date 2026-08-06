@@ -1,6 +1,6 @@
 {
   "name": "docsbot-administration",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Administer DocsBot and build production DocsBot bots from Codex through authorized dashboard access.",
   "author": {
     "name": "DocsBot",

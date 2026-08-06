@@ -4,7 +4,7 @@ description: Use this bundled DocsBot Administration workflow whenever the DocsB
 license: MIT
 metadata:
   author: DocsBot
-  version: "0.5.1"
+  version: "0.5.2"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 

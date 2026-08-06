@@ -53,7 +53,7 @@ If MCP create/update rejects `brandAnalysis`, report an API/catalog mismatch ins
 
 - Use a clean production bot name and description. Do not save test/disposable/timestamp language in final-product bots.
 - Write and save `labels.firstMessage` specific to the business, user journey, audience, and deployment surface. Do not leave the default first-message label in place for production bots.
-- Treat `labels.inputPlaceholder` as immutable user-owned copy. Never author, edit, reset, or propose it; when a full `labels` object is required, preserve its exact saved value.
+- Do not edit other labels during normal appearance setup. `labels.floatingButton` or another label may change when the user asks or when the specific assigned task requires it; otherwise preserve it. If a full `labels` object is required, carry all out-of-scope values through unchanged.
 - Add starter questions that match high-frequency questions discovered during research.
 - Set a support/contact URL that matches the bot's use case: support route for support bots, demo/contact route for presales, internal route for staff bots.
 - If the analyzer returns weak favicon-only assets, research the public site for better logo/icon candidates before settling.
@@ -67,7 +67,7 @@ Before handoff, read the saved bot and verify:
 - Widget/main color.
 - Header/logo/icon/avatar fields where available.
 - `brandAnalysis.colors` and `brandAnalysis.logos` are persisted when the analyzer returned them.
-- `labels.firstMessage`, unchanged `labels.inputPlaceholder`, and starter questions.
+- `labels.firstMessage`, starter questions, and unchanged values for every label outside the assigned task.
 - Support/contact URL.
 - Language/locale if inferred from brand analysis.
 
