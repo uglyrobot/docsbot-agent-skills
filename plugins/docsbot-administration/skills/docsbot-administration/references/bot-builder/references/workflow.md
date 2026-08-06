@@ -55,7 +55,17 @@ For website widget deployments, load [branding/widget.md](branding/widget.md) be
 
 Set a custom `labels.firstMessage` that matches the business, audience, deployment surface, and main user journey. Treat this as a required branding/setup field for every production bot, not optional polish. Avoid generic defaults such as "What can I help you with?" when the business and purpose are known.
 
-Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, `labels.firstMessage`, placeholder, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
+Treat `labels.inputPlaceholder` as an immutable, user-owned input message label. Never author, change, reset, or propose it. Read it before a write and verify it is identical afterward. If the API requires a full `labels` object when updating `labels.firstMessage`, carry the exact saved `labels.inputPlaceholder` value through unchanged rather than editing it.
+
+Before final handoff, verify saved brand fields from the bot read, not only the analyzer output: widget color, logo/header/icon where available, support URL, `labels.firstMessage`, unchanged `labels.inputPlaceholder`, and starter questions. For widgets, also verify logo/color contrast or list it as remaining visual review.
+
+## Response Sharing And Link Privacy
+
+Keep `showCopyButton` and `linkSafetyEnabled` omitted, false, or unchanged by default. Do not enable either setting simply because a bot is public, private, internal, or a widget.
+
+Enable `showCopyButton` only when all of the following are true: the bot is private/internal, the intended users are team members, and the user explicitly confirms that those team members will reuse or share the bot's answer output. It is not appropriate for public, customer, prospect, partner, demo, mixed-audience, or uncertain deployments.
+
+Enable `linkSafetyEnabled` only when the user explicitly requests link privacy for that same confirmed private/internal output-sharing workflow. Do not infer it from a generic public-safety review. When the use case is not explicit, preserve any existing value and do not add either field to the write payload. Read both fields after any intentional change.
 
 For final-product bots, use a clean production name and description. Avoid test, MCP test, timestamped, disposable, judge-review, review, demo, or scaffolding language in the bot itself.
 

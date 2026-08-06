@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
   "displayName": "DocsBot Administration",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Administer DocsBot teams, bots, sources, and settings through an OAuth-authenticated Admin MCP server.",
   "author": {
     "name": "DocsBot"

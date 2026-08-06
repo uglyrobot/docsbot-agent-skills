@@ -26,7 +26,7 @@ For the bot fields that store each action, see the Compact Field Map in [../oper
 
 For public widgets, explicitly evaluate:
 
-- `linkSafetyEnabled` for safer outbound links.
+- Keep `showCopyButton` and `linkSafetyEnabled` omitted, false, or unchanged. They are not generic public-widget defaults. See [Response Sharing And Link Privacy](../workflow.md#response-sharing-and-link-privacy) for the only allowed enablement case.
 - `piiRedaction`: keep it `false` unless the user requests PII redaction or the deployment has a specific compliance requirement.
 - `recordIP`, image uploads, and audio uploads. Do not set them during initial bot creation; leave their default/null state alone unless the user explicitly requests them or the deployment has a concrete requirement.
 - Whether every lead field is necessary and has concise labels/options; load [lead-collection.md](lead-collection.md) before adding or changing fields.
@@ -63,7 +63,7 @@ For internal support or helpdesk copilot bots, explicitly decide and record:
 - Live evidence for that deployment choice, such as integration lists, webhook reads, Slack mapping reads, or an explicit dashboard-only decision.
 - Treat `widgetType` as detected website support-widget metadata for handoff guidance, not proof that a DocsBot integration is connected.
 - For Help Scout auto-drafting or Slack deployment, verify the actual integration with the relevant integration read operations. For Help Scout Beacon, Zendesk, Freshdesk, Intercom, or HubSpot widget handoffs, confirm the site's widget script and use [escalation-handoffs.md](escalation-handoffs.md); no DocsBot team integration connection is implied.
-- Whether response copy buttons should be enabled for drafting workflows.
+- Whether the user explicitly confirmed that team members will reuse or share answer output. Only then may `showCopyButton` be enabled; `linkSafetyEnabled` additionally requires an explicit link-privacy request. Otherwise preserve both values and do not write either field.
 - How escalation should route for staff, not end customers.
 - PII/log/token handling. Internal support bots may need `piiRedaction`, but do not assume it must be enabled; record the user's preference or a concrete compliance reason before enabling it.
 
@@ -71,5 +71,6 @@ For internal support or helpdesk copilot bots, explicitly decide and record:
 
 - Read bot settings after every action update.
 - Verify configured lead fields, support links, web search, Skills, MCP servers, integrations, and any custom buttons from reads, not intended payloads.
+- Verify `showCopyButton` and `linkSafetyEnabled` after any intentional change, and record the confirmed private/internal output-sharing use case in the handoff.
 - Add matching prompt instructions for every action the user should know how to trigger.
 - In handoff, list enabled actions/integrations and any dashboard-only connection steps.

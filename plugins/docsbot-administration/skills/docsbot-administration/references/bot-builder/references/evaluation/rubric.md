@@ -17,7 +17,7 @@ Score 100 points total:
   - For widget bots, visually verifies the selected header logo contrasts with the widget color, or provides the widget design upload fallback when the best logo is missing.
   - For uploaded widget branding assets, uses public `cdn.docsbot.ai` URLs and keeps `logo`, `icon`, and `botIcon` semantically distinct unless the user explicitly chooses the same image.
   - Avoids generic defaults when business-specific values are available.
-  - Reads back and verifies saved branding, `labels.firstMessage`, placeholder, and starter questions before claiming polish.
+  - Reads back and verifies saved branding, `labels.firstMessage`, unchanged `labels.inputPlaceholder`, and starter questions before claiming polish.
 - Bot creation and MCP hygiene: 10 points
   - Resolves the correct team first.
   - Uses a valid `language` locale key inferred from user instructions, source language, website/docs language, or brand analysis instead of defaulting blindly to English.
@@ -60,7 +60,8 @@ Score 100 points total:
   - Escalation, lead collection, custom buttons, scheduling, web search, Skills, Help Scout, Slack, Stripe, or MCP connectors are recommended/configured with clear rationale.
   - Customer-facing bots avoid owner-scoped OAuth actions unless the user explicitly accepts the risk.
   - Configured lead fields and any custom buttons are verified after save.
-  - Public bots keep `piiRedaction` false unless the user requests it or a specific compliance requirement exists; they still evaluate link safety, lead-field necessity, support URL fit, and scheduling when applicable.
+  - Public bots keep `piiRedaction` false unless the user requests it or a specific compliance requirement exists; they keep `showCopyButton` and `linkSafetyEnabled` omitted, false, or unchanged, while evaluating lead-field necessity, support URL fit, and scheduling when applicable.
+  - `showCopyButton` is enabled only after the user confirms a private/internal team workflow that reuses or shares answers; `linkSafetyEnabled` also requires an explicit link-privacy request for that same workflow.
   - Public support/presales bots include expected basics such as escalation/contact route, lead collection when follow-up matters, and verified support URL, or justify omissions.
   - Internal/helpdesk bots explicitly choose Help Scout, Slack, webhook, MCP connector, or dashboard/link-only deployment and explain why.
   - Support-staff bots include a PII/log/token handling decision and verify PII redaction only when requested or compliance-driven.
@@ -83,7 +84,7 @@ Score 100 points total:
 - Major defect: any failed or zero-content source in a critical tag is left unresolved while the handoff claims the bot is ready.
 - Major defect: a broad final-product bot has only demo-scale source coverage without explicitly narrowing the prompt or labeling the setup as demo-scale.
 - Major defect: a source that the prompt depends on is still indexing at handoff and the final response does not clearly warn the user that coverage is pending; zero chunks after indexing remains a blocker.
-- Major defect: a public bot enables PII redaction without user request or compliance rationale, or skips link-safety/lead-field review.
+- Major defect: a public bot enables PII redaction without user request or compliance rationale, enables `showCopyButton` or `linkSafetyEnabled` outside the explicitly confirmed private/internal shared-output use case, or skips lead-field review.
 - Major defect: a final-product bot retains disposable/test naming or description language.
 - Major defect: retriever tags are configured but the agent prompt lacks compact routing guidance for the actual tag purpose, or the tag descriptions are too weak for the search tool schema to guide routing.
 - Major defect: public/internal or customer/staff content is mixed in one bot and relies on tag filtering for isolation.

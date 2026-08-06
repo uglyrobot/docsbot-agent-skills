@@ -58,9 +58,10 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | Agent mode | `isAgent: true`, `agentPrompt` containing `search_documentation` |
 | Locale/language | `language` locale key inferred before creation, such as `en`, `es`, `jp`; verify live catalog support for uncommon locales |
 | Brand color/logo/header | `color`, `logo`, `icon`, `botIcon`, `headerAlignment`, `brandAnalysis` |
-| First message/starter questions/labels | `labels.firstMessage` is required for production bot setup; `questions`, placeholder, and other `labels.*` support the same user journey |
+| First message/starter questions/labels | `labels.firstMessage` is required for production bot setup; `questions` and other `labels.*` support the same user journey. `labels.inputPlaceholder` is a user-owned input message label: never author, change, or reset it; preserve it exactly if a full `labels` write is required. |
 | Support/contact route | `supportLink`; helpdesk widget handoff uses embed `supportCallback` outside MCP |
-| Public safety | `linkSafetyEnabled`, `piiRedaction`, `recordIP`, `imageUploads`, `audioUploads`, `allowedDomains`; omit from initial create unless explicitly configuring |
+| Response sharing/link privacy | `showCopyButton`, `linkSafetyEnabled`; omit or preserve by default. Enable only when the user explicitly confirms a private/internal team workflow that will reuse or share answer output; for `linkSafetyEnabled`, also require an explicit link-privacy request. |
+| Public safety | `piiRedaction`, `recordIP`, `imageUploads`, `audioUploads`, `allowedDomains`; omit from initial create unless explicitly configuring |
 | Retrieval tags | `retrieverTags: [{ key, description }]`, source `tags: ["key"]` |
 | Source freshness | source `scheduleInterval` as `monthly`, `weekly`, `daily`, or `none` when supported |
 | Lead form | `leadCollect`, `labels.leadCollectMessage` |
@@ -72,7 +73,7 @@ Use this to map skill language to common `put_teams_teamid_bots_botid` and sourc
 | External MCP servers | `mcpServers[]` with `serverLabel`, `serverUrl`, `serverDescription`, `enabled`, `tools`, optional auth/header fields |
 | Help Scout prompt | `helpscoutPrompt` |
 
-Preserve existing `tools`, `mcpServers`, `labels`, and `retrieverTags` entries when updating one part of the bot.
+Preserve existing `tools`, `mcpServers`, `labels`, and `retrieverTags` entries when updating one part of the bot. In particular, read and preserve `labels.inputPlaceholder` exactly; do not change it while updating `labels.firstMessage` or any other setting.
 
 ## Branding And Onboarding
 
