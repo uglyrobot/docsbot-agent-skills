@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
   author: DocsBot
-  version: "0.2.0"
+  version: "0.4.0"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 

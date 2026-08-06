@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "docsbot": {
+      "type": "streamable-http",
+      "url": "https://mcp.docsbot.ai"
+    }
+  }
+}

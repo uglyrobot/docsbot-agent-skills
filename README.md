@@ -1,8 +1,8 @@
 # DocsBot Agent Skills
 
-Install DocsBot skills in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
+Install DocsBot skills and plugins in Codex, Claude Code, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. The Codex and Claude Code plugins also bundle workflow instructions for efficient team lookup, bot lookup, source management, and safe writes.
+DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. Its package at `plugins/docsbot-administration/` follows the portable [Agent Plugins v1](https://agent-plugins.org/) layout with a root `plugin.json`, `mcp.json`, and bundled workflow skill. Codex can use that portable package alongside its existing metadata. Claude Code does not support Agent Plugins v1 yet, so it continues to use the custom Claude marketplace and manifest described below.
 
 ```text
 https://mcp.docsbot.ai
@@ -14,6 +14,16 @@ It exposes a compact two-tool interface:
 - `execute` runs a selected catalog operation with structured parameters.
 
 Authentication uses browser-based OAuth with Dynamic Client Registration. DocsBot evaluates dashboard permissions and RBAC live on every action.
+
+## Agent Plugins v1
+
+Agent Plugins-compatible clients can load this directory as one portable package:
+
+```text
+plugins/docsbot-administration/
+```
+
+The root `plugin.json` declares the Agent Plugins v1 manifest and the root `mcp.json` declares the DocsBot remote MCP server as `streamable-http`. OAuth discovery and credential storage remain client-managed, so the package contains no credentials.
 
 ## Install In Codex As A Plugin
 
@@ -46,7 +56,7 @@ Add this repository as a Claude Code plugin marketplace, then install DocsBot Ad
 
 Run `/reload-plugins` to activate it in the current session. Then run `/mcp`, select `docsbot`, and complete the browser-based DocsBot OAuth flow. Claude Code stores and refreshes the OAuth credentials through its normal MCP authentication flow.
 
-The plugin bundles the DocsBot Administration skill and remote MCP server configuration, so no API key or manual JSON configuration is required.
+Claude Code uses its custom `.claude-plugin/plugin.json` and `.mcp.json` files because it is not Agent Plugins v1-compatible. The plugin still bundles the DocsBot Administration skill and remote MCP server configuration, so no API key or manual JSON configuration is required.
 
 ## Install In Codex As Direct MCP
 
@@ -168,7 +178,11 @@ mcp/docsbot-question-history.mcp.json
 ```text
 .agents/plugins/marketplace.json        # Codex marketplace catalog
 .claude-plugin/marketplace.json         # Claude Code marketplace catalog
-plugins/docsbot-administration/         # Shared Codex and Claude Code plugin package
+plugins/docsbot-administration/         # Shared plugin package root
+plugins/docsbot-administration/plugin.json # Portable Agent Plugins v1 manifest
+plugins/docsbot-administration/mcp.json # Portable Agent Plugins v1 MCP configuration
+plugins/docsbot-administration/.codex-plugin/ # Codex-specific metadata
+plugins/docsbot-administration/.claude-plugin/ # Claude Code-specific metadata
 plugins/docsbot-administration/skills/  # Bundled plugin workflow instructions
 skills/                                 # Portable Agent Skill packages
 mcp/                                    # Generic MCP config examples

@@ -2,7 +2,7 @@
 
 ## Claude Code Plugin
 
-The Claude Code plugin is the easiest installation path because it bundles both the DocsBot Administration workflow skill and the remote MCP server configuration:
+Claude Code is not Agent Plugins v1-compatible, so it uses the custom Claude marketplace and `.claude-plugin/plugin.json` manifest. It remains the easiest Claude installation path because it bundles both the DocsBot Administration workflow skill and the remote MCP server configuration:
 
 ```text
 /plugin marketplace add uglyrobot/docsbot-agent-skills
