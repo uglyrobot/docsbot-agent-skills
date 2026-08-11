@@ -19,17 +19,17 @@ Search the live catalog before execute. Stable body fields:
 | Field | Purpose |
 | --- | --- |
 | `query` | Required search text. Prefer `standaloneQuestion` from the log, then the raw user question, then paraphrases. |
-| `top_k` | How many matches to return. Use ~5 to mimic default chat context; raise to 10–20 when checking whether the right chunk exists but ranks below the default window. |
+| `top_k` | How many matches to return. The Semantic Search default is `6`; use `top_k: 6` to reproduce the default retrieval window, then raise to 10–20 when checking whether the right chunk exists but ranks below it. |
 | `tags` | Optional retriever tag keys. Use when the bot routes by product/version/procedure. |
 | `include_untagged` | When tags are set, defaults to including untagged sources unless explicitly `false`. |
 | `autocut` | Optional API autocut; use only when diagnosing score cutoffs. |
 | `alpha` | Optional hybrid weighting when relevant to the bot embedding setup. |
-| `use_glossary` | Optional glossary expansion. |
+| `use_glossary` | Optional glossary query rewriting. Compare `false` and `true` with the same query when debugging vocabulary mismatches; see [glossary.md](glossary.md). |
 
 Example bodies to try for one incident:
 
 ```json
-{ "query": "<standaloneQuestion or user question>", "top_k": 5 }
+{ "query": "<standaloneQuestion or user question>", "top_k": 6 }
 ```
 
 ```json
@@ -41,19 +41,20 @@ Example bodies to try for one incident:
 ```
 
 ```json
-{ "query": "<paraphrase a customer would type>", "top_k": 5 }
+{ "query": "<paraphrase a customer would type>", "top_k": 6 }
 ```
 
 ## Debug Matrix
 
 Run a short matrix instead of a single lucky query:
 
-1. **Logged standalone question** at `top_k: 5` — closest to what chat likely used.
-2. **Raw user question** at `top_k: 5` — catches rewrite/standalone issues.
+1. **Logged standalone question** at `top_k: 6` — reproduces the Semantic Search default window and is closest to what retrieval likely used.
+2. **Raw user question** at `top_k: 6` — catches rewrite/standalone issues.
 3. **Same query at higher `top_k`** (10–16) — detects "present but below context cutoff."
 4. **One or two paraphrases** — detects brittle wording / missing Q&A coverage.
-5. **Tagged vs untagged** when `retrieverTags` exist — detects wrong product/version routing.
-6. **Expected document title/URL phrase** as a query — if even that fails, the source is not indexed/searchable yet (failed ingest, zero chunks, wrong bot, or non-text content).
+5. **Glossary off vs on** for brand/product/acronym/industry/cross-language vocabulary mismatches — detects whether a term rewrite moves the expected chunk into the default window.
+6. **Tagged vs untagged** when `retrieverTags` exist — detects wrong product/version routing.
+7. **Expected document title/URL phrase** as a query — if even that fails, the source is not indexed/searchable yet (failed ingest, zero chunks, wrong bot, or non-text content).
 
 Record for each run: whether the expected source/chunk appears, its approximate rank, and whether chunk text actually contains the fact.
 
@@ -61,8 +62,8 @@ Record for each run: whether the expected source/chunk appears, its approximate 
 
 | Observation | Interpretation |
 | --- | --- |
-| Expected chunk in top 5 and was in logged `sources`, but answer was still wrong | Context-present / prompt / model issue — not indexing |
-| Expected chunk in top 5 live, missing from logged `sources` | Time skew (source added later), different query rewrite, or tag/filter difference at answer time |
+| Expected chunk in top 6 and was in logged `sources`, but answer was still wrong | Context-present / prompt / model issue — not indexing |
+| Expected chunk in top 6 live, missing from logged `sources` | Time skew (source added later), different query rewrite, glossary behavior, or tag/filter difference at answer time |
 | Expected chunk only appears at high `top_k` | Increase context items and/or clean noisy higher-ranked sources; consider Q&A so the fact ranks easily |
 | Expected chunk absent for all phrasings | Missing/failed/unreadable source or still indexing |
 | Wrong product/version chunks dominate | Tag routing or noisy overlapping sources |

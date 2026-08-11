@@ -32,7 +32,7 @@ The bot escalated because retrieval never saw your refund window policy—the in
 - Question: "How many days do I have to request a refund?"
 - couldAnswer: false; escalated: true
 - Logged sources: marketing homepage snippets only; no refund policy text
-- Live semantic search (`top_k` 5 and 16): no refund-policy hits; source "Help Center" status failed / 0 chunks
+- Live semantic search (`top_k` 6 and 16): no refund-policy hits; source "Help Center" status failed / 0 chunks
 
 ## Root cause
 Missing knowledge (failed source)

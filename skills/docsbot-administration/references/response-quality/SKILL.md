@@ -35,6 +35,7 @@ Use this routing table selectively:
 | [workflow.md](references/workflow.md) | Scoping a cluster, ambiguous time window, or multi-incident analysis; skip for a single supplied ID. |
 | [operations.md](references/operations.md) | The live catalog search did not make the required read/write operation or field contract clear. |
 | [semantic-search.md](references/semantic-search.md) | You are about to run or interpret a retrieval-ranking matrix beyond one targeted semantic search. |
+| [glossary.md](references/glossary.md) | A brand, product, acronym, industry term, or non-standard translation may be causing a query-to-document vocabulary mismatch. |
 | [diagnosis.md](references/diagnosis.md) | Evidence supports multiple plausible causes or the user needs a formal root-cause classification. |
 | [remediation.md](references/remediation.md) | A root cause is established and you need detailed remediation or mutation guardrails. |
 | [handoff.md](references/handoff.md) | A complex or clustered analysis needs the full formal handoff shape; skip for a concise single-incident answer. |
@@ -65,7 +66,8 @@ Classify whether prompt instructions can reasonably improve the observed behavio
 - **Prompt-controllable:** retrieval/search timing guidance, source-grounding rules, tool triggering, tool arguments, escalation rules, role/persona, tone, answer format, clarification behavior, refusal boundaries, and missing-information behavior.
 - **Not prompt-controllable:** missing or stale training data, missing logged context, unreadable/non-text sources, disconnected or unavailable tools, API/runtime failures, and cases where the bot could not know the answer from the available evidence.
 - Recommend or apply a prompt edit only for the prompt-controllable portion. Do not put source creation, missing-document advice, account-data gaps, tool availability, or backend/API fixes into a prompt-debug instruction.
-- Identify the actual prompt surface before proposing an edit. Help Scout auto-reply logs use `helpscoutPrompt`; agent-mode answers use `agentPrompt`; legacy/non-agent surfaces use `customPrompt`. Do not edit a different prompt merely because it is easier to find.
+- Identify the actual prompt surface before proposing an edit. Help Scout auto-reply logs use `helpscoutPrompt`; agent-mode text answers use `agentPrompt`; legacy/non-agent text surfaces use `customPrompt`; voice and phone answers use `voicePrompt`. In the current Admin bot object, the editable voice prompt is exposed as `voiceAgent.instructions`; preserve the rest of the `voiceAgent` object when updating it. Do not edit a different prompt merely because it is easier to find.
+- Determine the answer channel from the log evidence before choosing a prompt. For a question object, follow `conversationId` and read the conversation when available. Prefer the conversation's top-level `channel`; for legacy records fall back to `conversation.metadata.source`, then `conversation.metadata.helpscoutReply === true`. If no conversation can be loaded, use the same `source` / `helpscoutReply` clues in `question.metadata`. Treat `voice` and `phone` as voice-prompt channels. The `testing` flag describes staff testing and does not by itself select a prompt surface.
 
 ## Analysis Flow
 
@@ -74,7 +76,7 @@ Use this sequence for a single answer or a small set of related failures:
 1. Identify the bot and the target question(s) or conversation(s): IDs from the user, dashboard deep links, recent unanswered/escalated/low-rated filters, or semantic question-log search.
 2. Read the question log entry (and conversation transcript when needed). Capture question text, `standaloneQuestion`, answer, `couldAnswer`, rating, escalation, model if present, and the retrieved `sources` array with chunk content.
 3. Classify the failure mode from the evidence: missing knowledge, weak retrieval, context present but unused, prompt/policy conflict, wrong audience/tag routing, non-text source content, or action/skill gap. Load `diagnosis.md` only if the evidence leaves multiple plausible classes.
-4. Reproduce retrieval with one targeted `post_teams_teamid_bots_botid_search` call using the standalone or raw question. Expand to a query matrix—and load `semantic-search.md`—only if the first comparison does not distinguish the cause. When helpful, inspect source status/chunk counts for suspected documents.
+4. Reproduce retrieval with one targeted `post_teams_teamid_bots_botid_search` call using the standalone or raw question and the default `top_k: 6`. Expand to a query matrix—and load `semantic-search.md`—only if the first comparison does not distinguish the cause. When helpful, inspect source status/chunk counts for suspected documents. If the mismatch centers on a proprietary term, acronym, industry phrase, or non-standard translation, load `glossary.md` and compare the same search with `use_glossary: false` and `true`.
 5. Read current bot settings that affect answers: prompt/`agentPrompt`, model, retriever tags, enabled tools/actions, and deployment surface.
 6. Recommend the smallest concrete remediation supported by the evidence. Load `remediation.md` only when detailed fix or mutation guardrails are needed. Apply only authorized fixes; otherwise hand off dashboard deep links and exact next steps.
 7. Deliver a concise diagnosis: what happened, why, evidence, recommended fixes, and how to verify. Load `handoff.md` only for a complex or clustered report that needs its formal structure.
@@ -92,6 +94,7 @@ For cluster analysis (knowledge gaps, recurring escalations, rating dips):
 - [workflow.md](references/workflow.md): Intake, log selection, reproduction, and verification workflow.
 - [operations.md](references/operations.md): Admin MCP operation IDs for questions, conversations, search, sources, Q&A, and prompts.
 - [semantic-search.md](references/semantic-search.md): How to use the semantic search API to debug retrieval and indexing.
+- [glossary.md](references/glossary.md): How glossary rewrites address vocabulary mismatches, how to verify them with Semantic Search, and how to update entries safely.
 - [diagnosis.md](references/diagnosis.md): Root-cause taxonomy and evidence checks.
 - [remediation.md](references/remediation.md): Source, revise→Q&A, prompt, model, context-item, and action fixes.
 - [handoff.md](references/handoff.md): Required final diagnosis shape and dashboard deep links.

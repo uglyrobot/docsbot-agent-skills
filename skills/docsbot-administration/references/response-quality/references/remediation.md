@@ -65,7 +65,13 @@ Use when retrieval is fine but behavior, tone, boundaries, or tool use is wrong.
 
 Related docs: [Customize AI bot responses](https://docsbot.ai/documentation/doc/customize-ai-bot-responses), [Prompt Debugger](https://docsbot.ai/documentation/doc/how-to-use-the-prompt-debugger-to-fix-ai-agent-behavior).
 
-## 4. Stronger model when context already has the answer
+Select the prompt from the answer channel, not from the current dashboard tab: `helpscoutPrompt` for Help Scout, `agentPrompt` for agent-mode text, `customPrompt` for legacy/non-agent text, and `voicePrompt` for voice/phone. Current Admin bot writes expose the voice text at `voiceAgent.instructions`; preserve all sibling voice settings.
+
+## 4. Add or refine glossary rewrites
+
+Use when the documentation contains the right fact under its official vocabulary, but users ask with a proprietary nickname, acronym, industry term, or non-standard translation. Load [glossary.md](glossary.md) for the A/B Semantic Search proof and safe full-array update workflow. Do not use glossary entries to compensate for missing facts or failed indexing.
+
+## 5. Stronger model when context already has the answer
 
 Use sparingly when logged sources clearly contain the answer but weaker models still miss or mangle it.
 
@@ -73,17 +79,17 @@ Use sparingly when logged sources clearly contain the answer but weaker models s
 - Note higher token/API cost.
 - Do not jump to model changes for missing knowledge—that wastes spend.
 
-## 5. Increase context items
+## 6. Increase context items
 
 Use when semantic search shows the correct chunk exists but often ranks below the default top context window.
 
-- Default context is commonly the top 5 chunks for speed/cost.
+- Semantic Search returns 6 chunks by default. Product answer context may be configured separately, so use the logged `sources` as proof of what the model actually received.
 - Dashboard Context Boost / Research-style modes can raise context (for example toward ~16).
 - Widget: `contextItems` in embed options.
 - API: `context_items` on chat requests.
 - Tradeoff: more tokens and latency. Prefer cleaning sources/tags or adding Q&A first when noise or weak ranking is the real problem.
 
-## 6. Fix tag routing
+## 7. Fix tag routing
 
 Use when multiple products, versions, or procedure families collide.
 
@@ -93,7 +99,7 @@ Use when multiple products, versions, or procedure families collide.
 - Validate with tagged vs untagged semantic search runs.
 - Audience isolation (public vs internal) needs separate bots, not tags alone.
 
-## 7. Actions, Skills, and live systems
+## 8. Actions, Skills, and live systems
 
 Use when the user needed live or account-specific work.
 

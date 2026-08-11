@@ -32,12 +32,13 @@ Always capture for each reviewed question:
 - `answer`, `couldAnswer`, `rating`, `escalated` / `escalation`
 - `sources[]` with titles/URLs and chunk text when returned
 - `createdAt` and any model/metadata fields present
+- `conversationId`; when present, read the conversation's top-level `channel` (legacy fallback: `metadata.source`, then `metadata.helpscoutReply`) before selecting `customPrompt`, `agentPrompt`, `helpscoutPrompt`, or `voicePrompt`
 
 ## Reproduce Retrieval With Semantic Search
 
 After reading the logged context, load [semantic-search.md](semantic-search.md) and debug with `post_teams_teamid_bots_botid_search` (the Admin MCP semantic search API / dashboard Search tool):
 
-1. Run the query matrix: standalone question, raw question, 1–2 paraphrases, default `top_k` (~5), higher `top_k` (10–16), and tagged vs untagged when tags exist.
+1. Run the query matrix: standalone question, raw question, 1–2 paraphrases, default `top_k: 6`, higher `top_k` (10–16), and tagged vs untagged when tags exist. When a proprietary term, acronym, industry phrase, or non-standard translation may be responsible, compare the same query with `use_glossary: false` and `true` using [glossary.md](glossary.md).
 2. Compare live top hits to the logged `sources`.
 3. If live search finds the right chunk but the log did not, treat it as a retrieval/config/time-skew issue (source added later, tags, indexing state, or different query rewriting).
 4. If the chunk only appears at high `top_k`, treat it as ranking/context-window pressure (noise above the useful chunk, or need more `context_items` / a Q&A boost).

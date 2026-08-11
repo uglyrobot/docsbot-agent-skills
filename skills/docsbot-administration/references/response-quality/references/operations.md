@@ -31,7 +31,8 @@ When reading question objects, prefer evidence in this order:
 2. `standaloneQuestion` — rewritten query used for retrieval when present; use it for semantic search reproduction.
 3. `question` / `answer` — what the user asked and what the bot said.
 4. `couldAnswer`, `rating`, `escalated` / `escalation` — outcome signals.
-5. `revised` — `true` when the revise-answer workflow already created/merged a Q&A item for this log.
+5. `conversationId` and `metadata` — use the linked conversation's top-level `channel` to select the prompt surface; for legacy data fall back to `metadata.source` or `metadata.helpscoutReply`.
+6. `revised` — `true` when the revise-answer workflow already created/merged a Q&A item for this log.
 
 Do not dump entire source chunk arrays into the user reply. Summarize titles/URLs and quote the few lines that prove the diagnosis.
 
@@ -72,8 +73,9 @@ Full matrix and interpretation: [semantic-search.md](semantic-search.md).
 
 - Operation: `post_teams_teamid_bots_botid_search` on the same bot that produced the log.
 - Start with `standaloneQuestion` when present; also try the raw user question and paraphrases.
-- Use `top_k: 5` to mimic default context; raise to 10–16 to see if the chunk exists but ranks low.
+- Use `top_k: 6`, the Semantic Search default, to reproduce the default window; raise to 10–16 to see if the chunk exists but ranks low.
 - When retriever tags exist, compare unrestricted vs `tags` + `include_untagged: false`.
+- For proprietary names, acronyms, industry terms, or non-standard translations, compare the exact same query with `use_glossary: false` and `true`; see [glossary.md](glossary.md).
 - Failed, zero-chunk, or still-indexing sources explain missing retrieval even when the public URL looks correct.
 - Do not conclude "indexed fine" from source status alone—require a successful semantic search hit.
 
@@ -87,6 +89,7 @@ When navigation is available, prefer these pages after diagnosis:
 | Bot chat / search UI | Manually verify retrieval for a query |
 | `bot_sources` → configure/sources | Missing, failed, or Q&A source work |
 | Configure / system (prompt) | Prompt or model changes |
+| Configure / glossary | Cross-language, brand, acronym, or industry-term query rewriting |
 | Widget / API docs links in product docs | `contextItems` / `context_items` for embed or API callers |
 
 Never invent IDs. Use IDs returned by MCP or the current page context.
