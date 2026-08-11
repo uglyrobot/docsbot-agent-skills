@@ -31,7 +31,7 @@ When reading question objects, prefer evidence in this order:
 2. `standaloneQuestion` — rewritten query used for retrieval when present; use it for semantic search reproduction.
 3. `question` / `answer` — what the user asked and what the bot said.
 4. `couldAnswer`, `rating`, `escalated` / `escalation` — outcome signals.
-5. `conversationId` and `metadata` — use the linked conversation's top-level `channel` to select the prompt surface; for legacy data fall back to `metadata.source` or `metadata.helpscoutReply`.
+5. `conversationId` — read the linked conversation and use only its top-level `channel` to select the prompt surface. Do not infer channel from question or conversation metadata.
 6. `revised` — `true` when the revise-answer workflow already created/merged a Q&A item for this log.
 
 Do not dump entire source chunk arrays into the user reply. Summarize titles/URLs and quote the few lines that prove the diagnosis.

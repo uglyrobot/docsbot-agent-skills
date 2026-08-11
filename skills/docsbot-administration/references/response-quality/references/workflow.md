@@ -32,7 +32,7 @@ Always capture for each reviewed question:
 - `answer`, `couldAnswer`, `rating`, `escalated` / `escalation`
 - `sources[]` with titles/URLs and chunk text when returned
 - `createdAt` and any model/metadata fields present
-- `conversationId`; when present, read the conversation's top-level `channel` (legacy fallback: `metadata.source`, then `metadata.helpscoutReply`) before selecting `customPrompt`, `agentPrompt`, `helpscoutPrompt`, or `voicePrompt`
+- `conversationId`; when present, read only the conversation's top-level `channel` before selecting `customPrompt`, `agentPrompt`, `helpscoutPrompt`, or `voicePrompt`. If no channel is available, leave the prompt surface unknown rather than inferring it from metadata.
 
 ## Reproduce Retrieval With Semantic Search
 
