@@ -69,6 +69,12 @@ When the user asks to create, configure, tune, test, or hand off a new DocsBot b
 
 That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
+## Response Quality Subworkflow
+
+When the user asks why a bot answered the way it did, to analyze conversation or question logs, diagnose bad/unanswered/escalated answers, debug retrieval with semantic search, find knowledge gaps from history, or improve response quality from log evidence, load the dedicated [response-quality subworkflow](references/response-quality/SKILL.md) before deep log analysis or remediation writes.
+
+That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because log diagnosis has its own evidence rules, semantic-search debug matrix, root-cause taxonomy, revise→Q&A remediation, and handoff shape. Follow its reference chain from `references/response-quality/` instead of improvising from general administration steps alone.
+
 ## Team Detection
 
 The Admin MCP token identifies the authorized DocsBot user. It does not contain a fixed team ID or role snapshot, and DocsBot checks current team access and permissions live on each call.
