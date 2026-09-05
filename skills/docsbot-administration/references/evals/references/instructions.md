@@ -18,3 +18,12 @@ On authorization, use the current bot update contract to write only the intended
 For restoration, search `instruction version history`, paginate with nextCursor when needed, and inspect before/after values. A saved version's after text is the saved state; before means undo that edit. Preview the target text, scope `fields` to the intended channel, and submit `expectedCurrent` with current values. A 409 means someone changed the instructions: read the new state and reconsider; do not retry blindly. Restoring creates another history entry and must not change unrelated voice or agent settings.
 
 Evals snapshots can restore the captured text for that run. Do not describe a text-only Evals run as a voice test. Verify restored/improved voice instructions with representative phone and widget conversations, including silence, interruptions, escalation, and enabled actions when those are relevant to the change.
+
+
+## Bring agent changes into voice
+
+For the dashboard `sync-voice-instructions` workflow, the source is `agentPrompt` and the only destination is `voiceAgent.instructions`. Fresh-read both current prompts, recent instruction history, authoritative business policies, and channel-specific tool availability. Use agent history to understand changes, then compare their meaning with current voice instructions; do not assume that every agent edit belongs in voice or that a missing sentence is an omission.
+
+Identify applicable policies, behavior rules, and escalation guidance missing or outdated in voice. Adapt these for spoken interaction, avoid duplicating rules already present, and preserve deliberate voice-specific choices: short turns, one question at a time, confirmation, interruption handling, transfer and end-call rules, and differences between phone and widget tools. Do not import web-only presentation, unsupported tools, markdown, or instructions to read long URLs. Highlight contradictions for review rather than silently overriding voice intent.
+
+Present a focused voice-only diff with what carries over, what stays, and what needs a decision. If there are no applicable changes, report that without saving a duplicate version. Reuse explicit authorization for the reviewed change. Before applying, fresh-read again and reconsider if either prompt changed. Update only voice instructions through the normal bot update contract, preserving all unrelated voice settings and the entire agent prompt. Read back the saved instructions and new history entry. Do not claim this establishes call quality without representative voice checks.
