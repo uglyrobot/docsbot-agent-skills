@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
   author: DocsBot
-  version: "0.5.2"
+  version: "0.5.3"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
@@ -74,6 +74,10 @@ That subworkflow is part of DocsBot Administration, but it is intentionally kept
 When the user asks why a bot answered the way it did, to analyze conversation or question logs, diagnose bad/unanswered/escalated answers, debug retrieval with semantic search, find knowledge gaps from history, or improve response quality from log evidence, load the dedicated [response-quality subworkflow](references/response-quality/SKILL.md) before deep log analysis or remediation writes.
 
 That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because log diagnosis has its own evidence rules, semantic-search debug matrix, root-cause taxonomy, revise→Q&A remediation, and handoff shape. Follow its reference chain from `references/response-quality/` instead of improvising from general administration steps alone.
+
+## Evals and Instruction History
+
+For Evals datasets, report comparisons, regressions, or improving/restoring agent and voice instructions, load the [Evals subworkflow](references/evals/SKILL.md). It routes to questions, reports, and instruction history resources without starting a separate agent.
 
 ## Team Detection
 

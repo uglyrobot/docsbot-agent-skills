@@ -220,3 +220,7 @@ skills.json                             # Skill catalog for installers and human
 DocsBot Administration acts as the authorized DocsBot user. Existing team roles, bot access, billing permissions, and dashboard RBAC remain the source of truth.
 
 Review and revoke authorized MCP clients from **API & Integrations** in the DocsBot dashboard.
+
+### Evals and instruction workflows
+
+DocsBot Administration includes a nested Evals workflow for building source-backed question sets, reviewing test comparisons, and improving or restoring agent, Help Scout, legacy, and voice instructions with tracked history. The dashboard Operator loads only the relevant guide on demand. See `skills/docsbot-administration/references/evals/SKILL.md`.
