@@ -10,13 +10,13 @@ Be cautious with OAuth MCP servers that inherit the bot owner's scopes. Those ar
 
 ## Operation Flow
 
-1. Search live Admin MCP catalog for MCP operations.
+1. Use `search_tools` only if the relevant advertised MCP tool name is unfamiliar.
 2. Confirm the target server URL, label, purpose, audience, and whether it requires OAuth, custom headers, bearer tokens, or no auth.
-3. Discover tools with `post_teams_teamid_bots_botid_mcp_discover` when the server is reachable without unresolved user auth, or when discovery is supported for that auth mode.
+3. Discover tools with `discover_external_mcp_tools` when the server is reachable without unresolved user auth, or when discovery is supported for that auth mode.
 4. If discovery or the catalog indicates `requiresOAuth`, missing auth, or another user-owned credential state, register only the safe metadata the Admin MCP can save, then give the dashboard MCP connections deep link for connection/authorization: `https://docsbot.ai/app/bots/{botId}/configure/mcp-connections`. Do not promise the server is available until the user completes auth and a read/discovery confirms it.
 5. Choose only the tool subset needed for the use case.
-6. Draft metadata with `post_teams_teamid_bots_botid_mcp_server_draft` when available.
-7. Save the reviewed server entry in `mcpServers` through `put_teams_teamid_bots_botid`. Admin MCP can register the external MCP server on the bot, but it usually cannot complete third-party OAuth or private credential entry for the user.
+6. Draft metadata with `draft_mcp_server` when available.
+7. Save the reviewed server entry in `mcpServers` through `update_bot`. Admin MCP can register the external MCP server on the bot, but it usually cannot complete third-party OAuth or private credential entry for the user.
 8. Add prompt instructions that say when to use the MCP server and when not to.
 9. Read the saved bot settings and verify the server appears with the expected tools/metadata. If auth remains incomplete, list it as a dashboard-only next step rather than a finished action.
 

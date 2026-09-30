@@ -19,19 +19,19 @@ Webhook endpoint URLs and signing keys are secrets or semi-secrets. Do not print
 
 ## Operation Workflow
 
-1. List current hooks with `get_teams_teamid_bots_botid_webhooks`.
-2. Preview payloads when needed with `get_teams_teamid_bots_botid_webhooks_perform_list`.
-3. Create a hook with `post_teams_teamid_bots_botid_webhooks`.
+1. List current hooks with `list_webhooks`.
+2. Preview payloads when needed with `list_webhook_samples`.
+3. Create a hook with `create_webhook`.
    - Body usually includes `targetUrl`, `events`, and optional `label`, `source`, `expirationDate`.
-4. Read it with `get_teams_teamid_bots_botid_webhooks_webhookid`.
+4. Read it with `get_webhook`.
 5. Test delivery with the matching operation:
-   - `post_teams_teamid_bots_botid_webhooks_deliver_lead`
-   - `post_teams_teamid_bots_botid_webhooks_deliver_escalated`
-   - `post_teams_teamid_bots_botid_webhooks_deliver_rated`
-   - `post_teams_teamid_bots_botid_webhooks_deliver_research`
-6. If changing configuration, use `patch_teams_teamid_bots_botid_webhooks_webhookid`.
+   - `send_test_lead_webhook`
+   - `send_test_escalation_webhook`
+   - `send_test_rated_webhook`
+   - `send_test_research_webhook`
+6. If changing configuration, use `update_webhook`.
 7. Pause with `status: "paused"` when temporary disablement is safer than deletion.
-8. Delete only after explicit confirmation with `delete_teams_teamid_bots_botid_webhooks_webhookid`.
+8. Delete only after explicit confirmation with `delete_webhook`.
 
 ## Escalation Notes
 

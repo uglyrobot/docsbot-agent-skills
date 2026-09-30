@@ -6,7 +6,7 @@ For detailed widget color/logo selection, contrast checks, and logo upload fallb
 
 ## Brand Analysis Flow
 
-1. If a public website exists, run `post_teams_teamid_bots_analyze` with `siteURL`.
+1. If a public website exists, run `analyze_website_for_bot` with `siteURL`.
 2. Use returned colors, logos, screenshot, language, and support/widget hints as a first pass.
 3. Prefer full logos for header/logo fields and compact icons or avatars for bot icons.
 4. Choose a main widget color that has good contrast against the site background and common white/dark widget surfaces. For widget deployments, follow [widget.md](widget.md) before saving.
@@ -14,7 +14,7 @@ For detailed widget color/logo selection, contrast checks, and logo upload fallb
 
 Do not treat analyzer output as transient setup context. The dashboard uses saved `brandAnalysis.colors` and `brandAnalysis.logos` for widget color/image presets, and bot list displays can use saved `brandAnalysis.logos` plus `color` for discovered brand icons. If only `color` and `logo` are saved, those presets and discovered icons can be missing.
 
-On create with `post_teams_teamid_bots`, include the selected branding fields directly when the schema accepts them. If the bot already exists, save them with `put_teams_teamid_bots_botid` after reading current settings and preserving unrelated fields.
+On create with `create_bot`, include the selected branding fields directly when the schema accepts them. If the bot already exists, save them with `update_bot` after reading current settings and preserving unrelated fields.
 
 Onboarding-compatible payload shape:
 

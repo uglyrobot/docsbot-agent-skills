@@ -12,13 +12,13 @@ Read this only when configuring website widget branding, header logos, bot avata
 - `brandAnalysis.colors`: brand color presets from analysis.
 - `brandAnalysis.logos`: candidate brand images, commonly objects with `url`, `type`, and `mode`.
 
-Save these with `put_teams_teamid_bots_botid` after reading current bot settings and preserving unrelated fields.
+Save these with `update_bot` after reading current bot settings and preserving unrelated fields.
 
 When the bot was created from website analysis, the full analyzer result must be persisted as `brandAnalysis`. Widget settings reads saved `brandAnalysis.colors` and `brandAnalysis.logos` to render the discovered brand presets. Saving only `color` and `logo` is not enough for the user to see those presets later.
 
 ## Selection Flow
 
-1. Start from `post_teams_teamid_bots_analyze` output.
+1. Start from `analyze_website_for_bot` output.
 2. Select the initial color as onboarding does: first `colors[0].hex`, else non-default `buttonColor`, else the best visible preset/custom color.
 3. Select the initial header logo as onboarding does: full logo matching the selected color target, then matching icon, then opaque-background full logo, then opaque-background icon, then first full logo/icon/logo, then `logoUrl`.
 4. Prefer a full logo for `logo` and a compact icon/avatar for `botIcon` or `icon`.
@@ -64,12 +64,12 @@ Dashboard flow:
 
 Agent-assisted upload when the local file is available and the environment has dashboard auth/storage access:
 
-1. Use `get_teams_teamid_bots_botid_image_upload_url` with `fileName` and optional matching `contentType`.
-2. Upload bytes to the returned `uploadUrl` outside MCP execute using the returned `contentType`.
-3. Save the returned `cdnUrl` to `logo`, `botIcon`, or `icon` with `put_teams_teamid_bots_botid`.
+1. Use `create_bot_image_upload_url` with `fileName` and optional matching `contentType`.
+2. Upload bytes to the returned `uploadUrl` outside MCP using the returned `contentType`.
+3. Save the returned `cdnUrl` to `logo`, `botIcon`, or `icon` with `update_bot`.
 4. Re-read the bot and visually verify contrast.
 
-Do not use `https://storage.googleapis.com/...`, `https://firebasestorage.googleapis.com/...`, `gs://...`, or raw Firebase/Appspot bucket URLs for production widget `logo`, `icon`, or `botIcon` values. Those may not be publicly authorized through the widget. Do not derive widget branding URLs from source-upload responses such as `get_teams_teamid_bots_botid_upload_url`; that endpoint is for knowledge-source files and returns pending `user/{userId}/team/{teamId}/bot/{botId}/...` paths, not dashboard image paths or CDN URLs for widget assets.
+Do not use `https://storage.googleapis.com/...`, `https://firebasestorage.googleapis.com/...`, `gs://...`, or raw Firebase/Appspot bucket URLs for production widget `logo`, `icon`, or `botIcon` values. Those may not be publicly authorized through the widget. Do not derive widget branding URLs from source-upload responses such as `create_source_upload_url`; that endpoint is for knowledge-source files and returns pending `user/{userId}/team/{teamId}/bot/{botId}/...` paths, not dashboard image paths or CDN URLs for widget assets.
 
 If the image upload operation is unavailable or bytes cannot be uploaded in the current environment, provide the dashboard deep link and exact upload instructions instead of inventing or converting a storage URL. Do not print signed upload URLs, storage credentials, or temporary private paths.
 

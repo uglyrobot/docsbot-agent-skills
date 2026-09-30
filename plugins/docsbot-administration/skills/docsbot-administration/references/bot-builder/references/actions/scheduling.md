@@ -35,11 +35,11 @@ For unsupported booking engines, do not invent a built-in scheduling tool. Creat
 
 ## Operation Workflow
 
-1. Read the bot with `get_teams_teamid_bots_botid`.
+1. Read the bot with `get_bot`.
 2. Determine whether the booking engine is one of the built-in providers: Calendly, Cal.com, or TidyCal.
 3. Verify the booking URL from site research or the user. Prefer a specific demo/sales event URL over a generic profile when the use case is clear.
 4. Decide when the tool should trigger, including any pre-qualification the bot must complete first.
-5. Save the provider tool with `put_teams_teamid_bots_botid`, preserving other `tools`.
+5. Save the provider tool with `update_bot`, preserving other `tools`.
 6. Read the bot again and verify the provider tool is enabled with instructions and URL.
 
 Use this shape under `tools`:

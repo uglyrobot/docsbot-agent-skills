@@ -1,11 +1,11 @@
 ---
 name: docsbot-administration
-description: Use DocsBot Administration to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
+description: Use DocsBot Administration to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and read-only account usage through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
 license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
   author: DocsBot
-  version: "0.5.2"
+  version: "0.6.0"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
@@ -17,12 +17,9 @@ Use this skill when working with the hosted DocsBot Administration server:
 https://mcp.docsbot.ai
 ```
 
-DocsBot Administration gives an authorized agent access to DocsBot dashboard administration through a compact two-tool MCP surface:
+The hosted server advertises fixed, named Admin MCP tools. Call a known tool directly with its operation-specific `pathParams`, `query`, and/or `body` input. For example, call `list_teams` to resolve the team, `list_bots` with `pathParams.teamId` to resolve a bot, and `get_bot` with `pathParams.teamId` and `pathParams.botId` to inspect it. Read the advertised input schema before sending fields that are not already clear. Do not call a generic `execute` tool or send an `operationId`.
 
-- `search` finds relevant DocsBot Admin API catalog operations, schemas, permission notes, response summaries, and side-effect levels.
-- `execute` runs one selected catalog operation by `operationId` with structured `pathParams`, `query`, `body`, and optional `idempotencyKey`.
-
-The server uses browser-based OAuth with Dynamic Client Registration. The token identifies the DocsBot user, and DocsBot evaluates team access, bot access, billing permissions, and role checks live on each action.
+`list_tool_categories`, `search_tools`, and `get_tool_schema` inspect metadata for tools already advertised to the client. Use them only when the relevant name or schema is unclear; they do not enable, execute, or discover hidden operations. Stable tool names remain callable across additive, backward-compatible hosted MCP updates. New or changed metadata may be held by OpenAI's automated scan while the last approved definition remains live; a newly added tool is unavailable until approved. Keep calls compatible with the currently advertised schema. Plugin skills, config, and listing changes require a new package ZIP.
 
 ## Setup
 
@@ -56,11 +53,11 @@ codex plugin add docsbot-administration@docsbot
 
 1. Establish the working team before any team-scoped action.
 2. Establish the working bot before any bot-scoped action.
-3. Use `search` first. Search for the operation family or task, not a guessed URL.
-4. Read the returned operation details, especially required fields, permission notes, response summaries, and side-effect level.
-5. Use `execute` only with a selected `operationId` and structured parameters.
+3. Call a known named tool directly. Use `search_tools` only to find an unfamiliar advertised tool.
+4. Use `get_tool_schema` when required fields, permissions, or side effects are unclear.
+5. Send the named tool's required `pathParams`, `query`, and/or `body` fields, without an `operationId`.
 6. Keep useful IDs from results in thread context: team ID/name, bot ID/name, source IDs, member emails, integration IDs, and pagination state.
-7. For writes, destructive actions, member changes, source deletion, billing changes, or integration changes, summarize the intended action and ask for confirmation before execution unless the user's request already explicitly authorizes that exact action.
+7. For writes, destructive actions, member changes, source deletion, or integration changes, summarize the intended action and ask for confirmation before execution unless the user's request already explicitly authorizes that exact action.
 8. Report the result with IDs, names, and next steps that the user can verify in DocsBot.
 
 ## Bot Builder Subworkflow
@@ -69,11 +66,17 @@ When the user asks to create, configure, tune, test, or hand off a new DocsBot b
 
 That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
+During a new or complete bot setup, prepare the voice prompt as well as the text prompt. The logical `voicePrompt` is saved as `voiceAgent.instructions`. Follow the bot-builder's voice guidance to preserve existing settings; enable advanced voice only when the user requests it, confirms it, or clearly includes voice in the intended outcome.
+
 ## Response Quality Subworkflow
 
 When the user asks why a bot answered the way it did, to analyze conversation or question logs, diagnose bad/unanswered/escalated answers, debug retrieval with semantic search, find knowledge gaps from history, or improve response quality from log evidence, load the dedicated [response-quality subworkflow](references/response-quality/SKILL.md) before deep log analysis or remediation writes.
 
 That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because log diagnosis has its own evidence rules, semantic-search debug matrix, root-cause taxonomy, revise→Q&A remediation, and handoff shape. Follow its reference chain from `references/response-quality/` instead of improvising from general administration steps alone.
+
+## Evals and Instruction History
+
+For question sets, test runs, report comparison, instruction changes, or restoring a prior instruction version, load the [Evals and instruction workflow](references/evals/SKILL.md). Its references preserve the selected bot, channel, dataset, and run; require a reviewable proposal before unapproved writes; and distinguish test usage from saved changes.
 
 ## Team Detection
 
@@ -81,25 +84,24 @@ The Admin MCP token identifies the authorized DocsBot user. It does not contain 
 
 When the user does not provide a team ID:
 
-1. Search for the list-teams operation with a query like `list teams`.
-2. Execute the list-teams operation.
-3. If exactly one team is returned, use it as the working team and state its name.
-4. If multiple teams are returned, choose only when the user's wording clearly matches a team name, domain, customer, or prior thread context.
-5. If multiple teams remain plausible, ask the user which team to use and show the shortest useful choices: team name, team ID, plan, and bot count when available.
+1. Call `list_teams`.
+2. If exactly one team is returned, use it as the working team and state its name.
+3. If multiple teams are returned, choose only when the user's wording clearly matches a team name, domain, customer, or prior thread context.
+4. If multiple teams remain plausible, ask the user which team to use and show the shortest useful choices: team name, team ID, plan, and bot count when available.
 
 If a user says "current team", "my team", or "the active team", do not assume the dashboard session's internal `currentTeam` is available through MCP. Resolve the working team from explicit context or by listing teams.
 
 ## Bot And Source Lookup
 
-For bot-scoped work, ensure a working team is selected, search for `list bots`, execute the list-bots operation, then match by exact bot ID first and bot name second. If the bot is ambiguous, ask the user to choose.
+For bot-scoped work, ensure a working team is selected, call `list_bots` with `pathParams.teamId`, then match by exact bot ID first and bot name second. If the bot is ambiguous, ask the user to choose.
 
-For source-scoped work, ensure working team and bot are selected, search for `list sources`, and use pagination or supported filters instead of fetching every source. Match source IDs directly when provided; otherwise match by URL, title, type, status, or tags. Fetch the full source only when list results are insufficient.
+For source-scoped work, ensure working team and bot are selected, call `list_sources` with `pathParams.teamId` and `pathParams.botId`, and use pagination or supported filters instead of fetching every source. Match source IDs directly when provided; otherwise match by URL, title, type, status, or tags. Fetch the full source only when list results are insufficient.
 
 Use tag operations when the task mentions source tags, retriever tags, targeted retrieval, or tagged documentation. Bot `retrieverTags` define the allowed tag vocabulary, and source tags must match that vocabulary.
 
-## Common Search Queries
+## Metadata Discovery Queries
 
-Use short catalog searches that describe the operation family:
+When the tool name is unfamiliar, use `search_tools` with a focused task phrase:
 
 - `list teams`
 - `get team`
@@ -122,36 +124,38 @@ Use short catalog searches that describe the operation family:
 - `integrations`
 - `MCP connections`
 - `Skills library`
-- `billing`
+- `account usage`
 
-Prefer one focused search before each new operation family instead of broad searches that return unrelated operations.
+Metadata discovery is optional when the named tool is known. Use `get_tool_schema` for its advertised input contract when needed.
 
 ## Fast Path Operations
 
-For common setup and lookup tasks, search for these terms and expect these operation IDs in the Admin MCP catalog:
+Call these stable names directly for common setup and lookup tasks:
 
-| Task | Search query | Expected operationId |
+| Task | Named tool |
 | --- | --- | --- |
-| List teams visible to the authorized user | `list teams` or `GET /api/teams` | `get_teams` |
-| Get one team by ID | `get team` or `GET /api/teams/{teamId}` | `get_teams_teamid` |
-| Create a team | `create team` or `POST /api/teams` | `post_teams` |
-| Update team settings | `update team` or `PUT /api/teams/{teamId}` | `put_teams_teamid` |
-| List bots in a team | `list bots` or `GET /api/teams/{teamId}/bots` | `get_teams_teamid_bots` |
-| Get one bot by ID | `get bot` or `GET /api/teams/{teamId}/bots/{botId}` | `get_teams_teamid_bots_botid` |
-| Create a bot | `create bot` or `POST /api/teams/{teamId}/bots` | `post_teams_teamid_bots` |
-| Update bot settings | `update bot` or `PUT /api/teams/{teamId}/bots/{botId}` | `put_teams_teamid_bots_botid` |
-| Delete a bot | `delete bot` or `DELETE /api/teams/{teamId}/bots/{botId}` | `delete_teams_teamid_bots_botid` |
+| List teams visible to the authorized user | `list_teams` |
+| Get one team by ID | `get_team` |
+| Create a team | `create_team` |
+| Update team settings | `update_team` |
+| List bots in a team | `list_bots` |
+| Get one bot by ID | `get_bot` |
+| Create a bot | `create_bot` |
+| Update bot settings | `update_bot` |
+| Delete a bot | `delete_bot_or_research_job` |
 
-Use these IDs as recognition hints after `search` returns results. If search returns a different matching operation, trust the live catalog result and read its schema before executing.
+If a named tool is absent from the advertised catalog, do not attempt a generic operation. Report that the capability is unavailable.
 
 ## Constraints
 
-- Do not call arbitrary DocsBot URLs. DocsBot Administration execution is limited to known catalog operations.
-- Do not invent team IDs, bot IDs, source IDs, or operation IDs. Discover them with `search` and prior `execute` calls.
+- Do not call arbitrary DocsBot URLs. Use only advertised named tools.
+- Do not invent team IDs, bot IDs, source IDs, or tool names. Resolve IDs from named read tools and use metadata discovery for unfamiliar advertised names.
 - Treat existing DocsBot dashboard RBAC as the source of truth. If an action is denied, report the denial rather than attempting to bypass it.
 - Prefer idempotency keys for create/update operations when the operation supports them.
 - Do not expose OAuth tokens, API keys, internal headers, or private response data beyond what the user needs for the task.
 - Do not use Admin MCP for per-bot documentation retrieval or question-history semantic search; those are separate per-bot MCP servers.
+
+Subscription and commerce mutations are outside this plugin. Do not use `update_bot` to enable Stripe payments, refunds, cancellations, or other commerce actions. Read account usage through an advertised read tool when available.
 
 ## References
 

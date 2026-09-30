@@ -6,6 +6,6 @@ dependencies:
   tools:
     - type: "mcp"
       value: "docsbot"
-      description: "DocsBot Admin MCP search and execute tools"
+      description: "DocsBot DocsBot Admin MCP named tools"
       transport: "streamable_http"
       url: "https://mcp.docsbot.ai"

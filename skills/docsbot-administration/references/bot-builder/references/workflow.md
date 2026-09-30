@@ -44,7 +44,7 @@ Before applying brand and widget appearance settings, read [branding/appearance.
 
 When a public website is available:
 
-1. Run `post_teams_teamid_bots_analyze` with `siteURL`.
+1. Run `analyze_website_for_bot` with `siteURL`.
 2. Prefer returned brand colors and full logos over generic favicons.
 3. Choose a widget color with contrast against the site background, not just the first brand color.
 4. Prefer a full logo for header/logo and an icon/avatar for compact bot icon when available.
@@ -83,14 +83,18 @@ In the main workflow, remember the core rule: start from the closest exact DocsB
 
 If `retrieverTags` are configured, the agent prompt should include compact routing guidance customized to why the tags exist. Do not repeat every tag ID and description in the prompt; those already appear in the search tool schema. State whether searches should normally use one tag, may combine multiple tags, should ask a clarifying question before searching, or should set untagged to false to avoid conflicting/noisy global sources. Untagged/global sources are included by default, so mention them only when excluding them matters. Tags must discriminate; if every source should be searched together, skip tags or use one broad tag.
 
+## Voice Preparation And Activation
+
+For new bots or full setup, prepare and save the closest canonical voice prompt alongside text prompts; read [deployment/voice.md](deployment/voice.md). Do not add voice preparation to unrelated administration edits. The logical `voicePrompt` channel is stored in `voiceAgent.instructions`. New bots remain disabled unless the user wants voice or clear phone-agent/voice-assistant context authorizes it. Ordinary website/chat deployment is insufficient. Preserve an existing enabled state unless the user requests a change, and preserve every other writable voice setting during prompt updates.
+
 ## Sources
 
-Before creating sources, read [source-types.md](source-types.md). It links to source-specific detail refs such as document uploads and connector handoffs; load those only when the selected source category requires them. Use live Admin MCP `search` for `post_teams_teamid_bots_botid_sources` when an exact payload schema matters, because supported source types and connector fields can change.
+Before creating sources, read [source-types.md](source-types.md). It links to source-specific detail refs such as document uploads and connector handoffs; load those only when the selected source category requires them. Use `get_tool_schema` for the advertised `create_source` tool when an exact payload schema matters, because supported source types and connector fields can change.
 
 Use this selection logic:
 
 - Docs, KB, support center, developer docs, or product-detail coverage: prefer sitemaps. Use full sitemaps unless sub-sitemaps cleanly exclude sections you do not want, such as full blogs, stale archives, legal-only pages, jobs, or unrelated marketing pages.
-- No sitemap: use MCP website mapping (`post_teams_teamid_bots_botid_sources_map`) to fetch candidate site structure, then create a `website` source with the root `url` and the full selected `urls` set. The website scan usually finds quickly accessible top-level or obvious linked URLs; it is not a complete crawl and can miss deep docs/KB/product pages. Check the returned URLs against navigation, docs indexes, or a brief manual crawl before claiming final-product coverage. If mapping is shallow or fails, briefly crawl/fetch public pages yourself and create a complete URL list from all applicable URLs.
+- No sitemap: use MCP website mapping (`map_website_urls`) to fetch candidate site structure, then create a `website` source with the root `url` and the full selected `urls` set. The website scan usually finds quickly accessible top-level or obvious linked URLs; it is not a complete crawl and can miss deep docs/KB/product pages. Check the returned URLs against navigation, docs indexes, or a brief manual crawl before claiming final-product coverage. If mapping is shallow or fails, briefly crawl/fetch public pages yourself and create a complete URL list from all applicable URLs.
 - URL lists do not crawl linked pages. They index only the URLs you provide, so never use a single docs/KB root URL list as if it imports the linked knowledge base.
 - Specific important pages: add as URL list/website source only when every needed URL is enumerated or when the bot scope is intentionally narrow.
 - Broad final-product bots need broad source coverage. Do not treat a handful of top-level pages as final-product quality for a large developer, support, or presales domain.
@@ -183,7 +187,7 @@ End every real setup with:
 - Enabled actions/integrations/skills/MCP connectors.
 - Prompt/template used and major customizations.
 - Retrieval OpenAPI tag-enum verification when source tags are configured.
-- Optional live retrieval test with `post_teams_teamid_bots_botid_search` only when authorized; use tags to verify routing when configured.
+- Optional live retrieval test with `search_bot_knowledge` only when authorized; use tags to verify routing when configured.
 - Safety choices for public bots, including PII redaction, link safety, lead fields, and support/escalation URL rationale.
 - Auto-refresh choices for important web sources, especially docs, support, pricing, changelog, product, and status sources.
 - Dashboard chat link and relevant deep links.

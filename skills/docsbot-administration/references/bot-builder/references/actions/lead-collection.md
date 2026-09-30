@@ -2,7 +2,7 @@
 
 Read this only from the actions index when configuring lead forms, lead fields, lead messages, or lead-related handoff behavior.
 
-Lead collection is stored on the bot as `leadCollect` and is written with `put_teams_teamid_bots_botid`. The widget also uses `labels.leadCollectMessage` for the message shown before the form.
+Lead collection is stored on the bot as `leadCollect` and is written with `update_bot`. The widget also uses `labels.leadCollectMessage` for the message shown before the form.
 
 ## When To Enable
 
@@ -153,9 +153,9 @@ For normal support questions, answer from documentation first. If the user asks 
 - Read bot settings after save and verify `leadCollect.mode`, fields, labels, required flags, select options, and `labels.leadCollectMessage`.
 - Verify saved fields did not lose unsupported properties unexpectedly.
 - Verify select option labels/values after normalization.
-- After test chats, use `get_teams_teamid_bots_botid_leads` to verify captured lead metadata when authorized.
-- Use `get_teams_teamid_bots_botid_leads_export` only when the user asks for a CSV export. It returns a signed URL.
-- Use `delete_teams_teamid_bots_botid_leads_leadid` only for explicit cleanup/privacy deletion, or disposable test lead cleanup.
+- After test chats, use `list_leads` to verify captured lead metadata when authorized.
+- Use `export_leads` only when the user asks for a CSV export. It returns a signed URL.
+- Use `delete_lead` only for explicit cleanup/privacy deletion, or disposable test lead cleanup.
 - Verify plan behavior: Personal+ for lead collection, Standard+ for custom fields.
 - For public widgets, verify PII redaction choice separately; do not turn it on just because lead collection is enabled.
 - Include the configured mode, fields, lead message, and rationale in handoff.

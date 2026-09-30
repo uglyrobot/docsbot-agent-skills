@@ -1,18 +1,6 @@
-# Claude Code And Agent Skills Clients
+# Portable Agent Skills Clients
 
-## Claude Code Plugin
-
-Claude Code is not Agent Plugins v1-compatible, so it uses the custom Claude marketplace and `.claude-plugin/plugin.json` manifest. It remains the easiest Claude installation path because it bundles both the DocsBot Administration workflow skill and the remote MCP server configuration:
-
-```text
-/plugin marketplace add uglyrobot/docsbot-agent-skills
-/plugin install docsbot-administration@docsbot-plugins
-/reload-plugins
-```
-
-After installation, run `/mcp`, select `docsbot`, and complete the browser-based DocsBot OAuth flow. No DocsBot API key is required.
-
-The commands below remain available when you want portable skills without the plugin wrapper.
+For complete plugin installs, see [Claude](claude.md), [Cursor](cursor.md), [Codex](codex.md), and [Grok](grok.md). Installing a skill folder supplies workflow instructions; configure its MCP connection separately.
 
 This repository includes portable Agent Skills packages:
 
@@ -24,7 +12,7 @@ skills/docsbot-question-history/
 
 | Skill | Use |
 | --- | --- |
-| `docsbot-administration` | Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and supported billing settings. |
+| `docsbot-administration` | Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and read-only account usage. |
 | `docsbot-documentation-search` | Search and fetch indexed documentation and training-source content from a specific DocsBot bot. |
 | `docsbot-question-history` | Search and fetch prior DocsBot questions, answers, conversations, and support history for a specific bot. |
 

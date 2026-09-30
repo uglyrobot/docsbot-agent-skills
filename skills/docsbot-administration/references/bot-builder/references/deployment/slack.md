@@ -21,22 +21,22 @@ Tell the user they must be a DocsBot team admin and have permission to install a
 
 ## Operation Workflow
 
-1. Read bot settings with `get_teams_teamid_bots_botid` and confirm the bot is appropriate for internal Slack use.
-2. Start connection with `get_teams_teamid_integrations_slack_authorize`.
+1. Read bot settings with `get_bot` and confirm the bot is appropriate for internal Slack use.
+2. Start connection with `get_slack_authorization_url`.
    - Optional query: `defaultBotId` to preselect this bot after connection.
    - Optional query: `afterConnect` to return the user to a dashboard route after OAuth.
 3. Have the user open the returned `url` or the dashboard deep link and complete Slack OAuth.
-4. After the user confirms completion, read Slack configuration with `get_teams_teamid_integrations_slack`.
-5. If workspace routing needs changes, call `patch_teams_teamid_integrations_slack` with `workspaces`.
+4. After the user confirms completion, read Slack configuration with `get_slack_integration`.
+5. If workspace routing needs changes, call `update_slack_routing` with `workspaces`.
    - Set `defaultBotId` for the workspace default.
    - Set `channelBotMap` for channel-specific routing.
    - Set `adminsOnly` when only Slack admins should use the integration.
-6. Verify linked bots with `get_teams_teamid_integrations_slack_bots`.
+6. Verify linked bots with `list_slack_bots`.
 
 Disconnect only after explicit confirmation:
 
-- `delete_teams_teamid_integrations_slack` with `slackTeamId`.
-- Verify removal with `get_teams_teamid_integrations_slack`.
+- `disconnect_slack_workspace` with `slackTeamId`.
+- Verify removal with `get_slack_integration`.
 
 ## Prompt Guidance
 
@@ -46,7 +46,7 @@ If Slack is only one of multiple surfaces, keep the prompt safe for the broadest
 
 ## Handoff Checklist
 
-- Slack connection status and workspace name from `get_teams_teamid_integrations_slack`.
-- Default bot and any channel mappings from `get_teams_teamid_integrations_slack_bots`.
+- Slack connection status and workspace name from `get_slack_integration`.
+- Default bot and any channel mappings from `list_slack_bots`.
 - Dashboard link: `https://docsbot.ai/app/api#slack-settings`.
 - Any unresolved user-only steps, such as app approval by a Slack workspace owner.

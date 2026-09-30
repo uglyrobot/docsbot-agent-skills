@@ -23,13 +23,13 @@ Do not use custom buttons for secret-bearing actions, destructive actions, or us
 
 ## Operation Workflow
 
-1. Read the bot with `get_teams_teamid_bots_botid`.
+1. Read the bot with `get_bot`.
 2. Decide whether a custom button is necessary. If another action or normal link answer covers the need, do not add one.
-3. Optionally draft metadata with `post_teams_teamid_bots_botid_custom_button_draft`.
+3. Optionally draft metadata with `draft_custom_button`.
    - Body: `{ "input": "Send users to our pricing page when they ask about plans or cost." }`
    - The draft validates plan access and action slot availability, but does not save anything.
-4. Add a reviewed `url` and save the button in `tools.customButtons` with `put_teams_teamid_bots_botid`.
-5. Read the bot again with `get_teams_teamid_bots_botid` and verify every saved button.
+4. Add a reviewed `url` and save the button in `tools.customButtons` with `update_bot`.
+5. Read the bot again with `get_bot` and verify every saved button.
 
 Required fields for each saved button:
 

@@ -11,7 +11,7 @@ These workflow instructions are based on the DocsBot developer documentation:
 Key behavior:
 
 - Admin MCP uses OAuth and Dynamic Client Registration at `https://mcp.docsbot.ai`.
-- Admin MCP exposes only `search` and `execute`.
+- Admin MCP exposes fixed named tools and optional metadata-only `list_tool_categories`, `search_tools`, and `get_tool_schema`.
 - Admin MCP tokens identify the DocsBot user, not a fixed current team.
 - DocsBot checks team access, bot access, billing permissions, and roles live on each action.
 - Team-scoped API work should start by resolving the working team.

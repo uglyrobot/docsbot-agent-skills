@@ -17,11 +17,11 @@ For public bots, configure a real support/contact route unless the user explicit
 
 ## Operation Workflow
 
-1. Read the bot with `get_teams_teamid_bots_botid`.
+1. Read the bot with `get_bot`.
 2. Research the website for a support URL and existing helpdesk/live-chat widget.
 3. If a supported helpdesk widget is confirmed on the site, link the relevant DocsBot widget integration page and tell the user to use the embed code handoff pattern.
 4. If no widget is confirmed, set or recommend a normal `supportLink` to the support/contact page.
-5. Preserve or enable `tools.human_escalation.enabled` through `put_teams_teamid_bots_botid`.
+5. Preserve or enable `tools.human_escalation.enabled` through `update_bot`.
 6. If downstream automation is needed, load [webhooks.md](webhooks.md) and configure `conversation.escalated`.
 7. Read the bot again and verify `supportLink`, `tools.human_escalation`, and any webhook state.
 
@@ -54,5 +54,5 @@ Keep escalation rules concise:
 
 - Saved bot read shows `supportLink` when a simple link is used.
 - Saved bot read shows `tools.human_escalation.enabled` when agent escalation should be available.
-- If using webhooks, `get_teams_teamid_bots_botid_webhooks` shows an active `conversation.escalated` subscription and test delivery has succeeded.
+- If using webhooks, `list_webhooks` shows an active `conversation.escalated` subscription and test delivery has succeeded.
 - Handoff includes the exact support URL or provider docs link and states whether provider detection was confirmed.

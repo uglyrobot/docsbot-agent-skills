@@ -26,7 +26,11 @@ https://mcp.docsbot.ai/.well-known/oauth-authorization-server
 https://mcp.docsbot.ai/oauth/register
 ```
 
-After authentication, agents should call `search` first to discover the relevant Admin API operation, then call `execute` with the selected `operationId` and structured parameters.
+For clients that support OAuth discovery and registration, complete their browser sign-in flow; other integrations must manage authorization themselves. The xAI API, for example, accepts a request-level MCP `authorization` value supplied by the application. See [Grok and xAI setup](grok.md).
+
+This package requires the Admin server with fixed named actions. If MCP `tools/list` still shows the old Admin `search`/`execute` dispatcher, complete the server and plugin migration before using the updated workflow. Old dispatcher calls fail once the new server is deployed. Update plugin/skill instructions and refresh MCP tool metadata, reconnect, or start a new session.
+
+After authentication against the matching server version, agents call the appropriate named Admin tool directly with its required `pathParams`, `query`, and/or `body`. `list_tool_categories`, `search_tools`, and `get_tool_schema` only inspect already advertised tool metadata when needed.
 
 ## DocsBot Documentation Search
 

@@ -45,15 +45,15 @@ Official Help Scout references:
 
 ## Admin MCP Operation Workflow
 
-Always search the live Admin MCP catalog before the first write, then use these operation IDs.
+Inspect the advertised schema before the first write, then call the named tool.
 
 1. Choose team and bot:
-   - `get_teams`
-   - `get_teams_teamid`
-   - `get_teams_teamid_bots`
-   - `get_teams_teamid_bots_botid`
+   - `list_teams`
+   - `get_team`
+   - `list_bots`
+   - `get_bot`
 2. Check existing integration:
-   - `get_teams_teamid_integrations` with query `{ "type": "helpscout" }`
+   - `list_team_integrations` with query `{ "type": "helpscout" }`
    - If the user needs the webhook secret and has permission, query `{ "type": "helpscout", "revealWebhookSecret": "true" }`, but do not print the secret in final output.
 3. Connect or reconnect credentials:
 
@@ -65,13 +65,13 @@ Always search the live Admin MCP catalog before the first write, then use these 
 }
 ```
 
-Use operation `put_teams_teamid_integrations`. It stores the integration as pending and queues backend connection work. For new Help Scout integrations, DocsBot seeds the Help Scout prompt on bots that do not already have one.
+Use the DocsBot dashboard to connect Help Scout; the hosted named-tool catalog does not advertise this credential write. The dashboard stores the integration as pending and queues backend connection work. For new Help Scout integrations, DocsBot seeds the Help Scout prompt on bots that do not already have one.
 
 4. Poll/refresh metadata:
-   - Poll `get_teams_teamid_integrations` until `status` is no longer `pending` or `working`.
-   - If metadata is stale or credentials were updated, run `post_teams_teamid_integrations_helpscout_refresh`, then poll again.
+   - Poll `list_team_integrations` until `status` is no longer `pending` or `working`.
+   - If metadata is stale or credentials were updated, run `refresh_helpscout_metadata`, then poll again.
    - Wait for `status: "ready"` and available `mailboxes` and/or `tags` before routing.
-5. Configure routing and behavior with `post_teams_teamid_integrations_helpscout`.
+5. Configure routing and behavior with `configure_helpscout_integration`.
 
 Mailbox listener example:
 
@@ -106,7 +106,7 @@ Use `"none"` as the mapped bot ID to clear an assignment.
 6. Configure Help Scout prompt:
    - Read [../prompt-instructions.md](../prompt-instructions.md).
    - Use the Help Scout prompt asset as the base template: [helpscout.md](../../assets/prompts/helpscout.md).
-   - Save with `put_teams_teamid_bots_botid` using `helpscoutPrompt`.
+   - Save with `update_bot` using `helpscoutPrompt`.
    - Verify it includes `search_documentation` and does not tell customers to escalate to support; the AI is acting as the support team draft/reply agent.
 
 ## Routing Decisions
@@ -146,7 +146,7 @@ Recommended starting point:
 
 Before calling the setup final-product ready:
 
-- `get_teams_teamid_integrations` shows Help Scout `status: "ready"`.
+- `list_team_integrations` shows Help Scout `status: "ready"`.
 - Integration read shows expected `mailboxes`, `tags`, routing maps, and behavior flags.
 - `appSecretSet` and `webhookSecretSet` are true or otherwise clearly present in redacted readback.
 - Help Scout webhook is active in Help Scout with the callback URL and selected events.

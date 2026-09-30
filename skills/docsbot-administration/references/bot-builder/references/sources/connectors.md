@@ -6,7 +6,7 @@ Many cloud connectors are Truto-backed. MCP may expose the source type, existing
 
 ## Connector Handoff Flow
 
-1. Search the live Admin MCP catalog for the connector type and source operations.
+1. Use `search_tools` only if the connector tool name is unfamiliar, then inspect its advertised schema.
 2. Read team/bot integrations when available to see whether the connector is already connected.
 3. If no connection exists or item selection cannot be completed through MCP, give the user the dashboard deep link and the exact connector to add:
    `https://docsbot.ai/app/bots/{botId}/configure/sources`

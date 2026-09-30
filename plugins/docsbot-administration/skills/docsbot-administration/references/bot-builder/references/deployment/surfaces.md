@@ -11,6 +11,7 @@ Read this when deciding how the bot will be deployed or when handoff depends on 
 | Dashboard chat | Internal testing, private support, validation | Use for initial testing and dashboard-only bots. Provide dashboard chat deep link. |
 | Help Scout | Support email auto-drafts/replies and staff workflow | Load [helpscout-auto-drafting.md](helpscout-auto-drafting.md) before configuring Help Scout app credentials, webhooks, routing, or Help Scout prompt behavior. |
 | Slack | Internal team assistant or Slack app surface | Load [slack.md](slack.md). User must complete OAuth outside MCP, usually from the API/Integrations dashboard. Verify Slack bot mapping after install. |
+| Advanced voice / phone / SIP | Spoken support, reception, inbound sales | Read [voice.md](voice.md). Prepare instructions for new/full setup; enable only with user authorization or clear voice context. Phone/SIP assignments are separate. |
 | API | Custom app integration or server-side use | Confirm API docs and auth handoff; do not invent endpoint/share details. |
 | External MCP/search | Documentation retrieval by other tools/agents | Verify source tags and retrieval schema when tag-filtered search is expected. |
 
@@ -26,6 +27,8 @@ Read this when deciding how the bot will be deployed or when handoff depends on 
 
 Use these deep links when `botId` is known:
 
+- Voice settings: `https://docsbot.ai/app/bots/{botId}/voice`
+- Voice phone/SIP: `https://docsbot.ai/app/bots/{botId}/voice/phone`
 - Dashboard chat: `https://docsbot.ai/app/bots/{botId}/chat`
 - Sources: `https://docsbot.ai/app/bots/{botId}/configure/sources`
 - Widget actions: `https://docsbot.ai/app/bots/{botId}/widget/actions`

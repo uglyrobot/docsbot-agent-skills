@@ -30,9 +30,9 @@ Public bots force `tools.web_search.live` to `false` on update. Do not fight tha
 
 ## Operation Workflow
 
-1. Read the bot with `get_teams_teamid_bots_botid`.
+1. Read the bot with `get_bot`.
 2. Confirm the use case and model/plan fit.
-3. Save web search config with `put_teams_teamid_bots_botid`, preserving other `tools`.
+3. Save web search config with `update_bot`, preserving other `tools`.
 4. Add prompt guidance for when the agent should search and when it should rely on trained sources.
 5. Read the bot again and verify `tools.web_search`.
 

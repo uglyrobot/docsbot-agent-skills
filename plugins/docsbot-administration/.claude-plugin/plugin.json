@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
-  "version": "0.5.2",
-  "description": "Administer DocsBot and build production DocsBot bots from Claude Code through authorized dashboard access.",
+  "version": "0.6.0",
+  "description": "Administer DocsBot and build production DocsBot bots through authorized dashboard access.",
   "author": {
     "name": "DocsBot",
     "url": "https://docsbot.ai"
@@ -22,5 +22,6 @@
     "source-management",
     "oauth",
     "rbac"
-  ]
+  ],
+  "displayName": "DocsBot Administration"
 }

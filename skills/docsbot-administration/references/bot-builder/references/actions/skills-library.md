@@ -14,11 +14,11 @@ Do not import Skills just because they exist. Each enabled Skill should map to a
 
 ## Operation Flow
 
-1. Search the library with `get_teams_teamid_bots_botid_skills_library` using vendor and task keywords.
-2. Read existing bot Skills with `get_teams_teamid_bots_botid_skills` to avoid duplicates.
-3. Import the best match with `post_teams_teamid_bots_botid_skills_library_libraryskillid_import`.
+1. Search the library with `list_library_skills` using vendor and task keywords.
+2. Read existing bot Skills with `list_skill_drafts` to avoid duplicates.
+3. Import the best match with `import_library_skill`.
 4. Read the imported skill and settings.
-5. Configure published settings with `patch_teams_teamid_bots_botid_skills_id_settings`.
+5. Configure published settings with `configure_published_skill`.
 6. Add prompt instructions for when the bot should use the Skill.
 7. Verify with settings readback and worker logs when relevant.
 

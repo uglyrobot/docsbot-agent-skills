@@ -2,6 +2,8 @@
 
 Read this only when the bot should answer account-specific billing, invoice, subscription, license, renewal, refund, or cancellation questions.
 
+This is advisory guidance for the DocsBot dashboard. The administration plugin does not perform subscription or commerce mutations, including enabling Stripe payments, refunds, or cancellations through `update_bot`. Do not execute the configuration steps below through Admin MCP.
+
 DocsBot Stripe Actions: `https://docsbot.ai/documentation/developer/stripe-actions`
 
 Skills library details: [skills-library.md](skills-library.md)
@@ -16,15 +18,15 @@ Use a billing Skill when the vendor has a library Skill, such as Freemius or ano
 
 Use external MCP only for private/internal bots or safe non-user-scoped lookups. OAuth or owner-scoped MCP tools can expose the connected owner's data, so do not enable them for anonymous public customer chats unless the tool itself enforces customer scoping.
 
-Do not confuse customer billing actions with DocsBot account billing operations. Admin MCP operations such as plan changes, add-ons, Stripe portal sessions, and cancellations affect the DocsBot team subscription and are not part of ordinary bot setup unless the user explicitly asks to manage DocsBot billing.
+Do not confuse customer billing actions with DocsBot account billing operations. DocsBot account subscription and commerce mutations are outside this plugin. Customer billing bot configuration requires separate dashboard authorization.
 
 ## Stripe Bot Tool Workflow
 
 1. Confirm the bot should provide customer billing support and that Stripe is the customer's billing system.
 2. Confirm the deployment can pass signed JWT metadata from the customer's backend, including `metadata.priv_stripe_customer_id`.
-3. Start bot Stripe OAuth with `post_teams_teamid_bots_botid_stripe_oauth_authorize`.
+3. Start bot Stripe OAuth in the DocsBot dashboard; the hosted named-tool catalog does not advertise this operation.
 4. Give the returned authorization URL to the user. The user completes OAuth in Stripe; MCP cannot finish that browser step.
-5. After OAuth completion, read the bot with `get_teams_teamid_bots_botid` and verify `tools.stripe` configuration without printing tokens or stored OAuth fields.
+5. After OAuth completion, read the bot with `get_bot` and verify `tools.stripe` configuration without printing tokens or stored OAuth fields.
 6. Enable only the needed subtools. Be conservative with refunds and cancellations.
 7. Add prompt guidance for when to use Stripe tools and when to escalate.
 
@@ -76,7 +78,7 @@ If policy is unclear, do not enable refund or cancellation tools. Use billing po
 
 When billing is not Stripe:
 
-1. Search library Skills by vendor and task with `get_teams_teamid_bots_botid_skills_library`.
+1. Search library Skills by vendor and task with `list_library_skills`.
 2. If a relevant Skill exists, load [skills-library.md](skills-library.md) and follow its import/configure/verify workflow.
 3. If no Skill exists and the user has a safe API or MCP, load [external-mcp.md](external-mcp.md) and evaluate whether the action is appropriate for the deployment audience.
 4. Add prompt guidance that asks for the required customer identifier before using the billing action.

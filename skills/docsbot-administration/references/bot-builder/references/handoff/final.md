@@ -38,10 +38,16 @@ Keep the response concise, but include these sections in this order:
    - List blockers separately from optional polish.
    - Include source coverage only at summary level unless the user asked for full audit details.
 
+## Voice Status
+
+For new bots/full setup or voice work, distinguish saved voice instructions, Advanced voice enabled/disabled, and connected phone/SIP routing. Report “voice prompt prepared; Advanced voice disabled” when only preparation was authorized. For authorized voice, include the saved activation state, verified route or unresolved connection step, and useful spoken tests; do not claim a live phone agent from an instruction save. Include voice dashboard links when relevant, without turning disabled preparation into a required activation step.
+
 ## Deep Link Selection
 
 Use current dashboard paths:
 
+- Voice settings: `https://docsbot.ai/app/bots/{botId}/voice`
+- Voice phone/SIP: `https://docsbot.ai/app/bots/{botId}/voice/phone`
 - Chat: `https://docsbot.ai/app/bots/{botId}/chat`
 - Sources: `https://docsbot.ai/app/bots/{botId}/configure/sources`
 - System settings: `https://docsbot.ai/app/bots/{botId}/configure/system`

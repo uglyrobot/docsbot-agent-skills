@@ -1,6 +1,6 @@
 # Agent Prompt Instructions
 
-Read this when creating or materially changing `agentPrompt`, `customPrompt`, or `helpscoutPrompt`.
+Read this when creating or materially changing `agentPrompt`, `customPrompt`, `helpscoutPrompt`, or voice instructions (`voiceAgent.instructions`, the logical `voicePrompt` channel).
 
 ## Source Of Truth
 
@@ -15,9 +15,9 @@ The core prompt constants are not exposed as a direct Admin MCP read operation. 
 
 Use live prompt operations only as helpers after choosing the base template:
 
-- Use `post_teams_teamid_bots_botid_prompt` with `activeTab: "agent"` only when you need a template-aware draft for an existing bot. Review its output against the selected asset and reject broad rewrites.
-- Use `post_teams_teamid_bots_botid_prompt_debug` for focused corrections when behavior is wrong.
-- Persist accepted prompt changes with `put_teams_teamid_bots_botid`.
+- Use `draft_bot_prompt` with `activeTab: "agent"` only when you need a template-aware draft for an existing bot. Review its output against the selected asset and reject broad rewrites.
+- Use `debug_bot_prompt` for focused corrections when behavior is wrong.
+- Persist accepted prompt changes with `update_bot`.
 
 ## Preset Selection
 
@@ -26,6 +26,12 @@ Use live prompt operations only as helpers after choosing the base template:
 - Use `AI_AGENT` for internal knowledge assistants, department/team assistants, research, and general private copilots.
 - Use `HELPSCOUT` only for Help Scout email reply workflows, not normal widget agent prompts.
 - Use copywriter only for explicit marketing/content generation bots.
+
+## Voice Presets
+
+For new bots/full setup or voice prompt work, follow [deployment/voice.md](deployment/voice.md). Start from [voice-support.md](../assets/prompts/voice-support.md) (runtime default), [voice-receptionist.md](../assets/prompts/voice-receptionist.md), or [voice-sales.md](../assets/prompts/voice-sales.md), whichever fits best. These are expanded canonical `VOICE_INSTRUCTION_PRESETS` from `src/lib/voiceAgent.js`, including the shared tool, knowledge and safety blocks. Fill `{business_name}`, `{product_info}`, and `{language}` with concise business context and the spoken language. Preserve the preset sections, tool names and call-grounding rules; use short spoken turns, one question at a time, interruptions and voice-specific output. Do not paste the Markdown-oriented text-agent prompt into voice instructions.
+
+`draft_bot_prompt` supports agent/default tabs, not voice: never send `activeTab: "voice"` or treat its text-agent output as a voice preset. Save voice instructions through `create_bot`/`update_bot` using `voiceAgent.instructions`, then verify that exact field. Preparation does not authorize activation. The text-template section/Markdown rules below apply to text channels; voice retains its own canonical structure.
 
 ## Preserve Guardrails
 

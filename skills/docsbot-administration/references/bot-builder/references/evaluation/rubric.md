@@ -11,7 +11,7 @@ Score 100 points total:
   - Bot name, description, starter questions, `labels.firstMessage`, and handoff match the use case.
   - Final-product bots avoid test, MCP test, disposable, demo, judge-review, review, or timestamp naming in the saved bot name and description. Disposable test status belongs in notes, not the bot.
 - Business research and branding: 10 points
-  - Uses `post_teams_teamid_bots_analyze` when a public website exists.
+  - Uses `analyze_website_for_bot` when a public website exists.
   - Applies suitable brand color, logo/header image, icon, support/contact URL, and tone.
   - Persists the full analyzer result as `brandAnalysis` so saved `brandAnalysis.colors` and `brandAnalysis.logos` are available for widget presets and discovered bot icons.
   - For widget bots, visually verifies the selected header logo contrasts with the widget color, or provides the widget design upload fallback when the best logo is missing.
@@ -28,6 +28,8 @@ Score 100 points total:
   - Preserves DocsBot template guardrails around source grounding and tool use.
   - Starts from the closest exact prompt template and makes minimal in-place customizations without removing or reorganizing major sections.
   - Adds concise company/product context and use-case instructions.
+  - New bots/full setup also save a tailored canonical voice preset in `voiceAgent.instructions`, separately from activation. Voice preserves concise spoken output, canonical tools and grounding; unrelated edits do not require voice changes.
+  - New voice activation requires a user request or clear voice context; existing activation and all other writable voice settings are preserved unless a scoped change is authorized. Voice Skills/MCP and phone/SIP connection status are verified separately.
   - Specifies when to escalate, collect lead context, ask clarifying questions, or use configured actions.
   - Adds compact source-tag guidance when tags are configured, customized to why tags exist and whether the bot should use one tag, multiple tags, clarification before search, or untagged=false exclusion.
 - Training sources: 15 points
@@ -79,6 +81,8 @@ Score 100 points total:
 ## Severity
 
 - Critical defect: created in the wrong team, leaked secrets, deleted a review target before judging, failed to create the bot, or configured a dangerous action without scope warning.
+- Major defect: new/full setup omits prepared voice instructions, stores a top-level `voicePrompt`, uses text-agent output as the voice preset, or resets unrelated writable voice settings.
+- Major defect: enables Advanced voice, voice Skills or voice MCP selections without a user request or clear voice authorization; ordinary website/chat setup alone is insufficient.
 - Major defect: no meaningful sources, no bot-specific `labels.firstMessage`/prompt, no verification, missing required handoff links, or source tags configured without any prompt/use rationale.
 - Major defect: final handoff lacks a clear "try the bot now" link, customized next steps, or useful test prompts.
 - Major defect: any failed or zero-content source in a critical tag is left unresolved while the handoff claims the bot is ready.
