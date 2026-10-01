@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
-  "version": "0.6.0",
-  "description": "Administer DocsBot and build production DocsBot bots from Codex through authorized dashboard access.",
+  "version": "0.6.1",
+  "description": "Build AI chatbots and customer support agents from websites, documents, and knowledge bases. Manage bots, update content, and improve answers.",
   "author": {
     "name": "DocsBot",
     "url": "https://docsbot.ai"
@@ -25,8 +25,8 @@
   ],
   "interface": {
     "displayName": "DocsBot Administration",
-    "shortDescription": "Manage DocsBot workspaces",
-    "longDescription": "Inspect and manage DocsBot teams, bots, sources, integrations, Skills, and activity using the access already granted to your DocsBot account. The bundled skill guides bot setup and response-quality diagnosis. Hosted MCP tools have stable names and live DocsBot permission checks. Subscription and commerce changes are outside this plugin.",
+    "shortDescription": "Build AI chatbots and agents",
+    "longDescription": "Build AI chatbots and customer support agents from your website, documents, and knowledge base. Create and configure DocsBot bots, maintain training sources, review conversations and unanswered questions, inspect analytics, and improve instructions and Q&A content. Connect through browser-based OAuth and use your existing DocsBot team and bot permissions. Subscription and commerce changes are outside this plugin.",
     "developerName": "DocsBot",
     "category": "Business & Operations",
     "capabilities": [
@@ -108,7 +108,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Version 0.6.0 adds stable named Admin MCP tools, updated review cases, and bot-building, voice and response-quality workflows. Evals and instruction-history references apply only when their corresponding named tools are advertised. Voice instructions are prepared separately from authorized activation. Claude, Cursor and Grok setup guidance is included. Subscription and commerce changes are excluded."
+        "release_notes": "Version 0.6.1 updates directory descriptions for chatbot building and customer support workflows while preserving stable named Admin MCP tools and existing skills. Evals and instruction-history references apply only when their corresponding named tools are advertised. Voice instructions are prepared separately from authorized activation. Claude, Cursor and Grok setup guidance is included. Subscription and commerce changes are excluded."
       }
     }
   }
