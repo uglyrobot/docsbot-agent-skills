@@ -120,7 +120,10 @@ Call these stable names directly for common setup and lookup tasks:
 | Get one bot by ID | `get_bot` |
 | Create a bot | `create_bot` |
 | Update bot settings | `update_bot` |
-| Delete a bot | `delete_bot_or_research_job` |
+| Delete a bot | `delete_bot` |
+| List a bot's research jobs | `list_research_jobs` |
+| Get one research job | `get_research_job` |
+| Cancel and remove a research job | `cancel_research_job` |
 
 If a named tool is absent from the advertised catalog, do not attempt a generic operation. Report that the capability is unavailable.
 

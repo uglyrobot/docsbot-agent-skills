@@ -12,7 +12,10 @@ Call the named Admin MCP tool directly. Use `search_tools` and `get_tool_schema`
 | Get bot settings | `get_bot` | Read before updating; preserves existing settings and action config. |
 | Create bot | `create_bot` | Requires `name`; for agent bots include valid `agentPrompt`. |
 | Update bot | `update_bot` | Use minimal bodies containing only intended settings. |
-| Delete bot | `delete_bot_or_research_job` | Destructive except research-job mode. Confirm unless the user already explicitly authorized that exact deletion. |
+| Delete bot | `delete_bot` | Deletes the bot only. Confirm unless the user already explicitly authorized that exact deletion. |
+| List research jobs | `list_research_jobs` | Use the bot's dedicated research route. |
+| Get research job | `get_research_job` | Requires the bot and research job IDs. |
+| Cancel and remove research job | `cancel_research_job` | Cancels the external task and soft-deletes the stored job. Confirm unless the user already explicitly authorized that exact action. |
 
 ## Bot Creation Guardrails
 
