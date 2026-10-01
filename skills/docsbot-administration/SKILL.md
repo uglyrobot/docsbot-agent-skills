@@ -133,7 +133,7 @@ Metadata discovery is optional when the named tool is known. Use `get_tool_schem
 Call these stable names directly for common setup and lookup tasks:
 
 | Task | Named tool |
-| --- | --- | --- |
+| --- | --- |
 | List teams visible to the authorized user | `list_teams` |
 | Get one team by ID | `get_team` |
 | Create a team | `create_team` |

@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
   "version": "0.6.0",
-  "description": "Administer DocsBot and build production DocsBot bots through authorized dashboard access.",
+  "description": "Manage DocsBot workspaces, build bots, and improve response quality through authorized DocsBot access.",
   "author": {
     "name": "DocsBot",
     "url": "https://docsbot.ai"
@@ -23,5 +23,10 @@
     "oauth",
     "rbac"
   ],
-  "displayName": "DocsBot Administration"
+  "displayName": "DocsBot Administration",
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://docsbot.ai/legal/privacy-policy",
+  "supportUrl": "https://docsbot.ai",
+  "documentationUrl": "https://docsbot.ai/documentation/developer/mcp-server",
+  "termsOfServiceUrl": "https://docsbot.ai/legal/terms-of-service"
 }

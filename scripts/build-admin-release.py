@@ -82,6 +82,16 @@ def main():
         client = json.loads(rels[filename].read_text())
         if client.get("name") != portable["name"] or client.get("version") != portable["version"]:
             die(f"{filename} name or version differs from the portable manifest")
+    claude = json.loads(rels[".claude-plugin/plugin.json"].read_text())
+    if claude.get("displayName") != "DocsBot Administration":
+        die("Claude directory displayName must preserve DocsBot capitalization")
+    for key in ("privacyPolicyUrl", "supportUrl", "documentationUrl", "termsOfServiceUrl"):
+        check_https(claude.get(key), f"Claude {key}")
+    check_asset_path(claude.get("icon"), rels, "Claude directory icon")
+    if "README.md" not in rels or len(re.sub(r"```.*?```", "", rels["README.md"].read_text(), flags=re.S).split()) < 40:
+        die("Claude directory requires a package-local README of at least 40 words")
+    if "LICENSE" not in rels and not claude.get("license"):
+        die("Claude directory requires a license")
     extension = portable["extensions"]["com.openai"]
     compat_extension = compat["extensions"]["com.openai"]
     if extension["interface"] != compat["interface"]:
