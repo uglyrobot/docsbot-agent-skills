@@ -76,7 +76,7 @@ That subworkflow is part of DocsBot Administration, but it is intentionally kept
 
 ## Evals and Instruction History
 
-For question sets, test runs, report comparison, instruction changes, or restoring a prior instruction version, load the [Evals and instruction workflow](references/evals/SKILL.md). Its references preserve the selected bot, channel, dataset, and run; require a reviewable proposal before unapproved writes; and distinguish test usage from saved changes.
+Before selecting a saved Evals or instruction-history workflow, inspect the currently advertised tools with `search_tools` and verify the relevant input contracts with `get_tool_schema`. Load the [Evals and instruction workflow](references/evals/SKILL.md) only for capabilities whose named tools are advertised. Bundled documentation does not mean Evals APIs, reports, version history, or dashboard handoffs are released for this account. If the tools are absent, draft questions locally, review ordinary conversation history through the response-quality workflow, and improve current instructions through advertised `get_bot`/`update_bot` tools. Do not call missing tools or promise saved sets, runs, or version restoration.
 
 ## Team Detection
 

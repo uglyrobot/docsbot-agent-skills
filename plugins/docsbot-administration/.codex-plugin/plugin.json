@@ -108,7 +108,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Version 0.6.0 adds stable named Admin MCP tools, updated review cases, and complete bot-building, voice, response-quality and Evals workflows. Voice instructions are prepared separately from authorized activation. Claude, Cursor and Grok setup guidance is included. Subscription and commerce changes are excluded."
+        "release_notes": "Version 0.6.0 adds stable named Admin MCP tools, updated review cases, and bot-building, voice and response-quality workflows. Evals and instruction-history references apply only when their corresponding named tools are advertised. Voice instructions are prepared separately from authorized activation. Claude, Cursor and Grok setup guidance is included. Subscription and commerce changes are excluded."
       }
     }
   }
