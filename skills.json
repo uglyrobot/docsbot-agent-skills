@@ -1,12 +1,12 @@
 {
   "name": "docsbot-agent-skills",
-  "description": "Agent Skills for DocsBot Administration and related DocsBot agent workflows.",
+  "description": "Agent Skills for DocsBot and related DocsBot agent workflows.",
   "homepage": "https://github.com/uglyrobot/docsbot-agent-skills",
   "skills": [
     {
       "name": "docsbot-administration",
       "path": "skills/docsbot-administration",
-      "description": "Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, read-only account usage, and production bot-building workflows through the OAuth-authenticated DocsBot Administration server.",
+      "description": "Administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, read-only account usage, and production bot-building workflows through the OAuth-authenticated DocsBot server.",
       "mcpServers": [
         {
           "name": "docsbot",

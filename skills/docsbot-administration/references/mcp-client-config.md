@@ -26,7 +26,7 @@ codex plugin marketplace add uglyrobot/docsbot-agent-skills
 codex plugin add docsbot-administration@docsbot
 ```
 
-Then start a new Codex thread and ask Codex to use DocsBot Administration.
+Then start a new Codex thread and ask Codex to use DocsBot.
 
 ## Claude Chat, Cowork, And Claude Code
 

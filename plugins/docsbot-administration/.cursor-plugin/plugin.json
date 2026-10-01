@@ -1,7 +1,7 @@
 {
   "name": "docsbot-administration",
-  "displayName": "DocsBot Administration",
-  "version": "0.6.1",
+  "displayName": "DocsBot",
+  "version": "0.6.2",
   "description": "Build AI chatbots and customer support agents from websites, documents, and knowledge bases. Manage bots, update content, and improve answers.",
   "author": {
     "name": "DocsBot"

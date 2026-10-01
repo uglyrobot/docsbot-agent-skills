@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and validate the complete DocsBot Administration plugin ZIP."""
+"""Build and validate the complete DocsBot plugin ZIP."""
 import argparse
 import json
 import re
@@ -83,7 +83,7 @@ def main():
         if client.get("name") != portable["name"] or client.get("version") != portable["version"]:
             die(f"{filename} name or version differs from the portable manifest")
     claude = json.loads(rels[".claude-plugin/plugin.json"].read_text())
-    if claude.get("displayName") != "DocsBot Administration":
+    if claude.get("displayName") != "DocsBot":
         die("Claude directory displayName must preserve DocsBot capitalization")
     for key in ("privacyPolicyUrl", "supportUrl", "documentationUrl", "termsOfServiceUrl"):
         check_https(claude.get(key), f"Claude {key}")

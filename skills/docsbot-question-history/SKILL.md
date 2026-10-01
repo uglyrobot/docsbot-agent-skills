@@ -53,7 +53,7 @@ The token can be a DocsBot API key or a DocsBot MCP OAuth token prefixed with `m
 
 ## Constraints
 
-- Do not use this skill for DocsBot account administration; use DocsBot Administration for teams, bots, sources, settings, members, integrations, or billing.
+- Do not use this skill for DocsBot account administration; use DocsBot for teams, bots, sources, settings, members, integrations, or billing.
 - Do not invent team IDs, bot IDs, question IDs, conversation history, or support outcomes.
 - Respect the privacy of logged questions and conversations. Do not expose more customer data than the user needs for the task.
 - If the bot has fewer than 5,000 logged questions, report that Question History search is not available for that bot yet.

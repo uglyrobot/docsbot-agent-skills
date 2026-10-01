@@ -1,6 +1,6 @@
 ---
 name: docsbot-administration
-description: Use this bundled DocsBot Administration workflow whenever the DocsBot Administration plugin is installed and the user asks to manage DocsBot teams, bots, sources, members, integrations, Skills, reports, or read-only account usage. This skill teaches efficient Admin MCP usage, current team detection, team and bot lookup, safe writes, and optional metadata discovery.
+description: Use this bundled DocsBot workflow whenever the DocsBot plugin is installed and the user asks to manage DocsBot teams, bots, sources, members, integrations, Skills, reports, or read-only account usage. This skill teaches efficient Admin MCP usage, current team detection, team and bot lookup, safe writes, and optional metadata discovery.
 license: MIT
 metadata:
   author: DocsBot
@@ -8,9 +8,9 @@ metadata:
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
-# DocsBot Administration
+# DocsBot
 
-Use the hosted DocsBot Administration MCP server for account and dashboard administration:
+Use the hosted DocsBot MCP server for account and dashboard administration:
 
 ```text
 https://mcp.docsbot.ai
@@ -33,7 +33,7 @@ The hosted server advertises fixed, named Admin MCP tools. Call a known tool dir
 
 When the user asks to create, configure, tune, test, or hand off a new DocsBot bot, load the dedicated [bot-builder subworkflow](references/bot-builder/SKILL.md) before making MCP writes.
 
-That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
+That subworkflow is part of DocsBot, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
 During a new or complete bot setup, prepare the voice prompt as well as the text prompt. The logical `voicePrompt` is saved as `voiceAgent.instructions`. Follow the bot-builder's voice guidance to preserve existing settings; enable advanced voice only when the user requests it, confirms it, or clearly includes voice in the intended outcome.
 

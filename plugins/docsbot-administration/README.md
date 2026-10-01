@@ -1,4 +1,4 @@
-# DocsBot Administration
+# DocsBot
 
 ![DocsBot](assets/icon.png)
 

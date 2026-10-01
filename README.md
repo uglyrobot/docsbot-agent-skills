@@ -2,7 +2,7 @@
 
 Install DocsBot skills and plugins in Cursor, Codex, Claude (chat, Cowork, and Claude Code), Grok Build, and other MCP- or Agent Skills-compatible clients.
 
-DocsBot Administration is a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. Its package at `plugins/docsbot-administration/` follows the portable [Agent Plugins v1](https://agent-plugins.org/) layout with a root `plugin.json`, `mcp.json`, and bundled workflow skill. Cursor and Codex also have client-specific marketplace manifests. The same package includes Claude’s `.claude-plugin/plugin.json` and `.mcp.json` layout, which Grok Build also supports. See the [client notes](#client-notes) for each installation surface.
+The DocsBot plugin connects to a hosted Streamable HTTP MCP server for authorized DocsBot dashboard administration. Its package at `plugins/docsbot-administration/` follows the portable [Agent Plugins v1](https://agent-plugins.org/) layout with a root `plugin.json`, `mcp.json`, and bundled workflow skill. Cursor and Codex also have client-specific marketplace manifests. The same package includes Claude’s `.claude-plugin/plugin.json` and `.mcp.json` layout, which Grok Build also supports. See the [client notes](#client-notes) for each installation surface.
 
 ```text
 https://mcp.docsbot.ai
@@ -24,13 +24,13 @@ The root `plugin.json` declares the Agent Plugins v1 manifest and the root `mcp.
 
 ## Install In Cursor As A Plugin
 
-After DocsBot Administration is approved and listed in the Cursor Marketplace, open a Cursor agent chat and run:
+After DocsBot is approved and listed in the Cursor Marketplace, open a Cursor agent chat and run:
 
 ```text
 /add-plugin docsbot-administration
 ```
 
-The Cursor-specific `.cursor-plugin/plugin.json` package bundles the DocsBot Administration skill and native remote MCP configuration. Cursor opens the DocsBot OAuth flow when it connects.
+The Cursor-specific `.cursor-plugin/plugin.json` package bundles the DocsBot skill and native remote MCP configuration. Cursor opens the DocsBot OAuth flow when it connects.
 
 ## Install In Codex As A Plugin
 
@@ -41,7 +41,7 @@ codex plugin marketplace add uglyrobot/docsbot-agent-skills
 codex plugin add docsbot-administration@docsbot
 ```
 
-Then start a new Codex thread and ask Codex to use DocsBot Administration.
+Then start a new Codex thread and ask Codex to use DocsBot.
 
 You can also browse it from Codex:
 
@@ -54,7 +54,7 @@ Open the `DocsBot` marketplace tab and install `docsbot-administration`.
 
 ## Install In Claude Code As A Plugin
 
-Add this repository as a Claude Code plugin marketplace, then install DocsBot Administration:
+Add this repository as a Claude Code plugin marketplace, then install DocsBot:
 
 ```text
 /plugin marketplace add uglyrobot/docsbot-agent-skills
@@ -111,7 +111,7 @@ Use the common `npx skills` installer:
 # Install all skills in this repo
 npx skills add uglyrobot/docsbot-agent-skills
 
-# Install only the DocsBot Administration skill
+# Install only the DocsBot skill
 npx skills add uglyrobot/docsbot-agent-skills --skill docsbot-administration
 
 # Install only the DocsBot Documentation Search skill
@@ -134,7 +134,7 @@ For multi-agent installs across clients such as Claude Code, Cursor, Copilot, an
 # Install all skills in this repo
 npx skillkit install uglyrobot/docsbot-agent-skills
 
-# Install only the DocsBot Administration skill
+# Install only the DocsBot skill
 npx skillkit install uglyrobot/docsbot-agent-skills --skill docsbot-administration
 
 # Install only the DocsBot Documentation Search skill
@@ -237,6 +237,6 @@ Run `python3 scripts/build-admin-release.py` before packaging. It validates clie
 
 Hosted Admin MCP tools use stable names such as `list_teams`, `list_bots`, `get_bot`, `list_sources`, and `get_source`. Agents call these directly with the named tool's `pathParams`, `query`, and/or `body`; optional `list_tool_categories`, `search_tools`, and `get_tool_schema` inspect metadata only. Hosted tool changes are scanned automatically after publication: new tools and changed metadata can be held for review, while approved definitions remain available. Keep updates additive and backward compatible. Changes to plugin skills, configuration, or listing metadata require a new complete ZIP. Subscription and commerce mutations are outside this plugin; account usage reads remain available through advertised tools.
 
-DocsBot Administration acts as the authorized DocsBot user. Existing team roles, bot access, billing permissions, and dashboard RBAC remain the source of truth.
+DocsBot acts as the authorized DocsBot user. Existing team roles, bot access, billing permissions, and dashboard RBAC remain the source of truth.
 
 Review and revoke authorized MCP clients from **API & Integrations** in the DocsBot dashboard.

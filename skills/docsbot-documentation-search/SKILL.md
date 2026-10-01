@@ -51,7 +51,7 @@ The token can be a DocsBot API key or a DocsBot MCP OAuth token prefixed with `m
 
 ## Constraints
 
-- Do not use this skill for DocsBot account administration; use DocsBot Administration for teams, bots, sources, settings, members, integrations, or billing.
+- Do not use this skill for DocsBot account administration; use DocsBot for teams, bots, sources, settings, members, integrations, or billing.
 - Do not invent team IDs, bot IDs, source IDs, tags, or source content.
 - Treat `fetch` failures on older sources as a data freshness issue; the source may need to be refreshed in DocsBot before full-document retrieval is available.
 - Do not expose API keys, OAuth tokens, or private indexed content beyond what is necessary for the user's task.

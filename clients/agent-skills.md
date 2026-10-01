@@ -55,7 +55,7 @@ docsbot-administration/
 
 To use a skill, copy or install that folder into the target client's skills directory, then configure the relevant remote MCP server in that client.
 
-DocsBot Administration:
+DocsBot:
 
 ```json
 {

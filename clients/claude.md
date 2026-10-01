@@ -10,7 +10,7 @@ Open **Customize → Plugins → Add**. Upload the complete plugin ZIP, or choos
 https://github.com/uglyrobot/docsbot-agent-skills
 ```
 
-After installing DocsBot Administration, open its **Connectors** tab and add or connect DocsBot. Sign in with your DocsBot account. On Team and Enterprise, an Owner provisions the connector before members connect their accounts. [Official plugin structure and installation](https://claude.com/docs/plugins/build), [support by app](https://claude.com/docs/plugins/platform-support).
+After installing DocsBot, open its **Connectors** tab and add or connect DocsBot. Sign in with your DocsBot account. On Team and Enterprise, an Owner provisions the connector before members connect their accounts. [Official plugin structure and installation](https://claude.com/docs/plugins/build), [support by app](https://claude.com/docs/plugins/platform-support).
 
 For a direct remote connector without the plugin’s workflow skill, use **Settings → Connectors** and add `https://mcp.docsbot.ai`. Remote connectors use this UI rather than `claude_desktop_config.json`. [Official remote connector setup](https://support.claude.com/en/articles/11503834-building-custom-connectors-via-remote-mcp-servers).
 

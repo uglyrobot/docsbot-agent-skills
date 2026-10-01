@@ -1,6 +1,6 @@
 ---
 name: docsbot-administration
-description: Use DocsBot Administration to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and read-only account usage through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
+description: Use DocsBot to administer DocsBot teams, bots, sources, members, integrations, Skills, reporting, and read-only account usage through an OAuth-authenticated remote MCP server. Activate when a user asks to manage DocsBot, inspect DocsBot account state, configure bots or sources, review dashboard data, or use the DocsBot Admin API through an agent.
 license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
@@ -9,9 +9,9 @@ metadata:
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
-# DocsBot Administration
+# DocsBot
 
-Use this skill when working with the hosted DocsBot Administration server:
+Use this skill when working with the hosted DocsBot server:
 
 ```text
 https://mcp.docsbot.ai
@@ -64,7 +64,7 @@ codex plugin add docsbot-administration@docsbot
 
 When the user asks to create, configure, tune, test, or hand off a new DocsBot bot, load the dedicated [bot-builder subworkflow](references/bot-builder/SKILL.md) before making MCP writes.
 
-That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
+That subworkflow is part of DocsBot, but it is intentionally kept as a nested reference tree because production bot creation has its own discovery, branding, source-selection, prompt, deployment, action, evaluation, and handoff rubric. Follow its reference chain from `references/bot-builder/` for bot-building tasks instead of merging those rules into this general administration workflow.
 
 During a new or complete bot setup, prepare the voice prompt as well as the text prompt. The logical `voicePrompt` is saved as `voiceAgent.instructions`. Follow the bot-builder's voice guidance to preserve existing settings; enable advanced voice only when the user requests it, confirms it, or clearly includes voice in the intended outcome.
 
@@ -72,7 +72,7 @@ During a new or complete bot setup, prepare the voice prompt as well as the text
 
 When the user asks why a bot answered the way it did, to analyze conversation or question logs, diagnose bad/unanswered/escalated answers, debug retrieval with semantic search, find knowledge gaps from history, or improve response quality from log evidence, load the dedicated [response-quality subworkflow](references/response-quality/SKILL.md) before deep log analysis or remediation writes.
 
-That subworkflow is part of DocsBot Administration, but it is intentionally kept as a nested reference tree because log diagnosis has its own evidence rules, semantic-search debug matrix, root-cause taxonomy, revise→Q&A remediation, and handoff shape. Follow its reference chain from `references/response-quality/` instead of improvising from general administration steps alone.
+That subworkflow is part of DocsBot, but it is intentionally kept as a nested reference tree because log diagnosis has its own evidence rules, semantic-search debug matrix, root-cause taxonomy, revise→Q&A remediation, and handoff shape. Follow its reference chain from `references/response-quality/` instead of improvising from general administration steps alone.
 
 ## Evals and Instruction History
 
