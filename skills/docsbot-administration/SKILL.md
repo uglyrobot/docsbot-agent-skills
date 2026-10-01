@@ -154,7 +154,7 @@ If a named tool is absent from the advertised catalog, do not attempt a generic 
 - Do not call arbitrary DocsBot URLs. Use only advertised named tools.
 - Do not invent team IDs, bot IDs, source IDs, or tool names. Resolve IDs from named read tools and use metadata discovery for unfamiliar advertised names.
 - Treat existing DocsBot dashboard RBAC as the source of truth. If an action is denied, report the denial rather than attempting to bypass it.
-- Prefer idempotency keys for create/update operations when the operation supports them.
+- After an uncertain or timed-out write, read back the intended resource state before retrying. Repeated create or send calls can duplicate resources or effects; if the outcome cannot be verified, report the uncertainty instead of retrying blindly.
 - Do not expose OAuth tokens, API keys, internal headers, or private response data beyond what the user needs for the task.
 - Do not use Admin MCP for per-bot documentation retrieval or question-history semantic search; those are separate per-bot MCP servers.
 

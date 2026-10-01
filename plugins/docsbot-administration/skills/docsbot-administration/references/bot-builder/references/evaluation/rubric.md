@@ -21,7 +21,8 @@ Score 100 points total:
 - Bot creation and MCP hygiene: 10 points
   - Resolves the correct team first.
   - Uses a valid `language` locale key inferred from user instructions, source language, website/docs language, or brand analysis instead of defaulting blindly to English.
-  - Uses `isAgent` only with a prompt containing `search_documentation`, and safe idempotency keys.
+  - Uses `isAgent` only with a prompt containing `search_documentation`.
+  - Reads back the intended resource state after uncertain or timed-out writes before retrying; recognizes that repeated create or send calls can duplicate resources or effects and reports unverifiable outcomes instead of retrying blindly.
   - Does not expose secrets, signatures, signed upload URLs, or large copied analytics in output.
   - If sensitive fields are present in raw reads, redacts them and reports that sanitized evidence was used.
 - Prompt and agent behavior: 15 points

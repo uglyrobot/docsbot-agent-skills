@@ -139,7 +139,7 @@ Before a write, summarize:
 - fields that will change
 - expected side effect
 
-Use an idempotency key for create/update tools only when its advertised schema supports one.
+After an uncertain or timed-out write, read back the intended resource state before retrying. Repeated create or send calls can duplicate resources or effects; if the outcome cannot be verified, report the uncertainty instead of retrying blindly.
 
 ## Reporting Results
 

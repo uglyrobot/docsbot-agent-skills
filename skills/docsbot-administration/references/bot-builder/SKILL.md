@@ -30,7 +30,7 @@ This skill is the build surface. Do not use adjacent DocsBot demo-bot skills, pu
 ## Operating Rules
 
 - Resolve the target team with `list_teams`; never assume the OAuth token is tied to one team.
-- Use `idempotencyKey` for create/update operations when practical.
+- After an uncertain or timed-out write, read back the intended resource state before retrying. Repeated create or send calls can duplicate resources or effects; if the outcome cannot be verified, report the uncertainty instead of retrying blindly.
 - For destructive writes, integration disconnects, source deletion, member changes, and bot deletion, summarize the intended action and ask for confirmation unless the user already explicitly authorized that exact action.
 - Never expose OAuth tokens, API keys, signed upload URLs, custom header secrets, bot signature keys, or secret binding values in user-facing output.
 - Bot/settings reads may return signature-like or secret-like fields. Treat them as sensitive, do not quote them, and report the catalog/sanitization issue separately from the configured bot quality unless you exposed the value.
