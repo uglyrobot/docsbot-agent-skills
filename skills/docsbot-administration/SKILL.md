@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires an MCP-compatible agent or client with Streamable HTTP support and browser-based OAuth.
 metadata:
   author: DocsBot
-  version: "0.6.0"
+  version: "0.6.3"
   mcp_server_url: https://mcp.docsbot.ai
 ---
 
@@ -20,6 +20,10 @@ https://mcp.docsbot.ai
 The hosted server advertises fixed, named Admin MCP tools. Call a known tool directly with its operation-specific `pathParams`, `query`, and/or `body` input. For example, call `list_teams` to resolve the team, `list_bots` with `pathParams.teamId` to resolve a bot, and `get_bot` with `pathParams.teamId` and `pathParams.botId` to inspect it. Read the advertised input schema before sending fields that are not already clear. Do not call a generic `execute` tool or send an `operationId`.
 
 `list_tool_categories`, `search_tools`, and `get_tool_schema` inspect metadata for tools already advertised to the client. Use them only when the relevant name or schema is unclear; they do not enable, execute, or discover hidden operations. Stable tool names remain callable across additive, backward-compatible hosted MCP updates. New or changed metadata may be held by OpenAI's automated scan while the last approved definition remains live; a newly added tool is unavailable until approved. Keep calls compatible with the currently advertised schema. Plugin skills, config, and listing changes require a new package ZIP.
+
+## Download Approvals
+
+Generated question-log, lead, Q&A, and source downloads (`export_question_log`, `export_leads`, `export_qa_source`, and `get_source_download_url`) are additive, non-destructive operations that create temporary private transport files. Hosted policy classifies these tools as non-read-only; use the client's approval flow when requested. They leave application records and earlier downloads unchanged. Signing an existing source file with `get_source_file_download_url` remains read-only. Never bypass an approval prompt or infer authorization to perform another action from download approval.
 
 ## Setup
 
