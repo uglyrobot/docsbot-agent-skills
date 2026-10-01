@@ -119,6 +119,9 @@ def main():
     for key in ("homepage",):
         check_https(portable.get(key), key)
     check_https(portable.get("author", {}).get("url"), "author.url")
+    allowed_review_fields = {"test_cases", "demo_recording_url", "commerce", "commerce_description"}
+    if unknown := set(extension["review"]) - allowed_review_fields:
+        die(f"Unknown OpenAI review fields: {sorted(unknown)}. Release notes belong in publication.")
     cases = extension["review"]["test_cases"]
     if len(cases["positive"]) != 5 or len(cases["negative"]) != 3:
         die("Review cases must contain exactly five positive and three negative cases")

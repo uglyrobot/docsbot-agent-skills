@@ -105,11 +105,10 @@
             }
           ]
         },
-        "commerce": false,
-        "release_notes": "Version 0.6.3 documents required approval for generated CSV exports and source downloads under hosted MCP policy. Downloads are additive and non-destructive; application records and previous downloads remain unchanged. Predefined tools, OAuth and live DocsBot permissions remain in place. Evals workflows require advertised tools. Voice instructions are prepared separately from authorized activation. Subscription and commerce changes are excluded."
+        "commerce": false
       },
       "publication": {
-        "release_notes": "Version 0.6.2 changes the directory display name to DocsBot while preserving plugin identifiers, named Admin MCP tools, and existing workflows. Evals and instruction-history references apply only when their corresponding named tools are advertised. Voice instructions are prepared separately from authorized activation. Claude, Cursor and Grok setup guidance is included. Subscription and commerce changes are excluded."
+        "release_notes": "Version 0.6.3 documents required approval for generated CSV exports and source downloads under hosted MCP policy. Downloads are additive and non-destructive; application records and previous downloads remain unchanged. Predefined tools, OAuth and live DocsBot permissions remain in place. Evals workflows require advertised tools. Voice instructions are prepared separately from authorized activation. Subscription and commerce changes are excluded."
       }
     }
   }
