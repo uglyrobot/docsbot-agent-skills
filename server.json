@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.uglyrobot/docsbot",
+  "title": "DocsBot",
+  "description": "Manage DocsBot agents, knowledge sources, conversations, reporting, and teams with OAuth.",
+  "version": "0.1.0",
+  "websiteUrl": "https://docsbot.ai/documentation/developer/mcp-server",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/uglyrobot/docsbot-agent-skills/main/plugins/docsbot-administration/assets/icon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "384x384"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.docsbot.ai"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "documentation": "https://docsbot.ai/documentation/developer/mcp-server",
+      "skillsRepository": "https://github.com/uglyrobot/docsbot-agent-skills",
+      "authentication": {
+        "type": "oauth2",
+        "authorizationCodePkce": true,
+        "dynamicClientRegistration": true
+      },
+      "requirements": "DocsBot account and access to a team; available operations depend on role and plan.",
+      "privacyPolicy": "https://docsbot.ai/legal/privacy-policy",
+      "termsOfService": "https://docsbot.ai/legal/terms-of-service"
+    }
+  }
+}

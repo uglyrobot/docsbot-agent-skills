@@ -12,6 +12,12 @@ This package requires the Admin server with fixed named action tools. If MCP `to
 
 Authentication uses browser-based OAuth with Dynamic Client Registration. DocsBot evaluates dashboard permissions and RBAC live on every action.
 
+## Official MCP Registry
+
+The hosted Admin MCP is published as `io.github.uglyrobot/docsbot` in the [official MCP Registry](https://registry.modelcontextprotocol.io/?q=docsbot). Its reproducible listing metadata is maintained in [`server.json`](server.json); the registry stores metadata and points clients directly to `https://mcp.docsbot.ai`.
+
+When releasing a new registry version, update `server.json`, validate it through the registry's `/v0.1/validate` endpoint, authenticate with the official `mcp-publisher`, and run `mcp-publisher publish server.json`. Published versions are immutable; use a new version for changed metadata. Keep the server name and endpoint stable for existing clients. OAuth discovery remains hosted on the MCP endpoint.
+
 ## Agent Plugins v1
 
 Agent Plugins-compatible clients can load this directory as one portable package:
